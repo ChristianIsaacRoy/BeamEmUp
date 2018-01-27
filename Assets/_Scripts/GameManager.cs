@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayers()
     {
-        for (int i = 0; i < gameData.numberOfPlayers; i++)
+        for (int i = gameData.numberOfPlayers-1; i < players.Length; i++)
         {
             players[i].SetActive(false);
             players[i].transform.position = playerSpawns[i].position;
