@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ItemFunctionManager : MonoBehaviour {
 
+    public ItemData itemData;
+
 	// Use this for initialization
 	void Start () {
-		
 	}
 
     public void itemPickup()
