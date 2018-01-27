@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
         // Change to SphereCast to allow for a margin of error from the player
         if (Physics.SphereCast(origin, 1.5f, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distanceToZapTarget, ignoreMask))
-        {
+        { 
             if (hit.transform.gameObject != zapTarget)
             {
                 CancelShooting();
