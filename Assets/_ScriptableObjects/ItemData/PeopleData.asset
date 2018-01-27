@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e541a6d175ccf34eaf24b0750ee6ffe, type: 3}
   m_Name: PeopleData
   m_EditorClassIdentifier: 
-  itemMesh: {fileID: 0}
+  itemMesh: {fileID: 4300000, guid: a242d67ca8eed2443b56e2a95236e588, type: 3}
   collider: {fileID: 0}
-  name: 
-  pointValue: 0
+  name: TestPerson
+  pointValue: 50
