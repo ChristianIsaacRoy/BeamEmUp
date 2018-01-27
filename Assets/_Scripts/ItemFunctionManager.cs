@@ -7,10 +7,15 @@ public class ItemFunctionManager : MonoBehaviour {
     public int pointValue;
     public ItemData itemData;
     private MeshFilter itemFilter;
+    public int itemHoverHeight;
+    private MeshCollider itemCollider;
+
 	// Use this for initialization
 	void Start () {
         itemFilter = GetComponent<MeshFilter>();
         itemFilter.mesh = itemData.itemMesh;
+        itemCollider = GetComponent<MeshCollider>();
+        itemCollider.sharedMesh = itemData.itemMesh;
         pointValue = itemData.pointValue;
 	}
 
@@ -27,6 +32,6 @@ public class ItemFunctionManager : MonoBehaviour {
         //item rotation
         transform.Rotate(0, 10 * Time.deltaTime, 0);
         //item float
-        transform.Translate(0, Mathf.Sin(Time.fixedTime)/60, 0);
+        transform.Translate(0, Mathf.Sin(Time.fixedTime) / (100 / itemHoverHeight), 0);
 	}
 }
