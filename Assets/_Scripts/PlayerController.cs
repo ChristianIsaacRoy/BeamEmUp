@@ -93,14 +93,14 @@ public class PlayerController : MonoBehaviour
             if (elapsedZapTime >= gameData.timeToZap)
             {
                 // Successful zap
-                ItemFunctionManager item = zapTarget.GetComponent<ItemFunctionManager>();
+                GameItem item = zapTarget.GetComponent<GameItem>();
                 CancelShooting();
                 elapsedZapTime = 0.0f;
                 if (gameManager != null)
                 {
                     gameManager.AddItemToPlayer(playerID, item.itemData);
                 }
-                item.itemPickup();
+                item.ZapItem();
             }
         }
         // Stopped zapping, slowly decrease zap time
@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
     private void CancelShooting()
     {
         particleSystem.Stop();
-        zapTarget.GetComponent<ItemFunctionManager>().isBeingZapped = false;
+        zapTarget.GetComponent<GameItem>().isBeingZapped = false;
         zapTarget = null;
     }
 
@@ -179,11 +179,11 @@ public class PlayerController : MonoBehaviour
             if (Physics.SphereCast(origin, 1.5f, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
             //if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
             {
-                ItemFunctionManager item = hit.transform.gameObject.GetComponent<ItemFunctionManager>();
+                GameItem item = hit.transform.gameObject.GetComponent<GameItem>();
                 if (item != null)
                 {
                     zapTarget = hit.transform.gameObject;
-                    zapTarget.GetComponent<ItemFunctionManager>().isBeingZapped = true;
+                    zapTarget.GetComponent<GameItem>().isBeingZapped = true;
                     particleSystem.Play();
                 }
             }
