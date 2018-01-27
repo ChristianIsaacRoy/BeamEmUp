@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e541a6d175ccf34eaf24b0750ee6ffe, type: 3}
   m_Name: TestItem
   m_EditorClassIdentifier: 
-  itemMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  itemMesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   name: Blah
-  pointValue: 15
+  pointValue: 9000
