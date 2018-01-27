@@ -7,7 +7,7 @@ public class PeopleAI : MonoBehaviour {
     public float waitTime;
 
     public float waitTimeCounter;
-    private float switchProbability = .2f;
+    private float switchProbability = 2f;
 
     private bool personWaiting;
     private bool personMovingForwards;
@@ -31,6 +31,7 @@ public class PeopleAI : MonoBehaviour {
 
         if(wayPoints.Count >= 2)
         {
+            personMovingForwards = true;
             SetDestination();
             ChangePatrolPoint();
         }
@@ -45,6 +46,7 @@ public class PeopleAI : MonoBehaviour {
     {
         if(personMoving && navMeshAgent.remainingDistance <= 1f)
         {
+            personMoving = false;
             personWaiting = true;
             waitTimeCounter = waitTime;
         }
@@ -52,12 +54,14 @@ public class PeopleAI : MonoBehaviour {
         if (personWaiting)
         {
             waitTimeCounter -= Time.deltaTime;
-            if(waitTimeCounter <= 0)
+            if (waitTimeCounter <= 0)
             {
                 personWaiting = false;
                 SetDestination();
+                ChangePatrolPoint();
             }
         }
+
     }
 
     void SetDestination()
@@ -72,7 +76,7 @@ public class PeopleAI : MonoBehaviour {
 
     void ChangePatrolPoint()
     {
-        if(Random.Range(0f, 1f) <= switchProbability)
+        if(Random.Range(0f, 11f) < switchProbability)
         {
             personMovingForwards = !personMovingForwards;
         }
@@ -82,9 +86,9 @@ public class PeopleAI : MonoBehaviour {
         }
         else
         {
-            if(wayPointIndex < 0)
+            if(wayPointIndex > 0)
             {
-                wayPointIndex = wayPoints.Count - 1;
+                wayPointIndex = wayPointIndex -= 1;
             }
         }
     }
