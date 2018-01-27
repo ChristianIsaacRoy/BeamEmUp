@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 public class PeopleAI : MonoBehaviour {
 
+    public float movementSpeed;
     public float waitTime;
 
     public float waitTimeCounter;
@@ -28,8 +29,8 @@ public class PeopleAI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         navMeshAgent = GetComponent<NavMeshAgent>();
-
-        if(wayPoints.Count >= 2)
+        navMeshAgent.speed = movementSpeed;
+        if (wayPoints.Count >= 2)
         {
             personMovingForwards = true;
             SetDestination();
