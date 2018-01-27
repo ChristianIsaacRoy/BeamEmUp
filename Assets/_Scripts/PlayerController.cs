@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public GameData gameData;
     private GameManager gameManager;
 
+    public ParticleSystem particleSystem;
+
     private GameObject zapTarget;
     private float elapsedZapTime = 0.0f;
 
@@ -91,6 +93,7 @@ public class PlayerController : MonoBehaviour
                 // Successful zap
                 ItemFunctionManager item = zapTarget.GetComponent<ItemFunctionManager>();
                 zapTarget = null;
+                particleSystem.Stop();
                 elapsedZapTime = 0.0f;
                 if (gameManager != null)
                 {
@@ -115,8 +118,7 @@ public class PlayerController : MonoBehaviour
         // Make sure trigger is still held down
         if (!player.GetButton("Shoot"))
         {
-            // TODO: Cancel animation
-            zapTarget = null;
+            CancelShooting();
             return;
         }
 
@@ -126,8 +128,7 @@ public class PlayerController : MonoBehaviour
         float distanceToZapTarget = (zapTarget.transform.position - origin).magnitude;
         if (distanceToZapTarget > gameData.distanceToZap)
         {
-            // TODO: Cancel animation
-            zapTarget = null;
+            CancelShooting();
             return;
         }
 
@@ -139,17 +140,21 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.transform.gameObject != zapTarget)
             {
-                // TODO: Cancel animation
-                zapTarget = null;
+                CancelShooting();
                 return;
             }
         }
         else
         {
-            // TODO: Cancel animation
-            zapTarget = null;
+            CancelShooting();
             return;
         }
+    }
+
+    private void CancelShooting()
+    {
+        particleSystem.Stop();
+        zapTarget = null;
     }
 
     private void CheckShoot()
@@ -173,6 +178,7 @@ public class PlayerController : MonoBehaviour
                 if (item != null)
                 {
                     zapTarget = hit.transform.gameObject;
+                    particleSystem.Play();
                 }
             }
         }
@@ -241,7 +247,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
                                               myCamera.transform.eulerAngles.y,
                                               transform.eulerAngles.z);
-
+        //particleSystem.shape.rotation = transform.rotation;
     }
 
 }
