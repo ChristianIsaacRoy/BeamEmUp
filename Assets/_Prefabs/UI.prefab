@@ -291,7 +291,7 @@ Camera:
   m_GameObject: {fileID: 1361162624658848}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -751,10 +751,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fa2abe0fe79174fa9408186cea22eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1Text: {fileID: 114724171180297688}
-  p2Text: {fileID: 114974765255210550}
-  p3Text: {fileID: 114284739162598162}
-  p4Text: {fileID: 114708184509554490}
+  gameData: {fileID: 11400000, guid: 77b2c9dc5956839428ff1875dbe3cc88, type: 2}
+  playerImages:
+  - {fileID: 114103510174896124}
+  - {fileID: 114118298128751022}
+  - {fileID: 114403241500552066}
+  - {fileID: 114376745879297104}
+  playerTexts:
+  - {fileID: 114724171180297688}
+  - {fileID: 114974765255210550}
+  - {fileID: 114284739162598162}
+  - {fileID: 114708184509554490}
 --- !u!114 &114970570577420282
 MonoBehaviour:
   m_ObjectHideFlags: 1

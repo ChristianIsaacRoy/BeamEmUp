@@ -8,7 +8,9 @@ public class PropSpawner : MonoBehaviour {
 
     private int objectsToSpawn;
 
-    public float objectSpawnTime;
+    public float minObjectSpawnTime;
+    public float maxObjectSpawnTime;
+
     private float objectSpawnTimer;
 
     public GameObject objectToSpawn;
@@ -21,7 +23,7 @@ public class PropSpawner : MonoBehaviour {
     public float spawnRadius;
     // Use this for initialization
     void Start () {
-        objectSpawnTimer = objectSpawnTime;
+        objectSpawnTimer = Random.Range(minObjectSpawnTime, maxObjectSpawnTime);
 
         objectsToSpawn = Random.Range(minObjectsToSpawn, maxObjectsToSpawn);
 
@@ -29,21 +31,22 @@ public class PropSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Physics.Raycast(transform.position, Vector3.down * 5f, out hit, collisionsMask);
         Debug.DrawRay(transform.position, Vector2.down * 5f, Color.red);
 
         if(objectSpawnTimer < 0 &&  objectsToSpawn > 0)
         {
-            point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + 1, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
+            point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + .5f, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
 
             while (Physics.CheckSphere(point, .5f, collisionsMask) == true)
             {
-                point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + 1, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
+                point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + .5f, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
             }
   
             Instantiate(objectToSpawn, point, Quaternion.identity);
 
             objectsToSpawn -= 1;
-            objectSpawnTimer = objectSpawnTime;
+            objectSpawnTimer = minObjectSpawnTime;
         }
 
         objectSpawnTimer -= Time.deltaTime;

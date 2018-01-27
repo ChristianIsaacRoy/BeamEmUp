@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameEvent onPlayerScored;
 
     public GameObject[] players;
+    public CameraManager camManager;
     public Transform[] playerSpawns;
 
 
@@ -31,12 +32,13 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         InstantiateManager();
-        SpawnPlayers();
+        
     }
 
     public void Start()
     {
-
+        SpawnPlayers();
+        onPlayerScored.Raise();
     }
 
     public void Update()
@@ -48,10 +50,18 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayers()
     {
-        for (int i = gameData.numberOfPlayers-1; i < players.Length; i++)
+        for (int i = 0; i < gameData.numberOfPlayers; i++)
+        {
+            players[i].transform.position = playerSpawns[i].position;
+            players[i].GetComponent<PlayerController>().cam = camManager.cameraArray[i];
+            players[i].GetComponent<PlayerController>().Awake();
+            players[i].GetComponent<PlayerController>().Start();
+        }
+
+        for (int i = gameData.numberOfPlayers; i < players.Length; i++)
         {
             players[i].SetActive(false);
-            players[i].transform.position = playerSpawns[i].position;
+            
         }
     }
 
@@ -86,6 +96,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         gameRunning = false;
+        gameData.playerScores = playerScores;
     }
 
     public void AddItemToPlayer(int playerID, ItemData data)

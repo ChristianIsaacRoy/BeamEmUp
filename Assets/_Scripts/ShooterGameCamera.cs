@@ -153,13 +153,26 @@ public class ShooterGameCamera : MonoBehaviour
 
     void OnGUI()
     {
-        if (crosshair != null)
+        if (crosshair != null && cam != null)
         {
             if (Time.time != 0 && Time.timeScale != 0)
             {
-                float width = cam.rect.x + (Screen.width) * cam.rect.width / 2;
-                float height = cam.rect.y + (Screen.height) * cam.rect.height / 2;
-                GUI.DrawTexture(new Rect(/*Screen.width / 2*/ width - (crosshair.width * 0.5f), /*Screen.height / 2*/ height - (crosshair.height * 0.5f), crosshair.width, crosshair.height), crosshair);
+
+                //float width = (Screen.width * 0.5f) * (cam.rect.x + cam.rect.width / 2);
+                //float height = (Screen.width * 0.5f) * (cam.rect.y + cam.rect.height / 2);
+                float leftSide = Screen.width * cam.rect.x;
+                float width = leftSide + Screen.width * 0.25f;
+
+                //float width = 0.25f * Screen.width;// * cam.rect.x;
+                //float width = 0.5f * Screen.width + 0.5f * cam.rect.x + 0.5f * cam.rect.width;
+                float bottom = Screen.height * cam.rect.y;
+                float height = bottom + Screen.height * 0.25f;
+
+                //float height = 0.5f * Screen.height + 0.5f * cam.rect.y + 0.5f * cam.rect.height;
+                //Debug.Log("rect.y: " + cam.rect.y + "    rect.height: " + cam.rect.height);
+                GUI.DrawTexture(new Rect(width - (crosshair.width * 0.5f), height - (crosshair.height * 0.5f), crosshair.width, crosshair.height), crosshair);
+                
+                //GUI.DrawTexture(new Rect(Screen.width * 0.5f - (crosshair.width * 0.5f), Screen.height * 0.5f - (crosshair.height * 0.5f), crosshair.width, crosshair.height), crosshair);
             }
         }
     }
