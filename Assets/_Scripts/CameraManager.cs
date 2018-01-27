@@ -80,7 +80,7 @@ public class CameraManager : MonoBehaviour {
         {
             for(int i = 0; i < GameData.numberOfPlayers; i++)
             {
-                //cameraArray[i].GetComponent<ShooterGameCamera>().target = ;
+                cameraArray[i].GetComponent<ShooterGameCamera>().target = gm.players[i].transform;
             }
         }
     }
