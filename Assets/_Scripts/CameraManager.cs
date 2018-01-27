@@ -10,6 +10,8 @@ public class CameraManager : MonoBehaviour {
     public Camera Camera3;
     public Camera Camera4;
 
+    public Transform transform1;
+
     private int numberOfPlayers;
 
 
@@ -19,14 +21,19 @@ public class CameraManager : MonoBehaviour {
 
         if (numberOfPlayers == 2)
         {
+            
             Camera1.rect = new Rect(0, 0, .5f, 1);
             Camera2.rect = new Rect(.5f, 0, .5f, 1);
+            Camera3.enabled = false;
+            Camera4.enabled = false;
+
         }
         else if (numberOfPlayers == 3)
         {
             Camera1.rect = new Rect(0f, .5f, .5f, .5f);
             Camera2.rect = new Rect(.5f, .5f, .5f, .5f);
             Camera3.rect = new Rect(.25f, 0f, .5f, .5f);
+            Camera4.enabled = false;
         }
         else if (numberOfPlayers == 4)
         {
