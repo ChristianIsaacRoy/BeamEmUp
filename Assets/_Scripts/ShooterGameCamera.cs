@@ -43,6 +43,8 @@ public class ShooterGameCamera : MonoBehaviour
     private LayerMask mask;
     private Vector3 smoothPlayerPos;
 
+    private GameManager gm;
+
     private Player player;
 
     private Camera cam;
@@ -50,16 +52,21 @@ public class ShooterGameCamera : MonoBehaviour
     public void Awake()
     {
         player = ReInput.players.GetPlayer(playerID);
-
-        if (target == null)
-            Debug.LogError("Camera " + playerID + " is missing a target.");
     }
 
     // Use this for initialization
     void Start()
     {
+        gm = GameManager.instance;
+        if (gm != null)
+        {
+            target = gm.players[playerID].transform;
+        }
         if (target == null)
+        {
+            Debug.LogError("Camera " + playerID + " is missing a target.");
             return;
+        }
 
         // [edit] no aimtarget gameobject needs to be placed anymore - ben0bi
         GameObject g = new GameObject();
