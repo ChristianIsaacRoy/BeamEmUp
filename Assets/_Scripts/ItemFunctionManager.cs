@@ -14,7 +14,7 @@ public class ItemFunctionManager : MonoBehaviour {
     {
         //makes item dissapear (get zapped and pulled in)
 
-        Destroy(this);
+        Destroy(this.gameObject);
     }
  
 	

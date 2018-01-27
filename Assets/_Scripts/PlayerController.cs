@@ -87,8 +87,15 @@ public class PlayerController : MonoBehaviour
             Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
             if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
             {
-                //hit.transform.gameObject.GetComponent<>
-                //gameManager.AddItemToPlayer(playerID, )
+                ItemFunctionManager item = hit.transform.gameObject.GetComponent<ItemFunctionManager>();
+                if (item != null)
+                {
+                    if (gameManager != null)
+                    {
+                        gameManager.AddItemToPlayer(playerID, item.itemData);
+                    }
+                    item.itemPickup();
+                }
             }
         }
     }
