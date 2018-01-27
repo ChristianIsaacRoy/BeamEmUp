@@ -18,10 +18,13 @@ public class GameItem : MonoBehaviour
 
     public void Update()
     {
-        //item rotation
-        transform.Rotate(0, 10 * Time.deltaTime, 0);
-        //item float
-        transform.Translate(0, Mathf.Sin(Time.fixedTime) / (100 / itemHoverHeight), 0);
+        if (transform.tag == "Item")
+        {
+            //item rotation
+            transform.Rotate(0, 10 * Time.deltaTime, 0);
+            //item float
+            transform.Translate(0, Mathf.Sin(Time.fixedTime) / (100 / itemHoverHeight), 0);
+        }
     }
 
     public void ZapItem()
