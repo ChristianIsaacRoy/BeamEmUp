@@ -16,6 +16,8 @@ public class ShooterGameCamera : MonoBehaviour
 {
 
     public Transform target;
+    public int playerID= 0;
+
     // public Texture crosshair; // crosshair - removed it for quick and easy setup. ben0bi
     // if you add the crosshair, you need to drag a crosshair texture on the "crosshair" variable in the inspector 
 
@@ -44,12 +46,18 @@ public class ShooterGameCamera : MonoBehaviour
 
     public void Awake()
     {
-        player = ReInput.players.GetPlayer(0);
+        player = ReInput.players.GetPlayer(playerID);
+
+        if (target == null)
+            Debug.LogError("Camera " + playerID + " is missing a target.");
     }
 
     // Use this for initialization
     void Start()
     {
+        if (target == null)
+            return;
+
         // [edit] no aimtarget gameobject needs to be placed anymore - ben0bi
         GameObject g = new GameObject();
         aimTarget = g.transform;

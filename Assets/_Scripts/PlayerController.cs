@@ -11,20 +11,28 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight;
     public float jumpSpeed;
 
+    public float gravity;
+
     public float deadZone = 0.1f;
 
     public Camera myCamera;
 
     private CharacterController cc;
     private Player player;
+    private float distToGround;
+    private Collider col;
+    private bool canJump;
 
     public Vector3 MoveVector { get; set; }
+    public Vector3 VertVector { get; set; }
 
     #region Monobehaviours
     public void Awake()
     {
         player = ReInput.players.GetPlayer(playerID);
         cc = GetComponent<CharacterController>();
+        col = GetComponent<Collider>();
+        distToGround = col.bounds.extents.y;
     }
 
     public void Start()
@@ -38,11 +46,31 @@ public class PlayerController : MonoBehaviour
         if (myCamera == null)
             return;
 
+        CalculateVerticalMovement();
         GetLocomotionInput();
         SnapAlignCharacterWithCamera();
         ProcessMotion();
     }
     #endregion
+
+    public bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
+    }
+
+    private void CalculateVerticalMovement()
+    {
+        if (IsGrounded())
+        {
+            VertVector = Vector3.zero;
+            canJump = true;
+        }
+        else
+        {
+            VertVector += Vector3.down * gravity;
+            VertVector *= Time.deltaTime;
+        }
+    }
 
     private void GetLocomotionInput()
     {
@@ -57,13 +85,15 @@ public class PlayerController : MonoBehaviour
         {
             MoveVector += new Vector3(player.GetAxis("MoveHorizontal"), 0, 0);
         }
+
+
     }
 
     private void ProcessMotion()
     {
         MoveVector = transform.TransformDirection(MoveVector);
 
-        if(MoveVector.magnitude > 1)
+        if (MoveVector.magnitude > 1)
         {
             MoveVector = Vector3.Normalize(MoveVector);
         }
@@ -71,17 +101,17 @@ public class PlayerController : MonoBehaviour
         MoveVector *= moveSpeed;
         MoveVector *= Time.deltaTime;
 
+        MoveVector += VertVector;
+
         cc.Move(MoveVector);
     }
 
     private void SnapAlignCharacterWithCamera()
     {
-        if (MoveVector.x != 0 || MoveVector.z != 0)
-        {
-            transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
-                                                  myCamera.transform.eulerAngles.y,
-                                                  transform.eulerAngles.z);
-        }
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
+                                              myCamera.transform.eulerAngles.y,
+                                              transform.eulerAngles.z);
+
     }
 
 }
