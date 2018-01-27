@@ -8,10 +8,15 @@ public class GameManager : MonoBehaviour
 
     public GameEvent onPlayerScored;
 
+    public GameObject[] players;
+    public Transform[] playerSpawns;
+
+
     private bool gameRunning = true;
     private int[] playerScores;
     private float timeLimit;
     private List<ItemData>[] playerItems;
+    
 
     public static GameManager instance;
 
@@ -26,19 +31,29 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         InstantiateManager();
+        SpawnPlayers();
     }
 
     public void Start()
     {
-        
+
     }
 
     public void Update()
     {
         if (gameRunning)
-            TimerTick();   
+            TimerTick();
     }
     #endregion
+
+    private void SpawnPlayers()
+    {
+        for (int i = 0; i < gameData.numberOfPlayers; i++)
+        {
+            players[i].SetActive(false);
+            players[i].transform.position = playerSpawns[i].position;
+        }
+    }
 
     private void InstantiateManager()
     {

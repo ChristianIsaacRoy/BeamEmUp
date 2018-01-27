@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour
     public GameData gameData;
     private GameManager gameManager;
 
+    public ParticleSystem particleSystem;
+
+    private GameObject zapTarget;
+    private float elapsedZapTime = 0.0f;
+
     [Range(1, 20)]
     public float jumpVelocity = 2f;
 
@@ -61,13 +66,95 @@ public class PlayerController : MonoBehaviour
         GetLocomotionInput();
         SnapAlignCharacterWithCamera();
         ProcessMotion();
-        CheckShoot();
+
+        if (zapTarget != null)
+            CheckZappingProgress();
+        else
+            CheckShoot();
+
+        // Increase or decrease elapsedZapTime based on zapTarget
+        CheckZapTime();
     }
     #endregion
 
     public bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
+    }
+
+    private void CheckZapTime()
+    {
+        // Still zapping
+        if (zapTarget != null)
+        {
+            elapsedZapTime += Time.deltaTime;
+            if (elapsedZapTime >= gameData.timeToZap)
+            {
+                // Successful zap
+                ItemFunctionManager item = zapTarget.GetComponent<ItemFunctionManager>();
+                zapTarget = null;
+                particleSystem.Stop();
+                elapsedZapTime = 0.0f;
+                if (gameManager != null)
+                {
+                    gameManager.AddItemToPlayer(playerID, item.itemData);
+                }
+                item.itemPickup();
+            }
+        }
+        // Stopped zapping, slowly decrease zap time
+        else
+        {
+            elapsedZapTime -= Time.deltaTime;
+            if (elapsedZapTime < 0)
+            {
+                elapsedZapTime = 0;
+            }
+        }
+    }
+
+    private void CheckZappingProgress()
+    {
+        // Make sure trigger is still held down
+        if (!player.GetButton("Shoot"))
+        {
+            CancelShooting();
+            return;
+        }
+
+        // Make sure distance to zapTarget is still within zappingDistance
+        Vector3 origin = myCamera.transform.position;
+        origin.z = transform.position.z;
+        float distanceToZapTarget = (zapTarget.transform.position - origin).magnitude;
+        if (distanceToZapTarget > gameData.distanceToZap)
+        {
+            CancelShooting();
+            return;
+        }
+
+        // Make sure player is still looking at object and still within zapping distance
+        LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
+        RaycastHit hit;
+        Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
+        if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distanceToZapTarget, ignoreMask))
+        {
+            if (hit.transform.gameObject != zapTarget)
+            {
+                CancelShooting();
+                return;
+            }
+        }
+        else
+        {
+            CancelShooting();
+            return;
+        }
+    }
+
+    private void CancelShooting()
+    {
+        particleSystem.Stop();
+        zapTarget = null;
     }
 
     private void CheckShoot()
@@ -90,11 +177,8 @@ public class PlayerController : MonoBehaviour
                 ItemFunctionManager item = hit.transform.gameObject.GetComponent<ItemFunctionManager>();
                 if (item != null)
                 {
-                    if (gameManager != null)
-                    {
-                        gameManager.AddItemToPlayer(playerID, item.itemData);
-                    }
-                    item.itemPickup();
+                    zapTarget = hit.transform.gameObject;
+                    particleSystem.Play();
                 }
             }
         }
@@ -163,7 +247,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
                                               myCamera.transform.eulerAngles.y,
                                               transform.eulerAngles.z);
-
+        //particleSystem.shape.rotation = transform.rotation;
     }
 
 }
