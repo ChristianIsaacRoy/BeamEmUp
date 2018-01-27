@@ -9,45 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1231263672182230}
+  m_RootGameObject: {fileID: 1105991609980634}
   m_IsPrefabParent: 1
---- !u!1 &1231263672182230
+--- !u!1 &1105991609980634
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4168087309410218}
-  - component: {fileID: 33899504945198816}
-  - component: {fileID: 65478876402572892}
-  - component: {fileID: 23680677721133692}
+  - component: {fileID: 4208313709002924}
+  - component: {fileID: 33673084443088240}
+  - component: {fileID: 136485701537129004}
+  - component: {fileID: 23123925836279494}
+  - component: {fileID: 114479158871249514}
+  - component: {fileID: 143602246852055058}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4168087309410218
+--- !u!4 &4208313709002924
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1231263672182230}
+  m_GameObject: {fileID: 1105991609980634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.61, y: 5, z: 0}
+  m_LocalPosition: {x: -3.08, y: 1.52, z: -6.146658}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23680677721133692
+--- !u!23 &23123925836279494
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1231263672182230}
+  m_GameObject: {fileID: 1105991609980634}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -56,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0175bb33ff667854a8f0cb13255a70f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,22 +78,60 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33899504945198816
+--- !u!33 &33673084443088240
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1231263672182230}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65478876402572892
-BoxCollider:
+  m_GameObject: {fileID: 1105991609980634}
+  m_Mesh: {fileID: 4300000, guid: b5df71e7aeb236146a6c7baa14a0d722, type: 3}
+--- !u!114 &114479158871249514
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1231263672182230}
+  m_GameObject: {fileID: 1105991609980634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12bf7b60cd677084382fc94481a44f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 0
+  moveSpeed: 8
+  gameData: {fileID: 11400000, guid: 77b2c9dc5956839428ff1875dbe3cc88, type: 2}
+  jumpVelocity: 9.5
+  jumpDecelerationSlow: 1
+  jumpDecelertationFast: 2
+  fallAcceleration: 2.5
+  deadZone: 0.1
+  myCamera: {fileID: 0}
+--- !u!136 &136485701537129004
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105991609980634}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!143 &143602246852055058
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105991609980634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Height: 2.5
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}

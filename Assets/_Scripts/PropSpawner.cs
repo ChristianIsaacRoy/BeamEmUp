@@ -11,8 +11,7 @@ public class PropSpawner : MonoBehaviour {
     public float objectSpawnTime;
     private float objectSpawnTimer;
 
-    public List<GameObject> objectList;
-    private GameObject temp;
+    public GameObject objectToSpawn;
 
     public LayerMask collisionsMask;
     public RaycastHit hit;
@@ -40,10 +39,8 @@ public class PropSpawner : MonoBehaviour {
             {
                 point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + 1, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
             }
-
-            int rand = Random.Range(0, objectList.Count);
-            temp = objectList[rand];
-            Instantiate(temp, point, Quaternion.identity);
+  
+            Instantiate(objectToSpawn, point, Quaternion.identity);
 
             objectsToSpawn -= 1;
             objectSpawnTimer = objectSpawnTime;
