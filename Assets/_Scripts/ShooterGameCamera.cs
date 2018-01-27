@@ -166,7 +166,7 @@ public class ShooterGameCamera : MonoBehaviour
                 //float width = 0.25f * Screen.width;// * cam.rect.x;
                 //float width = 0.5f * Screen.width + 0.5f * cam.rect.x + 0.5f * cam.rect.width;
                 float bottom = Screen.height * cam.rect.y;
-                float height = bottom + Screen.height * 0.25f;
+                float height = bottom + Screen.height * 0.5f;
 
                 //float height = 0.5f * Screen.height + 0.5f * cam.rect.y + 0.5f * cam.rect.height;
                 //Debug.Log("rect.y: " + cam.rect.y + "    rect.height: " + cam.rect.height);
