@@ -155,6 +155,7 @@ public class PlayerController : MonoBehaviour
     private void CancelShooting()
     {
         particleSystem.Stop();
+        zapTarget.GetComponent<ItemFunctionManager>().isBeingZapped = false;
         zapTarget = null;
     }
 
@@ -173,12 +174,14 @@ public class PlayerController : MonoBehaviour
         {
             RaycastHit hit;
             Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
-            if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
+            if (Physics.SphereCast(origin, 1.5f, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
+            //if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
             {
                 ItemFunctionManager item = hit.transform.gameObject.GetComponent<ItemFunctionManager>();
                 if (item != null)
                 {
                     zapTarget = hit.transform.gameObject;
+                    zapTarget.GetComponent<ItemFunctionManager>().isBeingZapped = true;
                     particleSystem.Play();
                 }
             }
