@@ -92,8 +92,7 @@ public class PlayerController : MonoBehaviour
             {
                 // Successful zap
                 ItemFunctionManager item = zapTarget.GetComponent<ItemFunctionManager>();
-                zapTarget = null;
-                particleSystem.Stop();
+                CancelShooting();
                 elapsedZapTime = 0.0f;
                 if (gameManager != null)
                 {
@@ -136,8 +135,10 @@ public class PlayerController : MonoBehaviour
         LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
         RaycastHit hit;
         Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
-        if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distanceToZapTarget, ignoreMask))
-        {
+
+        // Change to SphereCast to allow for a margin of error from the player
+        if (Physics.SphereCast(origin, 1.5f, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distanceToZapTarget, ignoreMask))
+        { 
             if (hit.transform.gameObject != zapTarget)
             {
                 CancelShooting();
@@ -154,6 +155,7 @@ public class PlayerController : MonoBehaviour
     private void CancelShooting()
     {
         particleSystem.Stop();
+        zapTarget.GetComponent<ItemFunctionManager>().isBeingZapped = false;
         zapTarget = null;
     }
 
@@ -172,12 +174,14 @@ public class PlayerController : MonoBehaviour
         {
             RaycastHit hit;
             Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
-            if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
+            if (Physics.SphereCast(origin, 1.5f, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
+            //if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
             {
                 ItemFunctionManager item = hit.transform.gameObject.GetComponent<ItemFunctionManager>();
                 if (item != null)
                 {
                     zapTarget = hit.transform.gameObject;
+                    zapTarget.GetComponent<ItemFunctionManager>().isBeingZapped = true;
                     particleSystem.Play();
                 }
             }
