@@ -9,4 +9,5 @@ public class GameData : ScriptableObject
     public float timeToZap = 1.5f;
 
     public int[] playerScores;
+    public bool HorizontalMode;
 }
