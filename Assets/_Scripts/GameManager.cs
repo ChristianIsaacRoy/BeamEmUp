@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public GameEvent onPlayerScored;
 
+    private bool gameRunning = true;
     private int[] playerScores;
     private float timeLimit;
     private List<ItemData>[] playerItems;
@@ -34,7 +35,8 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        TimerTick();   
+        if (gameRunning)
+            TimerTick();   
     }
     #endregion
 
@@ -62,18 +64,29 @@ public class GameManager : MonoBehaviour
         if (timeLimit <= 0)
         {
             EndGame();
+            timeLimit = 0;
         }
     }
 
     private void EndGame()
     {
-
+        gameRunning = false;
     }
 
     public void AddItemToPlayer(int playerID, ItemData data)
     {
         playerItems[playerID].Add(data);
-        playerScores[0] += data.pointValue;
+        playerScores[playerID] += data.pointValue;
         onPlayerScored.Raise();
+    }
+
+    public int GetPlayerScore(int playerID)
+    {
+        return playerScores[playerID];
+    }
+
+    public float GetTimeLeft()
+    {
+        return timeLimit;
     }
 }
