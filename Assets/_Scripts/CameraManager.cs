@@ -18,7 +18,14 @@ public class CameraManager : MonoBehaviour {
         numberOfPlayers = GameData.numberOfPlayers;
         HorizontalMode = GameData.HorizontalMode;
 
-        if (numberOfPlayers == 2)
+        if(numberOfPlayers == 1)
+        {
+            cameraArray[0].rect = new Rect(1, 1, 1, 1);
+            cameraArray[2].enabled = false;
+            cameraArray[3].enabled = false;
+            cameraArray[1].enabled = false;
+        }
+        else if (numberOfPlayers == 2)
         {
             if(HorizontalMode == true)
             {

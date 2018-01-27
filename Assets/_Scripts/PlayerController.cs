@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
 
     public GameData gameData;
-    private GameManager gameManager;
+    private GameManager gm;
 
     public ParticleSystem particleSystem;
 
@@ -49,15 +49,17 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
-        gameManager = GameManager.instance;
-
-        if (cam == null && playerID < gameData.numberOfPlayers)
-            Debug.LogError("Player " + (playerID+1) + " is missing camera", this);
-        else if (cam != null)
-            shooterGameCamera = cam.GetComponent<ShooterGameCamera>();
+        gm = GameManager.instance;
+        
+        if (gm == null)
+        {
+            if (cam != null)
+                InstantiatePlayer(transform.position, cam);
+            else
+                Debug.LogError("Player " + (playerID + 1) + " is missing camera", this);
+        }
     }
-
-
+    
 
     public void Update()
     {
@@ -79,6 +81,14 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    public void InstantiatePlayer(Vector3 pos, Camera camera)
+    {
+        gameObject.SetActive(true);
+        transform.position = pos;
+        cam = camera;
+        shooterGameCamera = cam.GetComponent<ShooterGameCamera>();
+    }
+
     public bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
@@ -96,9 +106,9 @@ public class PlayerController : MonoBehaviour
                 GameItem item = zapTarget.GetComponent<GameItem>();
                 CancelShooting();
                 elapsedZapTime = 0.0f;
-                if (gameManager != null)
+                if (gm != null)
                 {
-                    gameManager.AddItemToPlayer(playerID, item.itemData);
+                    gm.AddItemToPlayer(playerID, item.itemData);
                 }
                 item.ZapItem();
             }
