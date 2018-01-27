@@ -530,6 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerID: 0
   moveSpeed: 8
+  gameData: {fileID: 11400000, guid: 77b2c9dc5956839428ff1875dbe3cc88, type: 2}
   jumpVelocity: 9.5
   jumpDecelerationSlow: 1
   jumpDecelertationFast: 2
