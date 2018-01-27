@@ -10,8 +10,6 @@ public class CameraManager : MonoBehaviour {
     public Camera Camera3;
     public Camera Camera4;
 
-    public Transform transform1;
-
     private int numberOfPlayers;
 
 
