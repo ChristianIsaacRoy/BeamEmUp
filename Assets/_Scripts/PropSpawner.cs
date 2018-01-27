@@ -31,6 +31,7 @@ public class PropSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Physics.Raycast(transform.position, Vector3.down * 5f, out hit, collisionsMask);
         Debug.DrawRay(transform.position, Vector2.down * 5f, Color.red);
 
         if(objectSpawnTimer < 0 &&  objectsToSpawn > 0)
