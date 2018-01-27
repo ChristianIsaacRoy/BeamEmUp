@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectSpawner : MonoBehaviour { 
+public class PropSpawner : MonoBehaviour { 
     public List<GameObject> objectList;
     private GameObject temp;
 
@@ -15,11 +15,13 @@ public class ObjectSpawner : MonoBehaviour {
     // Use this for initialization
     void Start () {
         RaycastHit hit = new RaycastHit();
+
         //Shoots a ray downwards
         Physics.Raycast(transform.position, Vector3.down * 5f, out hit, collisionsMask);
 
         //If the point we are at is inside a ground layer, then we change the spawn location.
         point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + 1, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
+
         while (Physics.CheckSphere(point, .5f, collisionsMask) == true) {
             point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + 1, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
         }
@@ -37,7 +39,10 @@ public class ObjectSpawner : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
+        Physics.Raycast(transform.position, Vector3.down * 5f, out hit, collisionsMask);
+
         Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, .5f);
         Gizmos.DrawWireSphere(hit.point, spawnRadius);
     }
 }
