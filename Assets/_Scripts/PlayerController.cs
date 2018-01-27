@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     private void CheckShoot()
     {
         // Can't shoot yourself
-        LayerMask ignoreMask = ~(LayerMask.NameToLayer("Player"));
+        LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
         
         Vector3 origin = myCamera.transform.position;
         // Shift origin up to player position
