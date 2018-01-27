@@ -9,6 +9,7 @@ public class ItemFunctionManager : MonoBehaviour {
     private MeshFilter itemFilter;
     public int itemHoverHeight;
     private MeshCollider itemCollider;
+    public bool gotZapped;
 
 	// Use this for initialization
 	void Start () {
@@ -21,8 +22,9 @@ public class ItemFunctionManager : MonoBehaviour {
 
     public void itemPickup()
     {
+        gotZapped = true;
         //makes item dissapear (get zapped and pulled in)
-
+        
         Destroy(this.gameObject);
     }
  
