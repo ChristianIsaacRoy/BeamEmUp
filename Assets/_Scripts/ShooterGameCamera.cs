@@ -153,7 +153,7 @@ public class ShooterGameCamera : MonoBehaviour
 
     void OnGUI()
     {
-        if (crosshair != null && cam != null && target != null)
+        if (crosshair != null && cam != null && target != null && cam.enabled == true)
         {
             if (Time.time != 0 && Time.timeScale != 0)
             {
@@ -168,7 +168,6 @@ public class ShooterGameCamera : MonoBehaviour
                 float bottom = Screen.height * cam.rect.y;
                 float height = bottom + (cam.rect.height / 2) * Screen.height;
 
-                Debug.Log("playerid: " + playerID + "   cam.y: " + cam.rect.y + "    cam.height: " + cam.rect.height);
                 //float height = 0.5f * Screen.height + 0.5f * cam.rect.y + 0.5f * cam.rect.height;
                 //Debug.Log("rect.y: " + cam.rect.y + "    rect.height: " + cam.rect.height);
                 //GUI.DrawTexture(new Rect(width - (crosshair.width * 0.5f), height - (crosshair.height * 0.5f), crosshair.width, crosshair.height), crosshair);
