@@ -130,6 +130,26 @@ public class PlayerController : MonoBehaviour
             zapTarget = null;
             return;
         }
+
+        // Make sure player is still looking at object and still within zapping distance
+        LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
+        RaycastHit hit;
+        Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
+        if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distanceToZapTarget, ignoreMask))
+        {
+            if (hit.transform.gameObject != zapTarget)
+            {
+                // TODO: Cancel animation
+                zapTarget = null;
+                return;
+            }
+        }
+        else
+        {
+            // TODO: Cancel animation
+            zapTarget = null;
+            return;
+        }
     }
 
     private void CheckShoot()
