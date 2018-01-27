@@ -2,7 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PropSpawner : MonoBehaviour { 
+public class PropSpawner : MonoBehaviour {
+    public int minObjectsToSpawn;
+    public int maxObjectsToSpawn;
+
+    private int objectsToSpawn;
+
+    public float objectSpawnTime;
+    private float objectSpawnTimer;
+
     public List<GameObject> objectList;
     private GameObject temp;
 
@@ -14,27 +22,35 @@ public class PropSpawner : MonoBehaviour {
     public float spawnRadius;
     // Use this for initialization
     void Start () {
-        RaycastHit hit = new RaycastHit();
+        objectSpawnTimer = objectSpawnTime;
 
-        //Shoots a ray downwards
-        Physics.Raycast(transform.position, Vector3.down * 5f, out hit, collisionsMask);
+        objectsToSpawn = Random.Range(minObjectsToSpawn, maxObjectsToSpawn);
 
-        //If the point we are at is inside a ground layer, then we change the spawn location.
-        point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + 1, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
-
-        while (Physics.CheckSphere(point, .5f, collisionsMask) == true) {
-            point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + 1, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
-        }
-
-        //Choose a random object from our object list and instantiate it.
-        int rand = Random.Range(0, objectList.Count);
-        temp = objectList[rand];
-        Instantiate(temp, point, Quaternion.identity);
     }
 	
 	// Update is called once per frame
 	void Update () {
         Debug.DrawRay(transform.position, Vector2.down * 5f, Color.red);
+
+        if(objectSpawnTimer < 0 &&  objectsToSpawn > 0)
+        {
+            point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + 1, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
+
+            while (Physics.CheckSphere(point, .5f, collisionsMask) == true)
+            {
+                point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + 1, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
+            }
+
+            int rand = Random.Range(0, objectList.Count);
+            temp = objectList[rand];
+            Instantiate(temp, point, Quaternion.identity);
+
+            objectsToSpawn -= 1;
+            objectSpawnTimer = objectSpawnTime;
+        }
+
+        objectSpawnTimer -= Time.deltaTime;
+
     }
 
     private void OnDrawGizmos()
