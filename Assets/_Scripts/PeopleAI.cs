@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PeopleAI : MonoBehaviour {
 
+    [SerializeField]
+    Transform destination;
+
 	// Use this for initialization
 	void Start () {
 		
