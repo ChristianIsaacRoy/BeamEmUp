@@ -179,11 +179,9 @@ public class PlayerController : MonoBehaviour
             if (Physics.SphereCast(origin, 1.5f, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
             //if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
             {
-                Debug.Log("INITIAL HIT: " + hit.transform.gameObject.name);
                 GameItem item = hit.transform.gameObject.GetComponent<GameItem>();
                 if (item != null)
                 {
-                    Debug.Log("HIT");
                     zapTarget = hit.transform.gameObject;
                     zapTarget.GetComponent<GameItem>().isBeingZapped = true;
                     particleSystem.Play();
