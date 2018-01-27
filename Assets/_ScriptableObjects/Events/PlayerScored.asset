@@ -9,9 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a9845a8f92fdac44888062384723982, type: 3}
-  m_Name: GameData
+  m_Name: PlayerScored
   m_EditorClassIdentifier: 
   numberOfPlayers: 2
   timeLimit: 30
-  distanceToZap: 6
-  timeToZap: 1.5
