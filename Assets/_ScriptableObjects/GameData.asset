@@ -13,3 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfPlayers: 2
   timeLimit: 30
+  distanceToZap: 6
+  timeToZap: 1.5

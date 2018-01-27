@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed;
 
-    
+    public GameData gameData;
+    private GameManager gameManager;
+
     [Range(1, 20)]
     public float jumpVelocity = 2f;
 
@@ -42,6 +44,8 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
+        gameManager = GameManager.instance;
+
         if (myCamera == null)
             Debug.LogError("Player " + playerID + " is missing camera", this);
         else
@@ -75,16 +79,16 @@ public class PlayerController : MonoBehaviour
         // Shift origin up to player position
         origin.z = transform.position.z;
 
-        // TODO: Add editor-facing distance
-        float distance = Mathf.Infinity;
+        float distance = gameData.distanceToZap;
 
         if (player.GetButton("Shoot"))
         {
             RaycastHit hit;
             Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
-            if (Physics.Raycast(origin, shooterGameCamera.aimTarget.position - origin, out hit, distance, ignoreMask))
+            if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
             {
-                Debug.Log(hit.transform.gameObject.name);
+                //hit.transform.gameObject.GetComponent<>
+                //gameManager.AddItemToPlayer(playerID, )
             }
         }
     }
