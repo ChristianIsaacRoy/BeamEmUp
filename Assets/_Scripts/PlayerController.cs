@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     public float deadZone = 0.1f;
 
-    public Camera myCamera;
+    public Camera cam;
     private ShooterGameCamera shooterGameCamera;
 
     private CharacterController cc;
@@ -51,15 +51,17 @@ public class PlayerController : MonoBehaviour
     {
         gameManager = GameManager.instance;
 
-        if (myCamera == null)
-            Debug.LogError("Player " + playerID + " is missing camera", this);
-        else
-            shooterGameCamera = myCamera.GetComponent<ShooterGameCamera>();
+        if (cam == null && playerID < gameData.numberOfPlayers)
+            Debug.LogError("Player " + (playerID+1) + " is missing camera", this);
+        else if (cam != null)
+            shooterGameCamera = cam.GetComponent<ShooterGameCamera>();
     }
+
+
 
     public void Update()
     {
-        if (myCamera == null)
+        if (cam == null)
             return;
 
         CalculateVerticalMovement();
@@ -122,7 +124,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Make sure distance to zapTarget is still within zappingDistance
-        Vector3 origin = myCamera.transform.position;
+        Vector3 origin = cam.transform.position;
         origin.z = transform.position.z;
         float distanceToZapTarget = (zapTarget.transform.position - origin).magnitude;
         if (distanceToZapTarget > gameData.distanceToZap)
@@ -164,7 +166,7 @@ public class PlayerController : MonoBehaviour
         // Can't shoot yourself
         LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
         
-        Vector3 origin = myCamera.transform.position;
+        Vector3 origin = cam.transform.position;
         // Shift origin up to player position
         origin.z = transform.position.z;
 
@@ -249,7 +251,7 @@ public class PlayerController : MonoBehaviour
     private void SnapAlignCharacterWithCamera()
     {
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
-                                              myCamera.transform.eulerAngles.y,
+                                              cam.transform.eulerAngles.y,
                                               transform.eulerAngles.z);
         //particleSystem.shape.rotation = transform.rotation;
     }
