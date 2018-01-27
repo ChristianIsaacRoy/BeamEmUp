@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9845a8f92fdac44888062384723982, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  numberOfPlayers: 2
+  numberOfPlayers: 4
   timeLimit: 30
   distanceToZap: 35
   timeToZap: 0.75
