@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     public float deadZone = 0.1f;
 
-    public Camera myCamera;
+    public Camera cam;
     private ShooterGameCamera shooterGameCamera;
 
     private CharacterController cc;
@@ -51,15 +51,17 @@ public class PlayerController : MonoBehaviour
     {
         gameManager = GameManager.instance;
 
-        if (myCamera == null)
-            Debug.LogError("Player " + playerID + " is missing camera", this);
-        else
-            shooterGameCamera = myCamera.GetComponent<ShooterGameCamera>();
+        if (cam == null && playerID < gameData.numberOfPlayers)
+            Debug.LogError("Player " + (playerID+1) + " is missing camera", this);
+        else if (cam != null)
+            shooterGameCamera = cam.GetComponent<ShooterGameCamera>();
     }
+
+
 
     public void Update()
     {
-        if (myCamera == null)
+        if (cam == null)
             return;
 
         CalculateVerticalMovement();
@@ -92,8 +94,7 @@ public class PlayerController : MonoBehaviour
             {
                 // Successful zap
                 ItemFunctionManager item = zapTarget.GetComponent<ItemFunctionManager>();
-                zapTarget = null;
-                particleSystem.Stop();
+                CancelShooting();
                 elapsedZapTime = 0.0f;
                 if (gameManager != null)
                 {
@@ -123,7 +124,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Make sure distance to zapTarget is still within zappingDistance
-        Vector3 origin = myCamera.transform.position;
+        Vector3 origin = cam.transform.position;
         origin.z = transform.position.z;
         float distanceToZapTarget = (zapTarget.transform.position - origin).magnitude;
         if (distanceToZapTarget > gameData.distanceToZap)
@@ -136,8 +137,10 @@ public class PlayerController : MonoBehaviour
         LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
         RaycastHit hit;
         Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
-        if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distanceToZapTarget, ignoreMask))
-        {
+
+        // Change to SphereCast to allow for a margin of error from the player
+        if (Physics.SphereCast(origin, 1.5f, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distanceToZapTarget, ignoreMask))
+        { 
             if (hit.transform.gameObject != zapTarget)
             {
                 CancelShooting();
@@ -154,6 +157,7 @@ public class PlayerController : MonoBehaviour
     private void CancelShooting()
     {
         particleSystem.Stop();
+        zapTarget.GetComponent<ItemFunctionManager>().isBeingZapped = false;
         zapTarget = null;
     }
 
@@ -162,7 +166,7 @@ public class PlayerController : MonoBehaviour
         // Can't shoot yourself
         LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
         
-        Vector3 origin = myCamera.transform.position;
+        Vector3 origin = cam.transform.position;
         // Shift origin up to player position
         origin.z = transform.position.z;
 
@@ -172,12 +176,14 @@ public class PlayerController : MonoBehaviour
         {
             RaycastHit hit;
             Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
-            if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
+            if (Physics.SphereCast(origin, 1.5f, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
+            //if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
             {
                 ItemFunctionManager item = hit.transform.gameObject.GetComponent<ItemFunctionManager>();
                 if (item != null)
                 {
                     zapTarget = hit.transform.gameObject;
+                    zapTarget.GetComponent<ItemFunctionManager>().isBeingZapped = true;
                     particleSystem.Play();
                 }
             }
@@ -245,7 +251,7 @@ public class PlayerController : MonoBehaviour
     private void SnapAlignCharacterWithCamera()
     {
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
-                                              myCamera.transform.eulerAngles.y,
+                                              cam.transform.eulerAngles.y,
                                               transform.eulerAngles.z);
         //particleSystem.shape.rotation = transform.rotation;
     }

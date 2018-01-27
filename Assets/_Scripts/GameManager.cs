@@ -8,13 +8,16 @@ public class GameManager : MonoBehaviour
 
     public GameEvent onPlayerScored;
 
-    public GameObject playerPrefab;
+    public GameObject[] players;
+    public CameraManager camManager;
+    public Transform[] playerSpawns;
+
 
     private bool gameRunning = true;
     private int[] playerScores;
     private float timeLimit;
     private List<ItemData>[] playerItems;
-    private GameObject[] players;
+    
 
     public static GameManager instance;
 
@@ -29,12 +32,13 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         InstantiateManager();
-        CreatePlayers();
+        
     }
 
     public void Start()
     {
-
+        SpawnPlayers();
+        onPlayerScored.Raise();
     }
 
     public void Update()
@@ -44,12 +48,20 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    private void CreatePlayers()
+    private void SpawnPlayers()
     {
         for (int i = 0; i < gameData.numberOfPlayers; i++)
         {
-            players[i] = Instantiate(playerPrefab);
-            players[i].GetComponent<PlayerController>().playerID = i;
+            players[i].transform.position = playerSpawns[i].position;
+            players[i].GetComponent<PlayerController>().cam = camManager.cameraArray[i];
+            players[i].GetComponent<PlayerController>().Awake();
+            players[i].GetComponent<PlayerController>().Start();
+        }
+
+        for (int i = gameData.numberOfPlayers; i < players.Length; i++)
+        {
+            players[i].SetActive(false);
+            
         }
     }
 
@@ -58,7 +70,6 @@ public class GameManager : MonoBehaviour
         // Create arrays
         playerScores = new int[gameData.numberOfPlayers];
         playerItems = new List<ItemData>[gameData.numberOfPlayers];
-        players = new GameObject[gameData.numberOfPlayers];
 
         // Fill up arrays
         for (int i = 0; i < gameData.numberOfPlayers; i++)
@@ -85,6 +96,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         gameRunning = false;
+        gameData.playerScores = playerScores;
     }
 
     public void AddItemToPlayer(int playerID, ItemData data)

@@ -7,31 +7,37 @@ public class UI_Scores : MonoBehaviour
 {
     private GameManager gm;
 
-    public Text p1Text;
-    public Text p2Text;
-    public Text p3Text;
-    public Text p4Text;
+    public GameData gameData;
+
+    public Image[] playerImages;
+    public Text[] playerTexts;
 
     public void Start()
     {
         gm = GameManager.instance;   
+
+        for (int i=gameData.numberOfPlayers; i<playerImages.Length; i++)
+        {
+            playerImages[i].gameObject.SetActive(false);
+            playerTexts[i].gameObject.SetActive(false);
+        }
     }
 
     public void UpdateText()
     {
         if (gm != null)
         {
-            p1Text.text = gm.GetPlayerScore(0).ToString();
-            p2Text.text = gm.GetPlayerScore(1).ToString();
-            p3Text.text = gm.GetPlayerScore(2).ToString();
-            p4Text.text = gm.GetPlayerScore(3).ToString();
+            for (int i = 0; i < gameData.numberOfPlayers; i++)
+            {
+                playerTexts[i].text = gm.GetPlayerScore(i).ToString();
+            }
         }
         else
         {
-            p1Text.text = "0";
-            p2Text.text = "0";
-            p3Text.text = "0";
-            p4Text.text = "0";
+            for (int i = 0; i < gameData.numberOfPlayers; i++)
+            {
+                playerTexts[i].text = "0";
+            }
         }
     }
 }
