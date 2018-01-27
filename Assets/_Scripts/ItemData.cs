@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemData : ScriptableObject
 {
     public Mesh itemMesh;
+    public CapsuleCollider collider;
 
     public new string name;
     public int pointValue;    

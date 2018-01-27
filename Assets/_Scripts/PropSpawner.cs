@@ -36,11 +36,11 @@ public class PropSpawner : MonoBehaviour {
 
         if(objectSpawnTimer < 0 &&  objectsToSpawn > 0)
         {
-            point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + .5f, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
+            point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius - 1), hit.point.y + .5f, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius - 1));
 
             while (Physics.CheckSphere(point, .5f, collisionsMask) == true)
             {
-                point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius), hit.point.y + .5f, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius));
+                point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius - 1), hit.point.y + .5f, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius - 1));
             }
   
             Instantiate(objectToSpawn, point, Quaternion.identity);
