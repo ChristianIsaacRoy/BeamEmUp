@@ -396,10 +396,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameData: {fileID: 11400000, guid: 77b2c9dc5956839428ff1875dbe3cc88, type: 2}
-  Camera1: {fileID: 20316256967379606}
-  Camera2: {fileID: 20548174823723318}
-  Camera3: {fileID: 20822938188462654}
-  Camera4: {fileID: 20487919514046886}
+  gm: {fileID: 0}
+  cameraArray:
+  - {fileID: 20316256967379606}
+  - {fileID: 20548174823723318}
+  - {fileID: 20822938188462654}
+  - {fileID: 20487919514046886}
+  HorizontalMode: 0
 --- !u!114 &114765473018722148
 MonoBehaviour:
   m_ObjectHideFlags: 1

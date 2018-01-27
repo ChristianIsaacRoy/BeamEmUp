@@ -8,5 +8,6 @@ public class GameData : ScriptableObject
     public float distanceToZap = 6.0f;
     public float timeToZap = 1.5f;
 
+    public int[] playerScores;
     public bool HorizontalMode;
 }
