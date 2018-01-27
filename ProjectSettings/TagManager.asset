@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ChoiceButtons
   - People
+  - Item
   layers:
   - Default
   - TransparentFX

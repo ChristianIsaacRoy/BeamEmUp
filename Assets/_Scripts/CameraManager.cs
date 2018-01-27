@@ -18,7 +18,14 @@ public class CameraManager : MonoBehaviour {
         numberOfPlayers = GameData.numberOfPlayers;
         HorizontalMode = GameData.HorizontalMode;
 
-        if (numberOfPlayers == 2)
+        if(numberOfPlayers == 1)
+        {
+            cameraArray[0].rect = new Rect(1, 1, 1, 1);
+            cameraArray[2].enabled = false;
+            cameraArray[3].enabled = false;
+            cameraArray[1].enabled = false;
+        }
+        else if (numberOfPlayers == 2)
         {
             if(HorizontalMode == true)
             {
@@ -48,23 +55,6 @@ public class CameraManager : MonoBehaviour {
             cameraArray[2].rect = new Rect(0f, 0f, .5f, .5f);
             cameraArray[3].rect = new Rect(.5f, 0f, .5f, .5f);
         }
-        
-    }
-
-    private void Start()
-    {
-        gm = GameManager.instance;
-
-        if(gm != null)
-        {
-            for(int i = 0; i < GameData.numberOfPlayers; i++)
-            {
-                cameraArray[i].GetComponent<ShooterGameCamera>().target = gm.players[i].transform;
-            }
-        }
-    }
-    private void Update()
-    {
         
     }
 }
