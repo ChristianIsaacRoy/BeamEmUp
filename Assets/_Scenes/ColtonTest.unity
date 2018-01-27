@@ -209,10 +209,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectList:
-  - {fileID: 114919972641376170, guid: 07a67a67527677d4b9dd045c92b92882, type: 2}
-  - {fileID: 114774379050739042, guid: 830cb35510652c64ba6e78a2f479dfda, type: 2}
-  - {fileID: 114523284896716066, guid: 269355b0747b2694abee1d50e876151b, type: 2}
-  temp: {fileID: 0}
+  - {fileID: 1231263672182230, guid: 07a67a67527677d4b9dd045c92b92882, type: 2}
+  - {fileID: 1222007593393210, guid: 830cb35510652c64ba6e78a2f479dfda, type: 2}
+  - {fileID: 1338462749937336, guid: 269355b0747b2694abee1d50e876151b, type: 2}
   collisionsMask:
     serializedVersion: 2
     m_Bits: 256
@@ -461,9 +460,9 @@ GameObject:
   - component: {fileID: 2081988897}
   - component: {fileID: 2081988896}
   - component: {fileID: 2081988895}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
-  m_TagString: Prop
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

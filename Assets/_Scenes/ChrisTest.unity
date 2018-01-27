@@ -330,7 +330,6 @@ MonoBehaviour:
   - {fileID: 1231263672182230, guid: 07a67a67527677d4b9dd045c92b92882, type: 2}
   - {fileID: 1222007593393210, guid: 830cb35510652c64ba6e78a2f479dfda, type: 2}
   - {fileID: 1338462749937336, guid: 269355b0747b2694abee1d50e876151b, type: 2}
-  temp: {fileID: 0}
   collisionsMask:
     serializedVersion: 2
     m_Bits: 256
