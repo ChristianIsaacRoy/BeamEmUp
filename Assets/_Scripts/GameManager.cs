@@ -54,11 +54,16 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < gameData.numberOfPlayers; i++)
         {
             PlayerController pc = players[i].GetComponent<PlayerController>();
-            pc.InstantiatePlayer(playerSpawns[i].position, camManager.cameraArray[i]);
-        }
-        for (int i = gameData.numberOfPlayers; i < players.Length; i++)
-        {
-            players[i].SetActive(false);
+            if (pc.playerID < gameData.numberOfPlayers)
+            {
+                pc.InstantiatePlayer(playerSpawns[pc.playerID].position, camManager.cameraArray[pc.playerID]);
+                pc.GetComponent<MeshRenderer>().material = gameData.playerColors[pc.playerID];
+                camManager.cameraArray[pc.playerID].GetComponent<ShooterGameCamera>().SetTarget(pc.transform);
+            }
+            else
+            {
+                pc.gameObject.SetActive(false);
+            }
         }
     }
 
