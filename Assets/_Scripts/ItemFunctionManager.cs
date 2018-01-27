@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class ItemFunctionManager : MonoBehaviour {
 
+    public int pointValue;
     public ItemData itemData;
-
+    private MeshFilter itemFilter;
 	// Use this for initialization
 	void Start () {
+        itemFilter = GetComponent<MeshFilter>();
+        itemFilter.mesh = itemData.itemMesh;
+        pointValue = itemData.pointValue;
 	}
 
     public void itemPickup()
