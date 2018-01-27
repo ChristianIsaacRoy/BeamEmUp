@@ -8,10 +8,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a9845a8f92fdac44888062384723982, type: 3}
-  m_Name: GameData
+  m_Script: {fileID: 11500000, guid: 1e541a6d175ccf34eaf24b0750ee6ffe, type: 3}
+  m_Name: TestItem
   m_EditorClassIdentifier: 
-  numberOfPlayers: 3
-  timeLimit: 30
-  distanceToZap: 6
-  timeToZap: 1.5
+  itemMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  name: Blah
+  pointValue: 15

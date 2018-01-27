@@ -16,12 +16,13 @@ public class ShooterGameCamera : MonoBehaviour
 {
 
     public Transform target;
-    public int playerID= 0;
+    public int playerID = 0;
 
-    // public Texture crosshair; // crosshair - removed it for quick and easy setup. ben0bi
+    public Texture crosshair; // crosshair - removed it for quick and easy setup. ben0bi
     // if you add the crosshair, you need to drag a crosshair texture on the "crosshair" variable in the inspector 
 
-    protected Transform aimTarget; // that was public and a gameobject had to be dragged on it. - ben0bi
+    [HideInInspector]
+    public Transform aimTarget; // that was public and a gameobject had to be dragged on it. - ben0bi
 
     public float smoothingTime = 10.0f; // it should follow it faster by jumping (y-axis) (previous: 0.1 or so) ben0bi
     public Vector3 pivotOffset = new Vector3(0.2f, 0.7f, 0.0f); // offset of point from player transform (?) ben0bi
@@ -43,6 +44,8 @@ public class ShooterGameCamera : MonoBehaviour
     private Vector3 smoothPlayerPos;
 
     private Player player;
+
+    private Camera camera;
 
     public void Awake()
     {
@@ -69,6 +72,7 @@ public class ShooterGameCamera : MonoBehaviour
         mask = ~mask;
 
         cam = transform;
+        camera = cam.GetComponent<Camera>();
         smoothPlayerPos = target.position;
 
         maxCamDist = 3;
@@ -146,11 +150,18 @@ public class ShooterGameCamera : MonoBehaviour
         target = t;
     }
 
-    
-    //void OnGUI()
-    //{
-    //    if (Time.time != 0 && Time.timeScale != 0)
-    //        GUI.DrawTexture(new Rect(Screen.width / 2 - (crosshair.width * 0.5f), Screen.height / 2 - (crosshair.height * 0.5f), crosshair.width, crosshair.height), crosshair);
-    //}
+
+    void OnGUI()
+    {
+        if (crosshair != null)
+        {
+            if (Time.time != 0 && Time.timeScale != 0)
+            {
+                float width = camera.rect.x + (Screen.width) * camera.rect.width / 2;
+                float height = camera.rect.y + (Screen.height) * camera.rect.height / 2;
+                GUI.DrawTexture(new Rect(/*Screen.width / 2*/ width - (crosshair.width * 0.5f), /*Screen.height / 2*/ height - (crosshair.height * 0.5f), crosshair.width, crosshair.height), crosshair);
+            }
+        }
+    }
 
 }

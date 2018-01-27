@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed;
 
-    
+    public GameData gameData;
+    private GameManager gameManager;
+
     [Range(1, 20)]
     public float jumpVelocity = 2f;
 
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float deadZone = 0.1f;
 
     public Camera myCamera;
+    private ShooterGameCamera shooterGameCamera;
 
     private CharacterController cc;
     private Player player;
@@ -41,8 +44,12 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
+        gameManager = GameManager.instance;
+
         if (myCamera == null)
             Debug.LogError("Player " + playerID + " is missing camera", this);
+        else
+            shooterGameCamera = myCamera.GetComponent<ShooterGameCamera>();
     }
 
     public void Update()
@@ -54,12 +61,43 @@ public class PlayerController : MonoBehaviour
         GetLocomotionInput();
         SnapAlignCharacterWithCamera();
         ProcessMotion();
+        CheckShoot();
     }
     #endregion
 
     public bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
+    }
+
+    private void CheckShoot()
+    {
+        // Can't shoot yourself
+        LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
+        
+        Vector3 origin = myCamera.transform.position;
+        // Shift origin up to player position
+        origin.z = transform.position.z;
+
+        float distance = gameData.distanceToZap;
+
+        if (player.GetButton("Shoot"))
+        {
+            RaycastHit hit;
+            Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
+            if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
+            {
+                ItemFunctionManager item = hit.transform.gameObject.GetComponent<ItemFunctionManager>();
+                if (item != null)
+                {
+                    if (gameManager != null)
+                    {
+                        gameManager.AddItemToPlayer(playerID, item.itemData);
+                    }
+                    item.itemPickup();
+                }
+            }
+        }
     }
 
     private void CalculateVerticalMovement()
