@@ -8,13 +8,15 @@ public class GameManager : MonoBehaviour
 
     public GameEvent onPlayerScored;
 
-    public GameObject playerPrefab;
+    public GameObject[] players;
+    public Transform[] playerSpawns;
+
 
     private bool gameRunning = true;
     private int[] playerScores;
     private float timeLimit;
     private List<ItemData>[] playerItems;
-    private GameObject[] players;
+    
 
     public static GameManager instance;
 
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         InstantiateManager();
-        CreatePlayers();
+        SpawnPlayers();
     }
 
     public void Start()
@@ -44,12 +46,12 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    private void CreatePlayers()
+    private void SpawnPlayers()
     {
         for (int i = 0; i < gameData.numberOfPlayers; i++)
         {
-            players[i] = Instantiate(playerPrefab);
-            players[i].GetComponent<PlayerController>().playerID = i;
+            players[i].SetActive(false);
+            players[i].transform.position = playerSpawns[i].position;
         }
     }
 
@@ -58,7 +60,6 @@ public class GameManager : MonoBehaviour
         // Create arrays
         playerScores = new int[gameData.numberOfPlayers];
         playerItems = new List<ItemData>[gameData.numberOfPlayers];
-        players = new GameObject[gameData.numberOfPlayers];
 
         // Fill up arrays
         for (int i = 0; i < gameData.numberOfPlayers; i++)
