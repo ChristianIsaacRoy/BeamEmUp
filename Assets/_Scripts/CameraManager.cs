@@ -57,21 +57,4 @@ public class CameraManager : MonoBehaviour {
         }
         
     }
-
-    private void Start()
-    {
-        gm = GameManager.instance;
-
-        if(gm != null)
-        {
-            for(int i = 0; i < GameData.numberOfPlayers; i++)
-            {
-                cameraArray[i].GetComponent<ShooterGameCamera>().target = gm.players[i].transform;
-            }
-        }
-    }
-    private void Update()
-    {
-        
-    }
 }

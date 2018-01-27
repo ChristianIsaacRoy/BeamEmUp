@@ -52,37 +52,32 @@ public class ShooterGameCamera : MonoBehaviour
     public void Awake()
     {
         player = ReInput.players.GetPlayer(playerID);
+
+        // [edit] no aimtarget gameobject needs to be placed anymore - ben0bi
+        GameObject g = new GameObject();
+        aimTarget = g.transform;
+        camTransfrom = transform;
+        cam = camTransfrom.GetComponent<Camera>();
+        maxCamDist = 3;
     }
 
     // Use this for initialization
     void Start()
     {
         gm = GameManager.instance;
-        if (gm != null)
+        
+        if (gm == null)
         {
-            target = gm.players[playerID].transform;
+            if (target == null)
+            {
+                Debug.LogError("Camera " + playerID + " is missing a target.");
+                return;
+            }
+            else
+            {
+                SetTarget(target);
+            }
         }
-        if (target == null)
-        {
-            Debug.LogError("Camera " + playerID + " is missing a target.");
-            return;
-        }
-
-        // [edit] no aimtarget gameobject needs to be placed anymore - ben0bi
-        GameObject g = new GameObject();
-        aimTarget = g.transform;
-        // Add player's own layer to mask
-        mask = 1 << target.gameObject.layer;
-        // Add Igbore Raycast layer to mask
-        mask |= 1 << LayerMask.NameToLayer("Ignore Raycast");
-        // Invert mask
-        mask = ~mask;
-
-        camTransfrom = transform;
-        cam = camTransfrom.GetComponent<Camera>();
-        smoothPlayerPos = target.position;
-
-        maxCamDist = 3;
     }
 
     // Update is called once per frame
@@ -90,15 +85,10 @@ public class ShooterGameCamera : MonoBehaviour
     {
         if (Time.deltaTime == 0 || Time.timeScale == 0 || target == null)
             return;
-        // if you want to set up an xbox controller or something, you need to uncomment the 
-        // commented axes below in the source. 
-        // (unity->edit->Project Settings->input, check the parameters behind the @ below.)
-        // you can set up a new axis in the inspector by typing in a bigger number in the size property at the top.
-        // I removed this, so you can quick and easy add this script to your game. - ben0bi
-        // @joystick 3rd axis
-        angleH += Mathf.Clamp(player.GetAxis("LookHorizontal") /* + Input.GetAxis("Horizontal2") */ , -1, 1) * horizontalAimingSpeed * Time.deltaTime;
-        // @joystick 4th axis
-        angleV += Mathf.Clamp(player.GetAxis("LookVertical") /* + Input.GetAxis("Vertical2") */ , -1, 1) * verticalAimingSpeed * Time.deltaTime;
+
+        angleH += Mathf.Clamp(player.GetAxis("LookHorizontal"), -1, 1) * horizontalAimingSpeed * Time.deltaTime;
+        angleV += Mathf.Clamp(player.GetAxis("LookVertical"), -1, 1) * verticalAimingSpeed * Time.deltaTime;
+
         // limit vertical angle
         angleV = Mathf.Clamp(angleV, minVerticalAngle, maxVerticalAngle);
 
@@ -149,12 +139,22 @@ public class ShooterGameCamera : MonoBehaviour
         // Make the movement slightly smooth.
         aimTarget.position = camTransfrom.position + camTransfrom.forward * aimTargetDist;
     }
+    
 
     // so you can change the camera from a static observer (level loading) or something else
     // to your player or something else. I needed that for network init... ben0bi
     public void SetTarget(Transform t)
     {
         target = t;
+
+        // Add player's own layer to mask
+        mask = 1 << target.gameObject.layer;
+        // Add Ignore Raycast layer to mask
+        mask |= 1 << LayerMask.NameToLayer("Ignore Raycast");
+        // Invert mask
+        mask = ~mask;
+
+        smoothPlayerPos = target.position;
     }
 
 
