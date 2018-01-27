@@ -230,22 +230,22 @@ Prefab:
     - target: {fileID: 114580468410229778, guid: e4a65ef0590ef9947a229f2b52913294,
         type: 2}
       propertyPath: minVerticalAngle
-      value: -50
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 114580468410229778, guid: e4a65ef0590ef9947a229f2b52913294,
         type: 2}
       propertyPath: maxVerticalAngle
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114580468410229778, guid: e4a65ef0590ef9947a229f2b52913294,
         type: 2}
       propertyPath: verticalAimingSpeed
-      value: 500
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 114580468410229778, guid: e4a65ef0590ef9947a229f2b52913294,
         type: 2}
       propertyPath: horizontalAimingSpeed
-      value: 500
+      value: 400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e4a65ef0590ef9947a229f2b52913294, type: 2}
@@ -440,10 +440,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 0
-  moveSpeed: 5
-  jumpHeight: 0
-  jumpSpeed: 0
-  gravity: 2
+  moveSpeed: 8
+  jumpVelocity: 9.5
+  jumpDecelerationSlow: 1
+  jumpDecelertationFast: 2
+  fallAcceleration: 2.5
   deadZone: 0.1
   myCamera: {fileID: 1502328172}
 --- !u!143 &1576937839
@@ -456,7 +457,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 2.5
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3

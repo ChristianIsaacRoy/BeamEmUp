@@ -8,10 +8,14 @@ public class PlayerController : MonoBehaviour
     public int playerID = 0;
 
     public float moveSpeed;
-    public float jumpHeight;
-    public float jumpSpeed;
 
-    public float gravity;
+    
+    [Range(1, 20)]
+    public float jumpVelocity = 2f;
+
+    public float jumpDecelerationSlow = 2f;
+    public float jumpDecelertationFast = 2f;
+    public float fallAcceleration = 2f;
 
     public float deadZone = 0.1f;
 
@@ -55,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
+        return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
     }
 
     private void CalculateVerticalMovement()
@@ -65,10 +69,17 @@ public class PlayerController : MonoBehaviour
             VertVector = Vector3.zero;
             canJump = true;
         }
+
+        if (cc.velocity.y < 0)
+        {
+            VertVector += Physics.gravity * fallAcceleration * Time.deltaTime;
+        } else if (cc.velocity.y > 0 && player.GetButton("Jump") )
+        {
+            VertVector += Physics.gravity * jumpDecelerationSlow * Time.deltaTime;
+        }
         else
         {
-            VertVector += Vector3.down * gravity;
-            VertVector *= Time.deltaTime;
+            VertVector += Physics.gravity * jumpDecelertationFast * Time.deltaTime;
         }
     }
 
@@ -86,7 +97,11 @@ public class PlayerController : MonoBehaviour
             MoveVector += new Vector3(player.GetAxis("MoveHorizontal"), 0, 0);
         }
 
-
+        if (player.GetButtonDown("Jump") && canJump)
+        {
+            VertVector = Vector3.up * jumpVelocity;
+            canJump = false;
+        }
     }
 
     private void ProcessMotion()
@@ -99,10 +114,9 @@ public class PlayerController : MonoBehaviour
         }
 
         MoveVector *= moveSpeed;
-        MoveVector *= Time.deltaTime;
-
         MoveVector += VertVector;
-
+        MoveVector *= Time.deltaTime;
+        
         cc.Move(MoveVector);
     }
 
