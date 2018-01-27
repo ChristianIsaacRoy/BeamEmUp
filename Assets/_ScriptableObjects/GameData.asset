@@ -13,5 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfPlayers: 2
   timeLimit: 30
-  distanceToZap: 10
+  distanceToZap: 35
   timeToZap: 0.75
+  playerScores: 
+  HorizontalMode: 0

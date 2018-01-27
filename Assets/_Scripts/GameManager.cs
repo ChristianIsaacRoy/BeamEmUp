@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         SpawnPlayers();
+        onPlayerScored.Raise();
     }
 
     public void Update()
@@ -95,6 +96,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         gameRunning = false;
+        gameData.playerScores = playerScores;
     }
 
     public void AddItemToPlayer(int playerID, ItemData data)
