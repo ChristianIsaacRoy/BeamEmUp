@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     public GameData gameData;
     private GameManager gameManager;
 
+    private GameObject zapTarget;
+    private float elapsedZapTime = 0.0f;
+
     [Range(1, 20)]
     public float jumpVelocity = 2f;
 
@@ -61,13 +64,72 @@ public class PlayerController : MonoBehaviour
         GetLocomotionInput();
         SnapAlignCharacterWithCamera();
         ProcessMotion();
-        CheckShoot();
+
+        if (zapTarget != null)
+            CheckZappingProgress();
+        else
+            CheckShoot();
+
+        // Increase or decrease elapsedZapTime based on zapTarget
+        CheckZapTime();
     }
     #endregion
 
     public bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
+    }
+
+    private void CheckZapTime()
+    {
+        // Still zapping
+        if (zapTarget != null)
+        {
+            elapsedZapTime += Time.deltaTime;
+            if (elapsedZapTime >= gameData.timeToZap)
+            {
+                // Successful zap
+                ItemFunctionManager item = zapTarget.GetComponent<ItemFunctionManager>();
+                zapTarget = null;
+                elapsedZapTime = 0.0f;
+                if (gameManager != null)
+                {
+                    gameManager.AddItemToPlayer(playerID, item.itemData);
+                }
+                item.itemPickup();
+            }
+        }
+        // Stopped zapping, slowly decrease zap time
+        else
+        {
+            elapsedZapTime -= Time.deltaTime;
+            if (elapsedZapTime < 0)
+            {
+                elapsedZapTime = 0;
+            }
+        }
+    }
+
+    private void CheckZappingProgress()
+    {
+        // Make sure trigger is still held down
+        if (!player.GetButton("Shoot"))
+        {
+            // TODO: Cancel animation
+            zapTarget = null;
+            return;
+        }
+
+        // Make sure distance to zapTarget is still within zappingDistance
+        Vector3 origin = myCamera.transform.position;
+        origin.z = transform.position.z;
+        float distanceToZapTarget = (zapTarget.transform.position - origin).magnitude;
+        if (distanceToZapTarget > gameData.distanceToZap)
+        {
+            // TODO: Cancel animation
+            zapTarget = null;
+            return;
+        }
     }
 
     private void CheckShoot()
@@ -90,11 +152,7 @@ public class PlayerController : MonoBehaviour
                 ItemFunctionManager item = hit.transform.gameObject.GetComponent<ItemFunctionManager>();
                 if (item != null)
                 {
-                    if (gameManager != null)
-                    {
-                        gameManager.AddItemToPlayer(playerID, item.itemData);
-                    }
-                    item.itemPickup();
+                    zapTarget = hit.transform.gameObject;
                 }
             }
         }
