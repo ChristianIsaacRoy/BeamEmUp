@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public float deadZone = 0.1f;
 
     public Camera myCamera;
+    private ShooterGameCamera shooterGameCamera;
 
     private CharacterController cc;
     private Player player;
@@ -43,6 +44,8 @@ public class PlayerController : MonoBehaviour
     {
         if (myCamera == null)
             Debug.LogError("Player " + playerID + " is missing camera", this);
+        else
+            shooterGameCamera = myCamera.GetComponent<ShooterGameCamera>();
     }
 
     public void Update()
@@ -54,12 +57,36 @@ public class PlayerController : MonoBehaviour
         GetLocomotionInput();
         SnapAlignCharacterWithCamera();
         ProcessMotion();
+        CheckShoot();
     }
     #endregion
 
     public bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
+    }
+
+    private void CheckShoot()
+    {
+        // Can't shoot yourself
+        LayerMask ignoreMask = ~(LayerMask.NameToLayer("Player"));
+        
+        Vector3 origin = myCamera.transform.position;
+        // Shift origin up to player position
+        origin.z = transform.position.z;
+
+        // TODO: Add editor-facing distance
+        float distance = Mathf.Infinity;
+
+        if (player.GetButton("Shoot"))
+        {
+            RaycastHit hit;
+            Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
+            if (Physics.Raycast(origin, shooterGameCamera.aimTarget.position - origin, out hit, distance, ignoreMask))
+            {
+                Debug.Log(hit.transform.gameObject.name);
+            }
+        }
     }
 
     private void CalculateVerticalMovement()
