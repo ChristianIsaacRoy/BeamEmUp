@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
 
         // Increase or decrease elapsedZapTime based on zapTarget
         CheckZapTime();
+
+        Debug.Log(elapsedZapTime);
     }
     #endregion
 
