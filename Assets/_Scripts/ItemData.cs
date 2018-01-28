@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ItemData : ScriptableObject
 {
-    public Mesh itemMesh;
+    public GameObject newGameObject;
     public CapsuleCollider collider;
 
     public new string name;

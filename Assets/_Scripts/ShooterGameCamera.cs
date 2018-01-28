@@ -24,6 +24,8 @@ public class ShooterGameCamera : MonoBehaviour
     [HideInInspector]
     public Transform aimTarget; // that was public and a gameobject had to be dragged on it. - ben0bi
 
+    private Transform gunTarget;
+
     public float smoothingTime = 10.0f; // it should follow it faster by jumping (y-axis) (previous: 0.1 or so) ben0bi
     public Vector3 pivotOffset = new Vector3(0.2f, 0.7f, 0.0f); // offset of point from player transform (?) ben0bi
     public Vector3 camOffset = new Vector3(0.0f, 0.7f, -3.4f); // offset of camera from pivotOffset (?) ben0bi
@@ -61,6 +63,10 @@ public class ShooterGameCamera : MonoBehaviour
         camTransfrom = transform;
         cam = camTransfrom.GetComponent<Camera>();
         maxCamDist = 3;
+
+        GameObject f = new GameObject("gunTarget");
+        f.transform.SetParent(transform);
+        gunTarget = f.transform;
     }
 
     // Use this for initialization
@@ -142,7 +148,10 @@ public class ShooterGameCamera : MonoBehaviour
 
         // Set the aimTarget position according to the distance we found.
         // Make the movement slightly smooth.
+        float gunTargetDist = 30.0f;
         aimTarget.position = camTransfrom.position + camTransfrom.forward * aimTargetDist;
+        gunTarget.position = camTransfrom.position + camTransfrom.forward * gunTargetDist;
+
 
         AimModel();
     }
@@ -152,10 +161,12 @@ public class ShooterGameCamera : MonoBehaviour
         Transform moveJoint = target.Find("AlienPlayer/Root_M/Spine1_M/Spine2_M/Chest_M");
         Transform gunJoint = target.Find("AlienPlayer/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/Wrist_R/Wrist_PROP");
 
-        moveJoint.LookAt(aimTarget);
+        //moveJoint.LookAt(aimTarget);
+        moveJoint.LookAt(gunTarget);
         moveJoint.rotation *= Quaternion.Euler(0, -90, -90);
 
-        gunJoint.LookAt(aimTarget);
+        //gunJoint.LookAt(aimTarget);
+        gunJoint.LookAt(gunTarget);
         gunJoint.rotation *= Quaternion.Euler(90, 90, 0);
 
     }
