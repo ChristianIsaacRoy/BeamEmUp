@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 114987531929231614}
   - component: {fileID: 114379719486023084}
   - component: {fileID: 114501266989028206}
+  - component: {fileID: 65657268748548232}
+  - component: {fileID: 114323114319167808}
   m_Layer: 0
   m_Name: TMann
   m_TagString: People
@@ -171,7 +173,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1111978949999442}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3397498, y: 0.11, z: -0.29217175}
+  m_LocalPosition: {x: 4.8453574, y: 0.020973999, z: 5.3392434}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4311611950589678}
@@ -331,6 +333,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1111978949999442}
   m_Mesh: {fileID: 4300000, guid: e222825bd8b7a7f439b9438e3a1fdf93, type: 3}
+--- !u!65 &65657268748548232
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111978949999442}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4458919, y: 2.52366, z: 1.2135792}
+  m_Center: {x: 0, y: 1.240856, z: -0.0021237433}
 --- !u!95 &95938598081576176
 Animator:
   serializedVersion: 3
@@ -370,6 +384,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793d8835a7f08dc48ac2e95aa6c770e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114323114319167808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1111978949999442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e382dad0a4c222344b4a4b89502f9753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: aa293a3effa09d9459ea4ece367deb9a, type: 2}
+  itemHoverHeight: 0
+  isBeingZapped: 0
+  material: {fileID: 0}
+  playerZapping: {fileID: 0}
 --- !u!114 &114379719486023084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -475,6 +505,8 @@ MonoBehaviour:
   movementSpeed: 100
   rotateSpeed: 150
   waitTime: 0.5
+  AnimController: {fileID: 0}
+  itemData: {fileID: 0}
   waitTimeCounter: 0
   wayPointIndex: 0
   wayPoints:

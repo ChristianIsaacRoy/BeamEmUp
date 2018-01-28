@@ -719,6 +719,8 @@ GameObject:
   - component: {fileID: 23769782206823364}
   - component: {fileID: 114512271329464678}
   - component: {fileID: 195177590973134576}
+  - component: {fileID: 65015716167149958}
+  - component: {fileID: 114695175164147698}
   m_Layer: 0
   m_Name: Human
   m_TagString: People
@@ -1184,7 +1186,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1668388621771650}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.953991, y: 0.013501999, z: 12.85}
+  m_LocalPosition: {x: -1.2261466, y: -2.7113157e-17, z: 12.21068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4116348809208472}
@@ -2212,6 +2214,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1668388621771650}
   m_Mesh: {fileID: 4300000, guid: b25235e0cf10722409d107df9585faf9, type: 3}
+--- !u!65 &65015716167149958
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668388621771650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.8337283, z: 1}
+  m_Center: {x: 0, y: 1.3585145, z: 0}
 --- !u!95 &95845175391854130
 Animator:
   serializedVersion: 3
@@ -2299,6 +2313,7 @@ MonoBehaviour:
   rotateSpeed: 150
   waitTime: 2
   AnimController: {fileID: 95845175391854130}
+  itemData: {fileID: 11400000, guid: aa1eaf454e57a234aa5ec509094a0a62, type: 2}
   waitTimeCounter: 0
   wayPointIndex: 0
   wayPoints:
@@ -2311,6 +2326,22 @@ MonoBehaviour:
   - {fileID: 114144139538657216}
   - {fileID: 114740249287274350}
   destination: {fileID: 4116348809208472}
+--- !u!114 &114695175164147698
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668388621771650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e382dad0a4c222344b4a4b89502f9753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: aa1eaf454e57a234aa5ec509094a0a62, type: 2}
+  itemHoverHeight: 0
+  isBeingZapped: 0
+  material: {fileID: 0}
+  playerZapping: {fileID: 0}
 --- !u!114 &114740249287274350
 MonoBehaviour:
   m_ObjectHideFlags: 1
