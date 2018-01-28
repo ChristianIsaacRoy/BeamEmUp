@@ -7,9 +7,6 @@ public class TMannSFX : MonoBehaviour {
     public List<AudioClip> audioList;
     public MultiAudioSource audioSource;
     public MultiAudioSource musicSource;
-    public Animator CharacterAnim;
-    public ParticleSystem Left;
-    public ParticleSystem Right;
 
     public float count;
     public float countTimer;
@@ -24,11 +21,11 @@ public class TMannSFX : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Every 10 Seconds play a random audio clip
-        if (countTimer <= 0)
+        if(countTimer <= 0)
         {
             int currentClip = Random.Range(0, 4);
-
-            while (currentClip == previousClip)
+            
+            while(currentClip == previousClip)
             {
                 currentClip = Random.Range(0, 4);
             }
@@ -39,7 +36,6 @@ public class TMannSFX : MonoBehaviour {
 
             previousClip = currentClip;
         }
-
         countTimer -= Time.deltaTime;
 
         if(audioSource.IsPlaying == true)
@@ -55,14 +51,5 @@ public class TMannSFX : MonoBehaviour {
     void ChangeSoundClip(int i)
     {
         audioSource.AudioClip = audioList[i];
-    }
-
-    public void TManAnim()
-    {
-        CharacterAnim.Play("NoSlav");
-        Left.Play();
-        Right.Play();
-
-       
     }
 }

@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Endgame Menu.unity
     guid: b77780af8bae4694888a79208504296f
+  - enabled: 1
+    path: Assets/_Scenes/WhiteboxEditing.unity
+    guid: 6910b605260e27149801d7abbbb75e26
