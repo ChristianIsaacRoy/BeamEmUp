@@ -8,17 +8,15 @@ public class GameManager : MonoBehaviour
 
     public GameEvent onPlayerScored;
     
-    public GameObject[] players;
+    private GameObject[] players;
     public CameraManager camManager;
     public Transform[] playerSpawns;
-
-
+    
     private bool gameRunning = true;
     private int[] playerScores;
     private float timeLimit;
     private List<ItemData>[] playerItems;
     
-
     public static GameManager instance;
 
     #region Monobehaviours
@@ -51,9 +49,10 @@ public class GameManager : MonoBehaviour
 
     private void SpawnPlayers()
     {
-        for (int i = 0; i < gameData.numberOfPlayers; i++)
+        foreach(GameObject go in players)
         {
-            PlayerController pc = players[i].GetComponent<PlayerController>();
+            PlayerController pc = go.GetComponent<PlayerController>();
+
             if (pc.playerID < gameData.numberOfPlayers)
             {
                 pc.InstantiatePlayer(playerSpawns[pc.playerID].position, camManager.cameraArray[pc.playerID]);
@@ -99,13 +98,17 @@ public class GameManager : MonoBehaviour
     {
         gameRunning = false;
         gameData.playerScores = playerScores;
+        Time.timeScale *= .3f;
     }
 
     public void AddItemToPlayer(int playerID, ItemData data)
     {
-        playerItems[playerID].Add(data);
-        playerScores[playerID] += data.pointValue;
-        onPlayerScored.Raise();
+        if (gameRunning)
+        {
+            playerItems[playerID].Add(data);
+            playerScores[playerID] += data.pointValue;
+            onPlayerScored.Raise();
+        }
     }
 
     public int GetPlayerScore(int playerID)
