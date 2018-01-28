@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e541a6d175ccf34eaf24b0750ee6ffe, type: 3}
-  m_Name: Diamond
+  m_Name: PropData
   m_EditorClassIdentifier: 
-  newGameObject: {fileID: 100000, guid: 847b2fdb4f7fac242b2017090855f010, type: 3}
+  newGameObject: {fileID: 0}
   collider: {fileID: 0}
   name: Diamond
-  pointValue: 100
+  pointValue: 0

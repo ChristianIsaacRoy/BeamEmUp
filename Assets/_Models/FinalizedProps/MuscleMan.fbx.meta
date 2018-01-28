@@ -1,16 +1,47 @@
 fileFormatVersion: 2
-guid: 847b2fdb4f7fac242b2017090855f010
-timeCreated: 1517111749
+guid: c74388c852ac545498ca4d5d94a8a501
+timeCreated: 1517117052
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: polySurface10
+    100004: polySurface11
+    100006: polySurface5
+    100008: polySurface6
+    100010: polySurface6 1
+    100012: polySurface7
+    100014: polySurface8
+    100016: polySurface9
+    100018: transform1
+    100020: transform2
+    100022: transform3
+    100024: transform4
+    100026: transform5
+    100028: transform6
+    100030: transform7
     400000: //RootNode
-    2100000: diamondMAT
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pCylinder1
+    400002: polySurface10
+    400004: polySurface11
+    400006: polySurface5
+    400008: polySurface6
+    400010: polySurface6 1
+    400012: polySurface7
+    400014: polySurface8
+    400016: polySurface9
+    400018: transform1
+    400020: transform2
+    400022: transform3
+    400024: transform4
+    400026: transform5
+    400028: transform6
+    400030: transform7
+    2100000: human_MAT
+    2100002: Eye_Mat
+    2300000: polySurface11
+    3300000: polySurface11
+    4300000: polySurface11
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -42,7 +73,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 15
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

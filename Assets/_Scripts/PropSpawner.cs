@@ -12,13 +12,11 @@ public class PropSpawner : MonoBehaviour {
     public float maxObjectSpawnTime;
 
     private float objectSpawnTimer;
-
-    public GameObject newGameObject;
-
     public LayerMask collisionsMask;
     public RaycastHit hit;
-
     private Vector3 point;
+
+    public List<GameObject> itemList;
 
     public float spawnRadius;
     // Use this for initialization
@@ -41,8 +39,10 @@ public class PropSpawner : MonoBehaviour {
             {
                 point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius - 1), hit.point.y + 2.75f, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius - 1));
             }
-  
-            Instantiate(newGameObject, point, Quaternion.identity);
+
+            int i = itemList.Count;
+            i = Random.Range(0, i);
+            Instantiate(itemList[i], point, Quaternion.identity);
 
             objectsToSpawn -= 1;
             objectSpawnTimer = minObjectSpawnTime;
