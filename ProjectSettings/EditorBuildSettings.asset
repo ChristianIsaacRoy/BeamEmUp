@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Start Menu.unity
     guid: 4abfdea92cc56ed45ab61238c4e858e4
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/ChrisTest.unity
     guid: c1137db4cc1329c42a45bcd99046ddd8
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Whitebox.unity
     guid: 8dcb236af8d20404ebdffe349f84a138
   - enabled: 1

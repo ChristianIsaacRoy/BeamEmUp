@@ -721,6 +721,7 @@ GameObject:
   - component: {fileID: 195177590973134576}
   - component: {fileID: 65015716167149958}
   - component: {fileID: 114695175164147698}
+  - component: {fileID: 114761058383826580}
   m_Layer: 0
   m_Name: Human
   m_TagString: People
@@ -2337,11 +2338,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e382dad0a4c222344b4a4b89502f9753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 114761058383826580}
   itemData: {fileID: 11400000, guid: aa1eaf454e57a234aa5ec509094a0a62, type: 2}
   itemHoverHeight: 0
   isBeingZapped: 0
   material: {fileID: 0}
+  dissolveMat: {fileID: 0}
+  isBoss: 0
   playerZapping: {fileID: 0}
+  isDissolving: 0
 --- !u!114 &114740249287274350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2353,6 +2358,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793d8835a7f08dc48ac2e95aa6c770e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114761058383826580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1668388621771650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30730f5b1648246419d62c222708fa80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: cb7374e63e7e87d4db214a92350f8771, type: 3}
+  _output: {fileID: 0}
+  _mute: 0
+  _bypassEffects: 0
+  _bypassListenerEffects: 0
+  _bypassReverbZone: 0
+  _playOnAwake: 0
+  _loop: 0
+  _priority: 128
+  _volume: 1
+  _pitch: 1
+  _reverbZoneMix: 1
+  _dopplerLevel: 1
+  _spread: 0
+  _volumeRolloff: 0
+  _minDistance: 1
+  _maxDistance: 500
+  OnlyPlayForClosestCamera: 0
 --- !u!114 &114810350326853518
 MonoBehaviour:
   m_ObjectHideFlags: 1

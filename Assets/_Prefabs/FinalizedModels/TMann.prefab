@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 114323114319167808}
   m_Layer: 0
   m_Name: TMann
-  m_TagString: Untagged
+  m_TagString: People
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3254,7 +3254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e382dad0a4c222344b4a4b89502f9753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 114379719486023084}
   itemData: {fileID: 11400000, guid: aa293a3effa09d9459ea4ece367deb9a, type: 2}
   itemHoverHeight: 0
   isBeingZapped: 0

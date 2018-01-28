@@ -76,7 +76,7 @@ public class endMenuManager : MonoBehaviour {
 
     public void PlayAgain()
     {
-        SceneManager.LoadSceneAsync("ChrisTest");
+        SceneManager.LoadSceneAsync("WhiteboxEditing");
     }
 
     public void exitPressed()

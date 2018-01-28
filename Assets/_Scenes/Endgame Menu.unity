@@ -2595,7 +2595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSelectedObject: {fileID: 1393150690}
-  gameData: {fileID: 11400000, guid: 67787fe55bdd05645a9fb1171a635283, type: 2}
+  gameData: {fileID: 11400000, guid: c54322bf34744d8468995444eda785e7, type: 2}
   playerOne: {fileID: 1544379582}
   playerTwo: {fileID: 1685316447}
   playerThree: {fileID: 1135913330}

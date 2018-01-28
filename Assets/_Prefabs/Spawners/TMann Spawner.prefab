@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4614998211270096}
   - component: {fileID: 135992036100385514}
   - component: {fileID: 23702919687277250}
-  - component: {fileID: 114747838788471022}
+  - component: {fileID: 114987952638614966}
   m_Layer: 0
   m_Name: TMann Spawner
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1654437868171834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.85, y: 7.16, z: -18.93}
+  m_LocalPosition: {x: 46.9, y: 40.7, z: 18.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &114747838788471022
+--- !u!114 &114987952638614966
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -84,19 +84,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1654437868171834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55270d35496c9344480cc9066de755c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b3bca042b2cf5e48978a74581ab37cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minObjectsToSpawn: 1
-  maxObjectsToSpawn: 1
-  minObjectSpawnTime: 150
-  maxObjectSpawnTime: 150
-  collisionsMask:
+  TMann: {fileID: 1111978949999442, guid: 86e66ff0d52b1a145a9bcdc0567df4bf, type: 2}
+  AlertPlayersTMann: {fileID: 11400000, guid: 9bcd9418c2716a6449d623efc59140a3, type: 2}
+  messageText: 
+  eventRaised: 0
+  TMannSpawnTime: 180
+  spawnRadius: 30
+  LayerMask:
     serializedVersion: 2
     m_Bits: 256
-  itemList:
-  - {fileID: 1111978949999442, guid: 86e66ff0d52b1a145a9bcdc0567df4bf, type: 2}
-  spawnRadius: 5
 --- !u!135 &135992036100385514
 SphereCollider:
   m_ObjectHideFlags: 1

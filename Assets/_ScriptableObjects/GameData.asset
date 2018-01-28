@@ -20,6 +20,6 @@ MonoBehaviour:
   timeLimit: 300
   distanceToZap: 12
   timeToZap: 0.75
-  playerScores: d20400007b0000007b0000007b000000
+  playerScores: c20100005e0100000000000000000000
   HorizontalMode: 0
   playerYAxisInverted: 00000000

@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.MultiAudioListener;
 
 public class GameItem : MonoBehaviour
 {
-    public AudioSource audioSource;
+    public MultiAudioSource audioSource;
     public ItemData itemData;
     public float itemHoverHeight;
     public bool isBeingZapped;
@@ -22,6 +23,8 @@ public class GameItem : MonoBehaviour
     [HideInInspector]
     public GameObject playerZapping;
 
+    private GameObject go;
+
     private MeshRenderer childMeshRenderer;
 
     public bool isDissolving = false;
@@ -32,7 +35,7 @@ public class GameItem : MonoBehaviour
         {
             if (itemData != null)
             {
-                Instantiate<GameObject>(itemData.newGameObject, transform);
+                go = Instantiate<GameObject>(itemData.newGameObject, transform);
             }
             originalPosition = transform.position;
         }
@@ -43,7 +46,7 @@ public class GameItem : MonoBehaviour
         if (this.CompareTag("Item"))
         {
             //item rotation
-            transform.Rotate(0, 10 * Time.deltaTime, 0);
+            go.transform.Rotate(0, 10 * Time.deltaTime, 0);
 
             //item float
             transform.Translate(0, Mathf.Sin(Time.fixedTime) / (100 / itemHoverHeight), 0);
@@ -127,7 +130,7 @@ public class GameItem : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
 
-        Destroy(this.gameObject);
+        StartCoroutine(DestroyItem());
         //foreach (Material mat in childMeshRenderer.materials)
         //    mat.SetFloat("_Progress", 1.0f);
     }
@@ -161,14 +164,21 @@ public class GameItem : MonoBehaviour
             {
                 bossHits--;
                 if (bossHits <= 0)
-                    Destroy(this.gameObject);
+                    StartCoroutine(DestroyItem());
                 
             }
             else
             {
-                Destroy(this.gameObject);
+                StartCoroutine(DestroyItem());
             }
         }
     }
 
+    public IEnumerator DestroyItem()
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(audioSource.AudioClip.length / 2);
+        Destroy(gameObject);
+        
+    }
 }

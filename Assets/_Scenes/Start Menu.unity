@@ -3739,7 +3739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9334c7f1015b0479ebb1754cda62b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: 67787fe55bdd05645a9fb1171a635283, type: 2}
+  gameData: {fileID: 11400000, guid: c54322bf34744d8468995444eda785e7, type: 2}
   startMenu: {fileID: 43216221}
   playerCountChoiceMenu: {fileID: 776568977}
   settingsMenu: {fileID: 969012793}
@@ -3778,7 +3778,7 @@ MonoBehaviour:
   - {fileID: 184203831}
   horizontal: {fileID: 2128516121}
   vertical: {fileID: 228760800}
-  gameData: {fileID: 11400000, guid: 67787fe55bdd05645a9fb1171a635283, type: 2}
+  gameData: {fileID: 11400000, guid: c54322bf34744d8468995444eda785e7, type: 2}
 --- !u!1 &1102899167
 GameObject:
   m_ObjectHideFlags: 0
