@@ -53,10 +53,10 @@ public class Zapper : MonoBehaviour
     {
         LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
         RaycastHit hit;
-        Debug.DrawRay(gun.transform.position, shooterGameCamera.aimTarget.position - gun.transform.position, Color.green);
+        Debug.DrawRay(gun.transform.position, shooterGameCamera.gunTarget.position - gun.transform.position, Color.green);
 
-        if (Physics.SphereCast(gun.transform.position, 1.5f, 
-            (shooterGameCamera.aimTarget.position - gun.transform.position).normalized, out hit, rayDistance, ignoreMask))
+        if (Physics.SphereCast(gun.transform.position, 3.0f, 
+            (shooterGameCamera.gunTarget.position - gun.transform.position).normalized, out hit, rayDistance, ignoreMask))
         {
             raycastHit = hit;
             return true;
@@ -79,6 +79,7 @@ public class Zapper : MonoBehaviour
             playerIsShooting = false;
             shootingParticleSystem.Stop();
             AnimController.SetBool("Shooting", false);
+            player.StopVibration();
         }
     }
 
@@ -148,6 +149,7 @@ public class Zapper : MonoBehaviour
 
     private void CancelShooting()
     {
+        player.StopVibration();
         zapTarget.GetComponent<GameItem>().isBeingZapped = false;
         zapTarget = null;
     }
@@ -166,6 +168,11 @@ public class Zapper : MonoBehaviour
                 {
                     zapTarget = hit.transform.gameObject;
                     zapTarget.GetComponent<GameItem>().isBeingZapped = true;
+                    if (zapTarget.GetComponent<GameItem>().playerZapping == null)
+                    {
+                        zapTarget.GetComponent<GameItem>().playerZapping = gameObject;
+                    }
+                    player.SetVibration(0, 0.3f);
                 }
             }
         }

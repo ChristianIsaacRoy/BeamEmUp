@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214872749510220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 0.54}
+  m_LocalPosition: {x: 0, y: 6, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,15 +87,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55270d35496c9344480cc9066de755c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minObjectsToSpawn: 5
-  maxObjectsToSpawn: 10
-  minObjectSpawnTime: 0
-  maxObjectSpawnTime: 0
+  minObjectsToSpawn: 55
+  maxObjectsToSpawn: 55
+  minObjectSpawnTime: 1
+  maxObjectSpawnTime: 5
   collisionsMask:
     serializedVersion: 2
     m_Bits: 256
-  itemList: []
-  spawnRadius: 4
+  itemList:
+  - {fileID: 1782866485263896, guid: 9028c1ad470d6ae468e3ee56239f1992, type: 2}
+  - {fileID: 1570241668938636, guid: d1a8bb2b901229644880464f4e51f329, type: 2}
+  - {fileID: 1394255450782056, guid: f0fbbcfb630a89640bb8a608924b6562, type: 2}
+  - {fileID: 1807196660275982, guid: bf99e9ed905d8294d8ccfde03d0de316, type: 2}
+  - {fileID: 1931614829472880, guid: aff170e3c929e724eac2f72dccf03049, type: 2}
+  spawnRadius: 80
 --- !u!135 &135975135201596324
 SphereCollider:
   m_ObjectHideFlags: 1

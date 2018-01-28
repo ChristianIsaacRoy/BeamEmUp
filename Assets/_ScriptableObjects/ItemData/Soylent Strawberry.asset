@@ -11,8 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e541a6d175ccf34eaf24b0750ee6ffe, type: 3}
   m_Name: Soylent Strawberry
   m_EditorClassIdentifier: 
-  newGameObject: {fileID: 1807196660275982, guid: bf99e9ed905d8294d8ccfde03d0de316,
+  newGameObject: {fileID: 1285515386590988, guid: 0b1c218f0c141c848af46d8981410a92,
     type: 2}
-  collider: {fileID: 0}
   name: 
   pointValue: 400

@@ -24,7 +24,8 @@ public class ShooterGameCamera : MonoBehaviour
     [HideInInspector]
     public Transform aimTarget; // that was public and a gameobject had to be dragged on it. - ben0bi
 
-    private Transform gunTarget;
+    [HideInInspector]
+    public Transform gunTarget;
 
     public float smoothingTime = 10.0f; // it should follow it faster by jumping (y-axis) (previous: 0.1 or so) ben0bi
     public Vector3 pivotOffset = new Vector3(0.2f, 0.7f, 0.0f); // offset of point from player transform (?) ben0bi
@@ -37,8 +38,8 @@ public class ShooterGameCamera : MonoBehaviour
     public float minVerticalAngle = -80f;
 
     public float mouseSensitivity = 0.3f;
-
-    private float angleH = 0;
+    
+    public float angleH = 0;
     private float angleV = 0;
     private Transform camTransfrom;
     private float maxCamDist = 1;
@@ -89,12 +90,13 @@ public class ShooterGameCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    public void LateUpdate()
     {
         if (Time.deltaTime == 0 || Time.timeScale == 0 || target == null)
             return;
 
         angleH += Mathf.Clamp(player.GetAxis("LookHorizontal"), -1, 1) * horizontalAimingSpeed * Time.deltaTime;
+
         if (gameData.playerYAxisInverted[playerID])
             angleV += Mathf.Clamp(-1 * player.GetAxis("LookVertical"), -1, 1) * verticalAimingSpeed * Time.deltaTime;
         else
@@ -151,7 +153,7 @@ public class ShooterGameCamera : MonoBehaviour
         float gunTargetDist = 30.0f;
         aimTarget.position = camTransfrom.position + camTransfrom.forward * aimTargetDist;
         gunTarget.position = camTransfrom.position + camTransfrom.forward * gunTargetDist;
-
+        
         AimModel();
     }
 

@@ -11,8 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e541a6d175ccf34eaf24b0750ee6ffe, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
-  newGameObject: {fileID: 1570241668938636, guid: d1a8bb2b901229644880464f4e51f329,
+  newGameObject: {fileID: 1311366442168004, guid: 7704e457d40d84e40b8cc73eea16cf7c,
     type: 2}
-  collider: {fileID: 0}
   name: 
   pointValue: 50

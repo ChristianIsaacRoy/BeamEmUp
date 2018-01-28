@@ -11,14 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9845a8f92fdac44888062384723982, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  numberOfPlayers: 4
+  numberOfPlayers: 1
   playerColors:
   - {fileID: 2100000, guid: 08b0ce223c5bccb4ebf6019bc951d7b5, type: 2}
   - {fileID: 2100000, guid: 78fbe70789159e244b2c3e9d4da90b21, type: 2}
   - {fileID: 2100000, guid: 8fe5a9472ed334342b05d1a5363dee0f, type: 2}
   - {fileID: 2100000, guid: 495b10a4d9204634b97877fd563a77d4, type: 2}
-  timeLimit: 180
-  distanceToZap: 35
+  timeLimit: 90
+  distanceToZap: 12
   timeToZap: 0.75
   playerScores: 00000000000000000000000000000000
   HorizontalMode: 0

@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     public float deadZone = 0.1f;
 
     public Camera cam;
-    private ShooterGameCamera shooterGameCamera;
 
     private CharacterController cc;
     private Player player;
@@ -55,7 +54,7 @@ public class PlayerController : MonoBehaviour
         if (gm == null)
         {
             if (cam != null)
-                InstantiatePlayer(transform.position, cam);
+                InstantiatePlayer(transform, cam);
             else
                 Debug.LogError("Player " + (playerID + 1) + " is missing camera", this);
         }
@@ -73,12 +72,15 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    public void InstantiatePlayer(Vector3 pos, Camera camera)
+    public void InstantiatePlayer(Transform t, Camera camera)
     {
         gameObject.SetActive(true);
-        transform.position = pos;
+        transform.position = t.position;
+       
         cam = camera;
-        shooterGameCamera = cam.GetComponent<ShooterGameCamera>();
+        ShooterGameCamera shooterGameCamera = cam.GetComponent<ShooterGameCamera>();
+        shooterGameCamera.angleH = t.eulerAngles.y;
+        SnapAlignCharacterWithCamera();
     }
 
     public bool IsGrounded()
