@@ -5,8 +5,9 @@ using UnityEngine;
 public class GameItem : MonoBehaviour
 {
     public ItemData itemData;
-    public int itemHoverHeight;
+    public float itemHoverHeight;
     public bool isBeingZapped;
+    public float count;
 
     private MeshFilter itemFilter;
 
@@ -20,6 +21,7 @@ public class GameItem : MonoBehaviour
     {
         if (transform.tag == "Item")
         {
+            count += 1;
             //item rotation
             transform.Rotate(0, 10 * Time.deltaTime, 0);
             //item float
