@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
                 pc.InstantiatePlayer(playerSpawns[pc.playerID].position, camManager.cameraArray[pc.playerID]);
                 pc.GetComponent<MeshRenderer>().material = gameData.playerColors[pc.playerID];
                 camManager.cameraArray[pc.playerID].GetComponent<ShooterGameCamera>().SetTarget(pc.transform);
+                pc.GetComponent<Zapper>().SetShooterGameCamera(pc.GetComponent<ShooterGameCamera>());
             }
             else
             {
