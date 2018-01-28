@@ -57,8 +57,6 @@ public class endMenuManager : MonoBehaviour {
         highScore.fontSize = 28;
         highScore.GetComponent<Text>().color = Color.green;
         winner.transform.Translate(0, 0, 2.5f);
-        highScore.gameObject.transform.Translate(0, 0, -30);
-
     }
 
     public void exitPressed()
