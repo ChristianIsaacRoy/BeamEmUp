@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e541a6d175ccf34eaf24b0750ee6ffe, type: 3}
-  m_Name: Gold
+  m_Name: SNES
   m_EditorClassIdentifier: 
-  newGameObject: {fileID: 1311366442168004, guid: 7704e457d40d84e40b8cc73eea16cf7c,
+  newGameObject: {fileID: 1913552031371390, guid: 3d80de1afabd7d54bab0a264bc216fa1,
     type: 2}
   name: 
-  pointValue: 50
+  pointValue: 25
