@@ -19,7 +19,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: polySurface33_pPlane2Mat
-    second: {fileID: 2100000, guid: 99d9167ba85fe9e46969d3ed9d4e54c7, type: 2}
+    second: {fileID: 2100000, guid: 1af48073956ca874c82520e719a6b326, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
