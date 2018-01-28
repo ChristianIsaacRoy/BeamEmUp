@@ -3254,11 +3254,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e382dad0a4c222344b4a4b89502f9753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   itemData: {fileID: 11400000, guid: aa293a3effa09d9459ea4ece367deb9a, type: 2}
   itemHoverHeight: 0
   isBeingZapped: 0
   material: {fileID: 0}
+  dissolveMat: {fileID: 0}
+  isBoss: 1
   playerZapping: {fileID: 0}
+  isDissolving: 0
 --- !u!114 &114379719486023084
 MonoBehaviour:
   m_ObjectHideFlags: 1

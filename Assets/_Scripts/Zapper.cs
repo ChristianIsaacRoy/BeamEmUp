@@ -98,11 +98,11 @@ public class Zapper : MonoBehaviour
                 if (gm != null)
                 {
                     if (gm.AddItemToPlayer(playerId, item.itemData))
-                        item.ZapItem();
+                        item.ZapItem(player);
                 }
                 else
                 {
-                    item.ZapItem();
+                    item.ZapItem(player);
                 }
             }
         }

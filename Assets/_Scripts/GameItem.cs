@@ -16,6 +16,9 @@ public class GameItem : MonoBehaviour
     private Vector3 originalPosition;
     private bool hasBeenZapped = false;
 
+    public bool isBoss;
+    private int bossHits = 7;
+
     [HideInInspector]
     public GameObject playerZapping;
 
@@ -154,7 +157,17 @@ public class GameItem : MonoBehaviour
             StartCoroutine(Dissolve());
         } else
         {
-            Destroy(this.gameObject);
+            if (isBoss)
+            {
+                bossHits--;
+                if (bossHits <= 0)
+                    Destroy(this.gameObject);
+                
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 
