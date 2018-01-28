@@ -9,6 +9,7 @@ public class GameItem : MonoBehaviour
     public bool isBeingZapped;
 
     private Vector3 originalPosition;
+    private bool hasBeenZapped = false;
 
     [HideInInspector]
     public GameObject playerZapping;
@@ -19,13 +20,14 @@ public class GameItem : MonoBehaviour
         {
             Instantiate<GameObject>(itemData.newGameObject, transform);
         }
-        originalPosition = itemData.newGameObject.transform.position;
+        originalPosition = transform.position;
     }
 
     public void Update()
     {
         //item rotation
         transform.Rotate(0, 10 * Time.deltaTime, 0);
+
         //item float
         transform.Translate(0, Mathf.Sin(Time.fixedTime) / (100 / itemHoverHeight), 0);
 
@@ -38,22 +40,31 @@ public class GameItem : MonoBehaviour
             }
         }
 
-        if (isBeingZapped)
-        {
-            if (playerZapping != null)
-            {
-                // Check distance
-                Vector3 gunPos = playerZapping.GetComponent<Zapper>().gun.transform.position;
-                float distanceToGun = (transform.position - gunPos).magnitude;
-                // Don't move if too close
-                if (distanceToGun < 5.0f)
-                {
-                    return;
-                }
+        //if (isBeingZapped)
+        //{
+        //    if (playerZapping != null)
+        //    {
+        //        this.GetComponent<SmearEffect>().FrameLag = 30;
 
-                transform.position = Vector3.Slerp(transform.position, gunPos, Time.time * 0.001f);
-            }
-        }
+        //        // Check distance
+        //        Vector3 gunPos = playerZapping.GetComponent<Zapper>().gun.transform.position;
+        //        float distanceToGun = (transform.position - gunPos).magnitude;
+        //        // Don't move if too close
+        //        if (distanceToGun < 5.0f)
+        //        {
+        //            return;
+        //        }
+
+                
+        //        transform.position = Vector3.Slerp(transform.position, gunPos, Time.time * 0.001f);
+        //    }
+        //}
+        //else
+        //{
+        //    this.GetComponent<SmearEffect>().FrameLag = 0;
+        //    if (transform.position != originalPosition)
+        //        transform.position = Vector3.Slerp(transform.position, originalPosition, Time.time * 0.001f);
+        //}
     }
 
     public bool IsGrounded()
