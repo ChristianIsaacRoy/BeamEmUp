@@ -252,7 +252,10 @@ public class PlayerController : MonoBehaviour
         {
             MoveVector += new Vector3(player.GetAxis("MoveHorizontal"), 0, 0);
         }
+
         AnimController.SetFloat("MoveSpeed", MoveVector.magnitude);
+
+
         if (player.GetButtonDown("Jump") && canJump)
         {
             VertVector = Vector3.up * jumpVelocity;
