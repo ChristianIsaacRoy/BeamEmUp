@@ -82,7 +82,7 @@ public class MainMenuManager : MonoBehaviour
     {
         //Modes 1-4 correlate to 1-4 player games
         gameData.numberOfPlayers = mode;
-        SceneManager.LoadSceneAsync("ChrisTest");
+        SceneManager.LoadSceneAsync("WhiteboxEditing");
     }
     
     public void SetYAxisInverted(int player)

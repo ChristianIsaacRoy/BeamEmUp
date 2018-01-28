@@ -5,16 +5,12 @@ using UnityEngine.UI;
 
 public class UI_TMann : MonoBehaviour {
     public Text alertMessage;
-
+    public TMannSpawner TmannSpawner;
     private GameManager gm;
 
 	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	private void Update()
+    {
+        alertMessage.text = TmannSpawner.messageText;
+    }
 }
