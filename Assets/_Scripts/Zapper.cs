@@ -26,7 +26,14 @@ public class Zapper : MonoBehaviour
         playerId = playerController.playerID;
         player = ReInput.players.GetPlayer(playerId);
         gm = GameManager.instance;
-        shooterGameCamera = playerController.cam.GetComponent<ShooterGameCamera>();
+
+        if (gm == null)
+            shooterGameCamera = playerController.cam.GetComponent<ShooterGameCamera>();
+    }
+
+    public void SetShooterGameCamera(ShooterGameCamera cam)
+    {
+        shooterGameCamera = cam;
     }
 
     private void Update()

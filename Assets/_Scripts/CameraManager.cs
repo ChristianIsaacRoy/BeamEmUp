@@ -17,8 +17,8 @@ public class CameraManager : MonoBehaviour {
 	void Awake () {
         numberOfPlayers = GameData.numberOfPlayers;
         HorizontalMode = GameData.HorizontalMode;
-
-        if(numberOfPlayers == 1)
+        
+        if (numberOfPlayers == 1)
         {
             cameraArray[0].rect = new Rect(0, 0, 1, 1);
             cameraArray[2].enabled = false;
@@ -45,7 +45,7 @@ public class CameraManager : MonoBehaviour {
         {
             cameraArray[0].rect = new Rect(0, .5f, .5f, .5f);
             cameraArray[1].rect = new Rect(.5f, .5f, .5f, .5f);
-            cameraArray[2].rect = new Rect(0f, 0, 1f, .5f);
+            cameraArray[2].rect = new Rect(.25f, 0, .5f, .5f);
             cameraArray[3].enabled = false;
         }
         else if (numberOfPlayers == 4)
