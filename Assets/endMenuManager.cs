@@ -11,6 +11,9 @@ public class endMenuManager : MonoBehaviour {
     public GameObject playerTwo;
     public GameObject playerThree;
     public GameObject playerFour;
+
+    public Image fadeImage;
+
     private GameObject[] playerList = new GameObject[4];
 
     public Text scoreOne;
@@ -63,7 +66,7 @@ public class endMenuManager : MonoBehaviour {
 
     public void Awake()
     {
-
+        fadeImage.GetComponent<Animator>().SetTrigger("fadeIn");
     }
 
     public void exitPressed()
@@ -71,4 +74,5 @@ public class endMenuManager : MonoBehaviour {
         SceneManager.LoadSceneAsync("Start Menu");
     }
 	
+
 }
