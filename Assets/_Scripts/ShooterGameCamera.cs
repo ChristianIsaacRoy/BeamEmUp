@@ -139,8 +139,23 @@ public class ShooterGameCamera : MonoBehaviour
         // Set the aimTarget position according to the distance we found.
         // Make the movement slightly smooth.
         aimTarget.position = camTransfrom.position + camTransfrom.forward * aimTargetDist;
+
+        AimModel();
     }
-    
+
+    private void AimModel()
+    {
+        Transform moveJoint = target.Find("AlienPlayer/Root_M/Spine1_M/Spine2_M/Chest_M");
+        Transform gunJoint = target.Find("AlienPlayer/Root_M/Spine1_M/Spine2_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/Wrist_R/Wrist_PROP");
+
+        moveJoint.LookAt(aimTarget);
+        moveJoint.rotation *= Quaternion.Euler(0, -90, -90);
+
+        gunJoint.LookAt(aimTarget);
+        gunJoint.rotation *= Quaternion.Euler(90, 90, 0);
+
+    }
+
 
     // so you can change the camera from a static observer (level loading) or something else
     // to your player or something else. I needed that for network init... ben0bi
