@@ -3536,6 +3536,25 @@ GameObject:
   m_PrefabParentObject: {fileID: 1018656670126566, guid: f6ca549181b8a6141a845aaab08c7340,
     type: 2}
   m_PrefabInternal: {fileID: 1781976456}
+--- !u!114 &1643192476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1643192475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa3d384f0c26d040a44c3be275cfa68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alertMessage: {fileID: 1643192477}
+  TmannSpawner: {fileID: 2127978286}
+--- !u!114 &1643192477 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114131952238928998, guid: f6ca549181b8a6141a845aaab08c7340,
+    type: 2}
+  m_PrefabInternal: {fileID: 1781976456}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1667698014
 GameObject:
   m_ObjectHideFlags: 0
@@ -3968,7 +3987,12 @@ Prefab:
     - target: {fileID: 114131952238928998, guid: f6ca549181b8a6141a845aaab08c7340,
         type: 2}
       propertyPath: m_Text
-      value: TMANN HAS SPAWNED
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 224779812616086014, guid: f6ca549181b8a6141a845aaab08c7340,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114755474687653462, guid: f6ca549181b8a6141a845aaab08c7340, type: 2}
@@ -4374,8 +4398,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TMann: {fileID: 1111978949999442, guid: 86e66ff0d52b1a145a9bcdc0567df4bf, type: 2}
-  OnTMannSpawn: {fileID: 11400000, guid: 9bcd9418c2716a6449d623efc59140a3, type: 2}
-  TMannSpawnTime: 3
+  AlertPlayersTMann: {fileID: 11400000, guid: 9bcd9418c2716a6449d623efc59140a3, type: 2}
+  messageText: 
+  eventRaised: 0
+  TMannSpawnTime: 65
   spawnRadius: 8
   LayerMask:
     serializedVersion: 2

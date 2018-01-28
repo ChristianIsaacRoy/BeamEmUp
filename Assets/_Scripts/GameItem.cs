@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameItem : MonoBehaviour
 {
+    public AudioSource audioSource;
     public ItemData itemData;
     public float itemHoverHeight;
     public bool isBeingZapped;
@@ -82,6 +83,7 @@ public class GameItem : MonoBehaviour
 
     public void ZapItem()
     {
+        audioSource.Play();
         Destroy(this.gameObject);
     }
 
