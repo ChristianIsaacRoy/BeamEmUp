@@ -410,7 +410,14 @@ namespace Assets.MultiAudioListener
                 _safetyAudioSource.Play();
                 foreach (var audioSource in _subAudioSources)
                 {
-                    audioSource.Value.Play();
+                    try
+                    {
+                        audioSource.Value.Play();
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
 
