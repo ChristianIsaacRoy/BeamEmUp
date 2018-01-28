@@ -83,13 +83,16 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded()
     {
+ 
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
+
     }
 
     private void CalculateVerticalMovement()
     {
         if (IsGrounded())
         {
+            AnimController.SetBool("isGrounded", true);
             VertVector = Vector3.zero;
             canJump = true;
         }
@@ -128,6 +131,7 @@ public class PlayerController : MonoBehaviour
         {
             VertVector = Vector3.up * jumpVelocity;
             canJump = false;
+            AnimController.SetBool("isGrounded", false);
         }
     }
 
