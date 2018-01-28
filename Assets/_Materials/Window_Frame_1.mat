@@ -10,7 +10,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 76374158b4c4e5744b394e9290aae693, type: 3}
   m_ShaderKeywords: _COLOR_ON _OUTL_ON
   m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -34,12 +34,12 @@ Material:
     - _DS: 0
     - _DetailTex: 0
     - _Outl: 1
-    - _Outline: 5
+    - _Outline: 1
     - _TintColor: 1
     - _TrOp: 0
     - _Trans: 0
     - _VertexColor: 0
     m_Colors:
     - _Asymmetry: {r: 0, g: 0.25, b: 0.5, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
