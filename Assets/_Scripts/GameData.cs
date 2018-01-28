@@ -13,4 +13,6 @@ public class GameData : ScriptableObject
 
     public int[] playerScores;
     public bool HorizontalMode;
+
+    public bool[] playerYAxisInverted;
 }

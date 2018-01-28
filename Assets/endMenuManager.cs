@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class endMenuManager : MonoBehaviour {
@@ -19,7 +20,6 @@ public class endMenuManager : MonoBehaviour {
     public Text scoreFour;
     private Text[] scoreTextList = new Text[4];
 
-    private int winnerDisplacement = 2;
     private Text highScore;
 
     // Use this for initialization
@@ -57,13 +57,17 @@ public class endMenuManager : MonoBehaviour {
         highScore.fontSize = 28;
         highScore.GetComponent<Text>().color = Color.green;
         winner.transform.Translate(0, 0, 2.5f);
-        highScore.gameObject.transform.Translate(0, 0, -30);
+        winner.transform.Find("AlienPlayer").GetComponent<Animator>().SetBool("isGrounded", false);
+    }
+
+    public void Awake()
+    {
 
     }
 
     public void exitPressed()
     {
-        Application.Quit();
+        SceneManager.LoadSceneAsync("Start Menu");
     }
 	
 }
