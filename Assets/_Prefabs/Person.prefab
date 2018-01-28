@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d999c1a789488d2498931dff176d0a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frameLag: 0
+  _frameLag: 30
   smearMaterialIndex: 0
 --- !u!114 &114901073764007280
 MonoBehaviour:

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4513051, g: 0.5001877, b: 0.56906044, a: 1}
+  m_IndirectSpecularColor: {r: 0.4513045, g: 0.50018686, b: 0.56905997, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3778,7 +3778,7 @@ MonoBehaviour:
   - {fileID: 184203831}
   horizontal: {fileID: 2128516121}
   vertical: {fileID: 228760800}
-  gameData: {fileID: 11400000, guid: 77b2c9dc5956839428ff1875dbe3cc88, type: 2}
+  gameData: {fileID: 0}
 --- !u!1 &1102899167
 GameObject:
   m_ObjectHideFlags: 0
@@ -4682,7 +4682,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100006, guid: 3be178eacbd2e754095f02191bc1e77a, type: 3}
+  - {fileID: 2100000, guid: a242d67ca8eed2443b56e2a95236e588, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6113,7 +6113,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100006, guid: 3be178eacbd2e754095f02191bc1e77a, type: 3}
+  - {fileID: 2100000, guid: a242d67ca8eed2443b56e2a95236e588, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6538,7 +6538,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100006, guid: 3be178eacbd2e754095f02191bc1e77a, type: 3}
+  - {fileID: 2100000, guid: a242d67ca8eed2443b56e2a95236e588, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6955,7 +6955,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100006, guid: 3be178eacbd2e754095f02191bc1e77a, type: 3}
+  - {fileID: 2100000, guid: a242d67ca8eed2443b56e2a95236e588, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
