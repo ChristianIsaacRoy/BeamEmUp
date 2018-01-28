@@ -55,7 +55,7 @@ public class Zapper : MonoBehaviour
         RaycastHit hit;
         Debug.DrawRay(gun.transform.position, shooterGameCamera.gunTarget.position - gun.transform.position, Color.green);
 
-        if (Physics.SphereCast(gun.transform.position, 1.5f, 
+        if (Physics.SphereCast(gun.transform.position, 3.0f, 
             (shooterGameCamera.gunTarget.position - gun.transform.position).normalized, out hit, rayDistance, ignoreMask))
         {
             raycastHit = hit;

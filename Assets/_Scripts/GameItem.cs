@@ -46,7 +46,7 @@ public class GameItem : MonoBehaviour
                 Vector3 gunPos = playerZapping.GetComponent<Zapper>().gun.transform.position;
                 float distanceToGun = (transform.position - gunPos).magnitude;
                 // Don't move if too close
-                if (distanceToGun < 4.0f)
+                if (distanceToGun < 5.0f)
                 {
                     return;
                 }
