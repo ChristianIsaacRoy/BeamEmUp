@@ -1,20 +1,27 @@
-﻿using System.Collections;
+﻿using Rewired;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameItem : MonoBehaviour
 {
+    public AudioSource audioSource;
     public ItemData itemData;
     public float itemHoverHeight;
     public bool isBeingZapped;
 
     public Material material;
+    public Material dissolveMat;
 
     private Vector3 originalPosition;
     private bool hasBeenZapped = false;
 
     [HideInInspector]
     public GameObject playerZapping;
+
+    private MeshRenderer childMeshRenderer;
+
+    public bool isDissolving = false;
 
     public void Start()
     {
@@ -48,6 +55,34 @@ public class GameItem : MonoBehaviour
             }
         }
 
+        if (isBeingZapped)
+        {
+            //if (!isDissolving)
+            //{
+            //    Transform propObj = transform.GetChild(0);
+            //    childMeshRenderer = propObj.GetComponent<MeshRenderer>();
+            //    Material[] materials = new Material[childMeshRenderer.materials.Length];
+            //    for (int i = 0; i < childMeshRenderer.materials.Length; i++)
+            //    {
+            //        materials[i] = dissolveMat;
+            //    }
+            //    childMeshRenderer.materials = materials;
+
+            //    StartCoroutine(Dissolve());
+            //}
+            //Transform propObj = transform.GetChild(0);
+            //    MeshRenderer meshRenderer = propObj.GetComponent<MeshRenderer>();
+
+            //Debug.Log(meshRenderer.material.name);
+            //Color oldColor = meshRenderer.materials[0].GetColor("_Color");
+
+            //meshRenderer.materials = new Material[] { dissolveMat };
+            //meshRenderer.materials[0].shader = Shader.Find("MoonflowerCarnivore/Dissolve Edge");
+            //meshRenderer.materials[0].SetFloat("_Progress", 0.5f);
+
+            //meshRenderer.materials[0].SetColor("_TintColor", oldColor);
+        }
+
         //if (isBeingZapped)
         //{
         //    if (playerZapping != null)
@@ -63,7 +98,7 @@ public class GameItem : MonoBehaviour
         //            return;
         //        }
 
-                
+
         //        transform.position = Vector3.Slerp(transform.position, gunPos, Time.time * 0.001f);
         //    }
         //}
@@ -75,14 +110,52 @@ public class GameItem : MonoBehaviour
         //}
     }
 
+    private IEnumerator Dissolve()
+    {
+        isDissolving = true;
+        for (float f = 0; f <= 1f; f += 0.1f)
+        {
+            float lerpAmount = Mathf.Lerp(1, 0, f);
+            for (int i = 0; i < childMeshRenderer.materials.Length; i++)
+            {
+                childMeshRenderer.materials[i].SetFloat("_Progress", lerpAmount);
+            }
+
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        Destroy(this.gameObject);
+        //foreach (Material mat in childMeshRenderer.materials)
+        //    mat.SetFloat("_Progress", 1.0f);
+    }
+
     public bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, 3 + 0.1f);
     }
 
-    public void ZapItem()
+    public void ZapItem(Player player)
     {
-        Destroy(this.gameObject);
+        if (audioSource != null)
+            audioSource.Play();
+
+        if (this.CompareTag("Item"))
+        {
+            Transform propObj = transform.GetChild(0);
+            childMeshRenderer = propObj.GetComponent<MeshRenderer>();
+            Material[] materials = new Material[childMeshRenderer.materials.Length];
+            for (int i = 0; i < childMeshRenderer.materials.Length; i++)
+            {
+                materials[i] = dissolveMat;
+            }
+            childMeshRenderer.materials = materials;
+
+            player.StopVibration();
+            StartCoroutine(Dissolve());
+        } else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 }
