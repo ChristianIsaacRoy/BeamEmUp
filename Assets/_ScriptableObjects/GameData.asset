@@ -22,4 +22,4 @@ MonoBehaviour:
   timeToZap: 0.75
   playerScores: d20400007b0000007b0000007b000000
   HorizontalMode: 0
-  playerYAxisInverted:
+  playerYAxisInverted: 00000000

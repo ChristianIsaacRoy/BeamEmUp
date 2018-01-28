@@ -3369,9 +3369,7 @@ MonoBehaviour:
   rotateSpeed: 150
   waitTime: 2.5
   AnimController: {fileID: 95938598081576176}
-  GroundMask:
-    serializedVersion: 2
-    m_Bits: 256
+  itemData: {fileID: 0}
   waitTimeCounter: 0
   wayPointIndex: 0
   wayPoints:
@@ -3435,11 +3433,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 46ab38d905001dc41aac7ae5f7f1d69b, type: 3}
   - {fileID: 8300000, guid: f227482a0e93afc44bc5125a4fee69b5, type: 3}
   - {fileID: 8300000, guid: 803ca49ee8e8e6e46829164b7ebb42bc, type: 3}
-  audioSource: {fileID: 0}
-  musicSource: {fileID: 0}
-  CharacterAnim: {fileID: 95938598081576176}
-  Left: {fileID: 198534396100783074}
-  Right: {fileID: 198594690328361658}
+  audioSource: {fileID: 114379719486023084}
+  musicSource: {fileID: 114501266989028206}
   count: 10
   countTimer: 0
 --- !u!137 &137437830191640804
