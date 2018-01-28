@@ -14,4 +14,4 @@ MonoBehaviour:
   newGameObject: {fileID: 1285515386590988, guid: 0b1c218f0c141c848af46d8981410a92,
     type: 2}
   name: 
-  pointValue: 500
+  pointValue: 250
