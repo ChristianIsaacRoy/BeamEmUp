@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.MultiAudioListener;
 
 public class GameItem : MonoBehaviour
 {
-    public AudioSource audioSource;
+    public MultiAudioSource audioSource;
     public ItemData itemData;
     public float itemHoverHeight;
     public bool isBeingZapped;
@@ -83,7 +84,13 @@ public class GameItem : MonoBehaviour
 
     public void ZapItem()
     {
+        StartCoroutine(DestroyItem());
+    }
+
+    public IEnumerator DestroyItem()
+    {
         audioSource.Play();
+        yield return new WaitForSeconds(audioSource.AudioClip.length/2);
         Destroy(this.gameObject);
     }
 
