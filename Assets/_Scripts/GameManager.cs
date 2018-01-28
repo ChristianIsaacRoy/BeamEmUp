@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EndGameTimer()
     {
+        // TODO: Add a fade out and a fade in
         yield return new WaitForSecondsRealtime(5);
         Time.timeScale = 1f;
         SceneManager.LoadScene("Endgame Menu");

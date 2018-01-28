@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114901073764007280}
   - component: {fileID: 54493646796675098}
   - component: {fileID: 195671051917518118}
+  - component: {fileID: 114639159882505836}
   m_Layer: 0
   m_Name: Person
   m_TagString: People
@@ -113,6 +114,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114639159882505836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1992029125583264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d999c1a789488d2498931dff176d0a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _frameLag: 0
+  smearMaterialIndex: 0
 --- !u!114 &114901073764007280
 MonoBehaviour:
   m_ObjectHideFlags: 1

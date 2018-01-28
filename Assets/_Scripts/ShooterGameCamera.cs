@@ -44,6 +44,7 @@ public class ShooterGameCamera : MonoBehaviour
     private Vector3 smoothPlayerPos;
 
     private GameManager gm;
+    public GameData gameData;
 
     private Player player;
 
@@ -88,7 +89,10 @@ public class ShooterGameCamera : MonoBehaviour
             return;
 
         angleH += Mathf.Clamp(player.GetAxis("LookHorizontal"), -1, 1) * horizontalAimingSpeed * Time.deltaTime;
-        angleV += Mathf.Clamp(player.GetAxis("LookVertical"), -1, 1) * verticalAimingSpeed * Time.deltaTime;
+        if (gameData.playerYAxisInverted[playerID])
+            angleV += Mathf.Clamp(-1 * player.GetAxis("LookVertical"), -1, 1) * verticalAimingSpeed * Time.deltaTime;
+        else
+            angleV += Mathf.Clamp(player.GetAxis("LookVertical"), -1, 1) * verticalAimingSpeed * Time.deltaTime;
 
         // limit vertical angle
         angleV = Mathf.Clamp(angleV, minVerticalAngle, maxVerticalAngle);

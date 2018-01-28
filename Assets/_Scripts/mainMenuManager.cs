@@ -12,9 +12,13 @@ public class MainMenuManager : MonoBehaviour
 
     public GameObject startMenu;
     public GameObject playerCountChoiceMenu;
+    public GameObject settingsMenu;
 
     public GameObject defaultStartMenuGO;
     public GameObject defaultPlayerCountGO;
+    public GameObject defaultSettingsMenuGO;
+
+    public SettingsMenuManager settingsMenuManager;
 
     public Player firstPlayer;
 
@@ -34,19 +38,36 @@ public class MainMenuManager : MonoBehaviour
         {
             OpenMainMenu();
         }
+        else if (firstPlayer.GetButtonDown("UICancel") && settingsMenu.activeSelf)
+        {
+            OpenMainMenu();
+        }
     }
 
     public void OpenMainMenu()
     {
         startMenu.SetActive(true);
         playerCountChoiceMenu.SetActive(false);
+        settingsMenu.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(defaultStartMenuGO);
+    }
+
+    public void OpenSettingsMenu()
+    {
+        startMenu.SetActive(false);
+        playerCountChoiceMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+
+        settingsMenuManager.SetToggles();
+
+        EventSystem.current.SetSelectedGameObject(defaultSettingsMenuGO);
     }
 
     public void OpenCharCountMenu()
     {
         startMenu.SetActive(false);
+        playerCountChoiceMenu.SetActive(false);
         playerCountChoiceMenu.SetActive(true);
 
         EventSystem.current.SetSelectedGameObject(defaultPlayerCountGO);
@@ -64,4 +85,13 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadSceneAsync("ChrisTest");
     }
     
+    public void SetYAxisInverted(int player)
+    {
+        gameData.playerYAxisInverted[player] = settingsMenuManager.toggles[player].isOn;
+    }
+
+    public void SetSplitscreen(bool horizontal)
+    {
+        gameData.HorizontalMode = horizontal;
+    }
 }
