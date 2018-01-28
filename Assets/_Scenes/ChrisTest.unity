@@ -173,7 +173,7 @@ Prefab:
         type: 2}
       propertyPath: cam
       value: 
-      objectReference: {fileID: 1855641109}
+      objectReference: {fileID: 0}
     - target: {fileID: 114479158871249514, guid: 1704781b36e75a84da3781f100d46f86,
         type: 2}
       propertyPath: playerID
@@ -838,7 +838,7 @@ Prefab:
         type: 2}
       propertyPath: cam
       value: 
-      objectReference: {fileID: 1855641109}
+      objectReference: {fileID: 0}
     - target: {fileID: 114479158871249514, guid: 1704781b36e75a84da3781f100d46f86,
         type: 2}
       propertyPath: playerID
@@ -1057,7 +1057,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: a35ce5de6653f6140a633ddb37384057, type: 3}
+  - {fileID: 2100000, guid: a90872474c084044fb400d962728ab66, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1182,7 +1182,7 @@ Prefab:
         type: 2}
       propertyPath: cam
       value: 
-      objectReference: {fileID: 1855641109}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1704781b36e75a84da3781f100d46f86, type: 2}
   m_IsPrefabParent: 0
@@ -1721,7 +1721,7 @@ Prefab:
         type: 2}
       propertyPath: cam
       value: 
-      objectReference: {fileID: 1855641109}
+      objectReference: {fileID: 0}
     - target: {fileID: 114479158871249514, guid: 1704781b36e75a84da3781f100d46f86,
         type: 2}
       propertyPath: playerID
