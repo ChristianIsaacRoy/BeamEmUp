@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e541a6d175ccf34eaf24b0750ee6ffe, type: 3}
   m_Name: Diamond
   m_EditorClassIdentifier: 
-  newGameObject: {fileID: 100000, guid: 847b2fdb4f7fac242b2017090855f010, type: 3}
-  collider: {fileID: 0}
+  newGameObject: {fileID: 1155516119126430, guid: f1173738414ec2243a054c09fa6c4103,
+    type: 2}
   name: Diamond
   pointValue: 100

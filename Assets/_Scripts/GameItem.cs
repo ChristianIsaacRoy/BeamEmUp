@@ -6,6 +6,7 @@ using Assets.MultiAudioListener;
 
 public class GameItem : MonoBehaviour
 {
+    public LayerMask layerMask;
     public MultiAudioSource audioSource;
     public ItemData itemData;
     public float itemHoverHeight;
@@ -137,7 +138,7 @@ public class GameItem : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, 3 + 0.1f);
+        return Physics.Raycast(transform.position, Vector3.down, 3f);
     }
 
     public void ZapItem()

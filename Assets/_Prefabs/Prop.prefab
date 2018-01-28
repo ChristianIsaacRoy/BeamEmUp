@@ -137,6 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e382dad0a4c222344b4a4b89502f9753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
   audioSource: {fileID: 114530287363875188}
   itemData: {fileID: 11400000, guid: 435ae4bfe0d7f864a9f0bb88609e60a1, type: 2}
   itemHoverHeight: 2
