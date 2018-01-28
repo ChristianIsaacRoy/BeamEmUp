@@ -89,4 +89,9 @@ public class MainMenuManager : MonoBehaviour
     {
         gameData.playerYAxisInverted[player] = settingsMenuManager.toggles[player].isOn;
     }
+
+    public void SetSplitscreen(bool horizontal)
+    {
+        gameData.HorizontalMode = horizontal;
+    }
 }
