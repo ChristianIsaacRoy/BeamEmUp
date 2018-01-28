@@ -8,6 +8,8 @@ public class GameItem : MonoBehaviour
     public float itemHoverHeight;
     public bool isBeingZapped;
 
+    public Material material;
+
     private Vector3 originalPosition;
     private bool hasBeenZapped = false;
 
@@ -16,27 +18,33 @@ public class GameItem : MonoBehaviour
 
     public void Start()
     {
-        if (itemData != null)
+        if (this.CompareTag("Item"))
         {
-            Instantiate<GameObject>(itemData.newGameObject, transform);
+            if (itemData != null)
+            {
+                Instantiate<GameObject>(itemData.newGameObject, transform);
+            }
+            originalPosition = transform.position;
         }
-        originalPosition = transform.position;
     }
 
     public void Update()
     {
-        //item rotation
-        transform.Rotate(0, 10 * Time.deltaTime, 0);
-
-        //item float
-        transform.Translate(0, Mathf.Sin(Time.fixedTime) / (100 / itemHoverHeight), 0);
-
-        if (!IsGrounded())
+        if (this.CompareTag("Item"))
         {
-            transform.position += Vector3.down * Time.deltaTime * 3;
-            if (transform.position.y < -20)
+            //item rotation
+            transform.Rotate(0, 10 * Time.deltaTime, 0);
+
+            //item float
+            transform.Translate(0, Mathf.Sin(Time.fixedTime) / (100 / itemHoverHeight), 0);
+
+            if (!IsGrounded())
             {
-                Destroy(gameObject);
+                transform.position += Vector3.down * Time.deltaTime * 3;
+                if (transform.position.y < -20)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 
