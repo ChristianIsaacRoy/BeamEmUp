@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
     IEnumerator EndGameTimer()
     {
         yield return new WaitForSecondsRealtime(5);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Endgame Menu");
     }
 
