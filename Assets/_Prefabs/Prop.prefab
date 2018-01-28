@@ -108,5 +108,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 4d1710a4b0891dd4f867fdd355cd1abf, type: 2}
-  itemHoverHeight: 1
+  itemHoverHeight: 2
   isBeingZapped: 0
