@@ -9,9 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e541a6d175ccf34eaf24b0750ee6ffe, type: 3}
-  m_Name: KnucklesItem
+  m_Name: SNESCartridge
   m_EditorClassIdentifier: 
-  newGameObject: {fileID: 0}
+  newGameObject: {fileID: 1917444181011664, guid: e03cc3540e8b4ec4181157968929f37f,
+    type: 2}
   collider: {fileID: 0}
-  name: Blah
-  pointValue: 9000
+  name: 
+  pointValue: 400
