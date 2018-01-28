@@ -47,6 +47,17 @@ public class Zapper : MonoBehaviour
 
         // Increase or decrease elapsedZapTime based on zapTarget
         CheckZapTime();
+
+        if (zapTarget != null)
+        {
+            if (zapTarget.GetComponent<GameItem>() != null)
+            {
+                if (zapTarget.GetComponent<GameItem>().isDissolving == true)
+                {
+                    player.StopVibration();
+                }
+            }
+        }
     }
 
     private bool FireRay(float rayDistance, out RaycastHit raycastHit)
@@ -55,7 +66,7 @@ public class Zapper : MonoBehaviour
         RaycastHit hit;
         Debug.DrawRay(gun.transform.position, shooterGameCamera.gunTarget.position - gun.transform.position, Color.green);
 
-        if (Physics.SphereCast(gun.transform.position, 3.0f, 
+        if (Physics.SphereCast(gun.transform.position, 3.0f,
             (shooterGameCamera.gunTarget.position - gun.transform.position).normalized, out hit, rayDistance, ignoreMask))
         {
             raycastHit = hit;
@@ -98,11 +109,15 @@ public class Zapper : MonoBehaviour
                 if (gm != null)
                 {
                     if (gm.AddItemToPlayer(playerId, item.itemData))
-                        item.ZapItem();
+                    {
+                        item.ZapItem(player);
+                        item = null;
+                    }
                 }
                 else
                 {
-                    item.ZapItem();
+                    item.ZapItem(player);
+                    item = null;
                 }
             }
         }
@@ -136,7 +151,7 @@ public class Zapper : MonoBehaviour
 
         // Make sure player is still looking at object and still within zapping distance
         RaycastHit hit;
-        if(FireRay(distanceToZapTarget, out hit))
+        if (FireRay(distanceToZapTarget, out hit))
         {
             if (hit.transform.gameObject != zapTarget)
                 CancelShooting();
