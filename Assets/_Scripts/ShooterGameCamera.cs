@@ -24,7 +24,8 @@ public class ShooterGameCamera : MonoBehaviour
     [HideInInspector]
     public Transform aimTarget; // that was public and a gameobject had to be dragged on it. - ben0bi
 
-    private Transform gunTarget;
+    [HideInInspector]
+    public Transform gunTarget;
 
     public float smoothingTime = 10.0f; // it should follow it faster by jumping (y-axis) (previous: 0.1 or so) ben0bi
     public Vector3 pivotOffset = new Vector3(0.2f, 0.7f, 0.0f); // offset of point from player transform (?) ben0bi

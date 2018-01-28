@@ -53,10 +53,10 @@ public class Zapper : MonoBehaviour
     {
         LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
         RaycastHit hit;
-        Debug.DrawRay(gun.transform.position, shooterGameCamera.aimTarget.position - gun.transform.position, Color.green);
+        Debug.DrawRay(gun.transform.position, shooterGameCamera.gunTarget.position - gun.transform.position, Color.green);
 
         if (Physics.SphereCast(gun.transform.position, 1.5f, 
-            (shooterGameCamera.aimTarget.position - gun.transform.position).normalized, out hit, rayDistance, ignoreMask))
+            (shooterGameCamera.gunTarget.position - gun.transform.position).normalized, out hit, rayDistance, ignoreMask))
         {
             raycastHit = hit;
             return true;
