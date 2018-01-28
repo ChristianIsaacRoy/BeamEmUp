@@ -12,9 +12,11 @@ public class MainMenuManager : MonoBehaviour
 
     public GameObject startMenu;
     public GameObject playerCountChoiceMenu;
+    public GameObject settingsMenu;
 
     public GameObject defaultStartMenuGO;
     public GameObject defaultPlayerCountGO;
+    public GameObject defaultSettingsMenuGO;
 
     public Player firstPlayer;
 
@@ -42,6 +44,14 @@ public class MainMenuManager : MonoBehaviour
         playerCountChoiceMenu.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(defaultStartMenuGO);
+    }
+
+    public void OpenSettingsMenu()
+    {
+        startMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(defaultSettingsMenuGO);
     }
 
     public void OpenCharCountMenu()

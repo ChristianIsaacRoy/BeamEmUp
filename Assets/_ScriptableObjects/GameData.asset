@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9845a8f92fdac44888062384723982, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  numberOfPlayers: 2
+  numberOfPlayers: 4
   playerColors:
   - {fileID: 2100000, guid: 68b524834deab0547a20ae85e6e0c6d1, type: 2}
   - {fileID: 2100000, guid: 01c77628669bc9e4a849e6a9c6c71f1a, type: 2}
@@ -20,5 +20,5 @@ MonoBehaviour:
   timeLimit: 30
   distanceToZap: 35
   timeToZap: 0.75
-  playerScores: 000000000000000000000000
+  playerScores: 0000000000000000
   HorizontalMode: 0
