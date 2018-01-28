@@ -8,7 +8,7 @@ public class MovingPeopleAI : MonoBehaviour {
     public float rotateSpeed;
     public float waitTime;
     public Animator AnimController;
-    public ItemData itemData;
+    public LayerMask GroundMask;
 
     public float waitTimeCounter;
     private float switchProbability = 4f;
@@ -48,11 +48,6 @@ public class MovingPeopleAI : MonoBehaviour {
 
     }
 
-    public void Zap()
-    {
-        Destroy(this.gameObject);
-    }
-
     private void Update()
     {
         UpdateAnimContoller(personMoving);
@@ -61,6 +56,7 @@ public class MovingPeopleAI : MonoBehaviour {
             personMoving = false;
             personWaiting = true;
             waitTimeCounter = waitTime;
+            SendMessage("TManAnim");
    
         }
 
@@ -84,6 +80,7 @@ public class MovingPeopleAI : MonoBehaviour {
             var NormalizedSpeed = navMeshAgent.velocity.magnitude / navMeshAgent.speed;
             //Debug.Log(navMeshAgent.velocity.magnitude + " NavMeshCUrrent Speed :" + navMeshAgent.speed);
             AnimController.SetFloat("MoveSpeed", NormalizedSpeed);
+
         }
         else
            AnimController.SetFloat("MoveSpeed", 0.0f);
@@ -116,5 +113,12 @@ public class MovingPeopleAI : MonoBehaviour {
                 wayPointIndex = Random.Range(0, wayPoints.Count);
             }
         }
+
+        if(Physics.CheckSphere(wayPoints[wayPointIndex].transform.position, .5f, GroundMask))
+        {
+            ChangePatrolPoint();
+        }
     }
+
+
 }

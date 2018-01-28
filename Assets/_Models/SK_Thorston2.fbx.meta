@@ -1,18 +1,85 @@
 fileFormatVersion: 2
-guid: e222825bd8b7a7f439b9438e3a1fdf93
-timeCreated: 1517115067
+guid: e3644d789ab581d4a9c08ec402a5c18b
+timeCreated: 1517170827
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: Ankle_L
+    100002: Ankle_R
+    100004: BellyJoint_M
+    100006: Chest_M
+    100008: Elbow_L
+    100010: Elbow_R
+    100012: Eye_L
+    100014: Eye_R
+    100016: EyeEnd_L
+    100018: EyeEnd_R
+    100020: Head_M
+    100022: HeadEnd_M
+    100024: Hip_L
+    100026: Hip_R
+    100028: Jaw_M
+    100030: JawEnd_M
+    100032: Knee_L
+    100034: Knee_R
+    100036: Neck_M
+    100038: Root_M
+    100040: Scapula_L
+    100042: Scapula_R
+    100044: Shoulder_L
+    100046: Shoulder_R
+    100048: ShoulderPart1_L
+    100050: ShoulderPart1_R
+    100052: ShoulderPart2_L
+    100054: ShoulderPart2_R
+    100056: //RootNode
+    100058: SM_Thorston
+    100060: Spine1_M
+    100062: Spine2_M
+    100064: Wrist_L
+    100066: Wrist_PROP
+    100068: Wrist_R
+    400000: Ankle_L
+    400002: Ankle_R
+    400004: BellyJoint_M
+    400006: Chest_M
+    400008: Elbow_L
+    400010: Elbow_R
+    400012: Eye_L
+    400014: Eye_R
+    400016: EyeEnd_L
+    400018: EyeEnd_R
+    400020: Head_M
+    400022: HeadEnd_M
+    400024: Hip_L
+    400026: Hip_R
+    400028: Jaw_M
+    400030: JawEnd_M
+    400032: Knee_L
+    400034: Knee_R
+    400036: Neck_M
+    400038: Root_M
+    400040: Scapula_L
+    400042: Scapula_R
+    400044: Shoulder_L
+    400046: Shoulder_R
+    400048: ShoulderPart1_L
+    400050: ShoulderPart1_R
+    400052: ShoulderPart2_L
+    400054: ShoulderPart2_R
+    400056: //RootNode
+    400058: SM_Thorston
+    400060: Spine1_M
+    400062: Spine2_M
+    400064: Wrist_L
+    400066: Wrist_PROP
+    400068: Wrist_R
     2100000: lambert8
     2100002: lambert6
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pPlane2
+    4300000: SM_Thorston
     9500000: //RootNode
+    13700000: SM_Thorston
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -69,7 +136,7 @@ ModelImporter:
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
-  copyAvatar: 1
+  copyAvatar: 0
   humanDescription:
     serializedVersion: 2
     human: []
@@ -86,8 +153,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: e43229cd9a0736f46b5ee78fe3fbd26f,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
