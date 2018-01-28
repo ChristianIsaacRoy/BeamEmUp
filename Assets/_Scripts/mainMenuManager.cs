@@ -36,12 +36,17 @@ public class MainMenuManager : MonoBehaviour
         {
             OpenMainMenu();
         }
+        else if (firstPlayer.GetButtonDown("UICancel") && settingsMenu.activeSelf)
+        {
+            OpenMainMenu();
+        }
     }
 
     public void OpenMainMenu()
     {
         startMenu.SetActive(true);
         playerCountChoiceMenu.SetActive(false);
+        settingsMenu.SetActive(false);
 
         EventSystem.current.SetSelectedGameObject(defaultStartMenuGO);
     }
@@ -49,6 +54,7 @@ public class MainMenuManager : MonoBehaviour
     public void OpenSettingsMenu()
     {
         startMenu.SetActive(false);
+        playerCountChoiceMenu.SetActive(false);
         settingsMenu.SetActive(true);
 
         EventSystem.current.SetSelectedGameObject(defaultSettingsMenuGO);
@@ -57,6 +63,7 @@ public class MainMenuManager : MonoBehaviour
     public void OpenCharCountMenu()
     {
         startMenu.SetActive(false);
+        playerCountChoiceMenu.SetActive(false);
         playerCountChoiceMenu.SetActive(true);
 
         EventSystem.current.SetSelectedGameObject(defaultPlayerCountGO);
@@ -74,4 +81,8 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadSceneAsync("ChrisTest");
     }
     
+    public void SetYAxisInverted(int player)
+    {
+        gameData.playerYAxisInverted[player] = !gameData.playerYAxisInverted[player];
+    }
 }
