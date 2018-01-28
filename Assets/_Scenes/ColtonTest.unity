@@ -2482,6 +2482,11 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114728138838424416, guid: e4a65ef0590ef9947a229f2b52913294,
+        type: 2}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 1800837757}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e4a65ef0590ef9947a229f2b52913294, type: 2}
   m_IsPrefabParent: 0
@@ -4021,6 +4026,12 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1800837757 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114641370520657872, guid: 413746728e26fca418187fccf085dc9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 465266590}
+  m_Script: {fileID: 11500000, guid: 40f93fcab1c54474fa057b1def5baa1b, type: 3}
 --- !u!1 &1899131783
 GameObject:
   m_ObjectHideFlags: 0
