@@ -54,7 +54,8 @@ public class ShooterGameCamera : MonoBehaviour
         player = ReInput.players.GetPlayer(playerID);
 
         // [edit] no aimtarget gameobject needs to be placed anymore - ben0bi
-        GameObject g = new GameObject();
+        GameObject g = new GameObject("aimTarget");
+        g.transform.SetParent(transform);
         aimTarget = g.transform;
         camTransfrom = transform;
         cam = camTransfrom.GetComponent<Camera>();
