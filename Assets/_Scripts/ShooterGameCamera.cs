@@ -151,7 +151,6 @@ public class ShooterGameCamera : MonoBehaviour
         float gunTargetDist = 30.0f;
         aimTarget.position = camTransfrom.position + camTransfrom.forward * aimTargetDist;
         gunTarget.position = camTransfrom.position + camTransfrom.forward * gunTargetDist;
-        Debug.Log(aimTargetDist);
 
         AimModel();
     }
