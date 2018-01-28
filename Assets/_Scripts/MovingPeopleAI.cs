@@ -8,6 +8,7 @@ public class MovingPeopleAI : MonoBehaviour {
     public float rotateSpeed;
     public float waitTime;
     public Animator AnimController;
+    public ItemData itemData;
 
     public float waitTimeCounter;
     private float switchProbability = 4f;
@@ -45,6 +46,11 @@ public class MovingPeopleAI : MonoBehaviour {
             print("Insufficient Amount of Waypoints on " + gameObject.name);
         }
 
+    }
+
+    public void Zap()
+    {
+        Destroy(this.gameObject);
     }
 
     private void Update()

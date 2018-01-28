@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class endMenuManager : MonoBehaviour {
-
-
+    
     public GameData gameData;
     public GameObject playerOne;
     public GameObject playerTwo;
@@ -60,6 +59,8 @@ public class endMenuManager : MonoBehaviour {
         highScore.fontSize = 28;
         highScore.GetComponent<Text>().color = Color.green;
         winner.transform.Translate(0, 0, 2.5f);
+        winner.transform.Rotate(new Vector3(-19, 0, 0));
+
         winner.transform.Find("AlienPlayer").GetComponent<Animator>().SetBool("isGrounded", false);
     }
 
