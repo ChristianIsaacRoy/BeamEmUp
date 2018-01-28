@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     private Collider col;
     private bool canJump;
 
+    public Animator AnimController; 
+
     public Vector3 MoveVector { get; set; }
     public Vector3 VertVector { get; set; }
 
@@ -88,6 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         if (player.GetButtonDown("Shoot"))
         {
+            AnimController.SetBool("Shooting", true);
             playerIsShooting = true;
             //if (!particleSystem.isPlaying)
                 particleSystem.Play();
@@ -96,6 +99,7 @@ public class PlayerController : MonoBehaviour
         {
             playerIsShooting = false;
             particleSystem.Stop();
+            AnimController.SetBool("Shooting", false);
         }
     }
 
@@ -248,7 +252,7 @@ public class PlayerController : MonoBehaviour
         {
             MoveVector += new Vector3(player.GetAxis("MoveHorizontal"), 0, 0);
         }
-
+        AnimController.SetFloat("MoveSpeed", MoveVector.magnitude);
         if (player.GetButtonDown("Jump") && canJump)
         {
             VertVector = Vector3.up * jumpVelocity;
