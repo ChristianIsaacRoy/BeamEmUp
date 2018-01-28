@@ -17,7 +17,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 01c77628669bc9e4a849e6a9c6c71f1a, type: 2}
   - {fileID: 2100000, guid: 0175bb33ff667854a8f0cb13255a70f0, type: 2}
   - {fileID: 2100000, guid: 3fb336a29d3aa7843a74ddd1ba0c4ce6, type: 2}
-  timeLimit: 90
+  timeLimit: 180
   distanceToZap: 35
   timeToZap: 0.75
   playerScores: 0065040087dc0000de000000
