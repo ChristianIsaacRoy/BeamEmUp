@@ -20,5 +20,5 @@ MonoBehaviour:
   timeLimit: 30
   distanceToZap: 35
   timeToZap: 0.75
-  playerScores: 00000000000000000000000000000000
+  playerScores: 2e160000bc0100003c0b0000b6110000
   HorizontalMode: 0
