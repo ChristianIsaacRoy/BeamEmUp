@@ -18,6 +18,8 @@ public class MainMenuManager : MonoBehaviour
     public GameObject defaultPlayerCountGO;
     public GameObject defaultSettingsMenuGO;
 
+    public SettingsMenuManager settingsMenuManager;
+
     public Player firstPlayer;
 
     public void Awake()
@@ -57,6 +59,8 @@ public class MainMenuManager : MonoBehaviour
         playerCountChoiceMenu.SetActive(false);
         settingsMenu.SetActive(true);
 
+        settingsMenuManager.SetToggles();
+
         EventSystem.current.SetSelectedGameObject(defaultSettingsMenuGO);
     }
 
@@ -83,6 +87,6 @@ public class MainMenuManager : MonoBehaviour
     
     public void SetYAxisInverted(int player)
     {
-        gameData.playerYAxisInverted[player] = !gameData.playerYAxisInverted[player];
+        gameData.playerYAxisInverted[player] = settingsMenuManager.toggles[player].isOn;
     }
 }
