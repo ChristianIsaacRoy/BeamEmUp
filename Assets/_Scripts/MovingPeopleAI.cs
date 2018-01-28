@@ -7,6 +7,7 @@ public class MovingPeopleAI : MonoBehaviour {
     public float movementSpeed;
     public float rotateSpeed;
     public float waitTime;
+    public Animator AnimController;
 
     public float waitTimeCounter;
     private float switchProbability = 4f;
@@ -48,11 +49,13 @@ public class MovingPeopleAI : MonoBehaviour {
 
     private void Update()
     {
+        UpdateAnimContoller(personMoving);
         if (personMoving && navMeshAgent.remainingDistance <= 1f)
         {
             personMoving = false;
             personWaiting = true;
             waitTimeCounter = waitTime;
+   
         }
 
         if (personWaiting)
@@ -65,6 +68,19 @@ public class MovingPeopleAI : MonoBehaviour {
                 ChangePatrolPoint();
             }
         }
+
+    }
+
+    private void UpdateAnimContoller(bool Moving)
+    {
+        if (Moving)
+        {
+            var NormalizedSpeed = navMeshAgent.velocity.magnitude / navMeshAgent.speed;
+            //Debug.Log(navMeshAgent.velocity.magnitude + " NavMeshCUrrent Speed :" + navMeshAgent.speed);
+            AnimController.SetFloat("MoveSpeed", NormalizedSpeed);
+        }
+        else
+           AnimController.SetFloat("MoveSpeed", 0.0f);
     }
 
     void SetDestination()
