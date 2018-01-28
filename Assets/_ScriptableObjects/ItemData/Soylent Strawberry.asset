@@ -9,8 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e541a6d175ccf34eaf24b0750ee6ffe, type: 3}
-  m_Name: TestItem
+  m_Name: Soylent Strawberry
   m_EditorClassIdentifier: 
-  itemMesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
-  name: Blah
-  pointValue: 9000
+  newGameObject: {fileID: 1807196660275982, guid: bf99e9ed905d8294d8ccfde03d0de316,
+    type: 2}
+  collider: {fileID: 0}
+  name: 
+  pointValue: 400
