@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class endMenuManager : MonoBehaviour {
-    
+
+    public GameObject defaultSelectedObject;
+
     public GameData gameData;
     public GameObject playerOne;
     public GameObject playerTwo;
@@ -26,6 +29,8 @@ public class endMenuManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        EventSystem.current.SetSelectedGameObject(defaultSelectedObject);
+
         playerList[0] = playerOne;
         playerList[1] = playerTwo;
         playerList[2] = playerThree;
@@ -56,7 +61,7 @@ public class endMenuManager : MonoBehaviour {
                 winner = playerList[count];
             }
         }
-        highScore.fontSize = 28;
+        highScore.fontSize = 60;
         highScore.GetComponent<Text>().color = Color.green;
         winner.transform.Translate(0, 0, 2.5f);
         winner.transform.Rotate(new Vector3(-19, 0, 0));
@@ -67,6 +72,11 @@ public class endMenuManager : MonoBehaviour {
     public void Awake()
     {
         fadeImage.GetComponent<Animator>().SetTrigger("fadeIn");
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadSceneAsync("ChrisTest");
     }
 
     public void exitPressed()
