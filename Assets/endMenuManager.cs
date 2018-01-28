@@ -19,6 +19,9 @@ public class endMenuManager : MonoBehaviour {
     public Text scoreFour;
     private Text[] scoreTextList = new Text[4];
 
+    private int winnerDisplacement = 2;
+    private Text highScore;
+
     // Use this for initialization
     void Start () {
         playerList[0] = playerOne;
@@ -35,12 +38,28 @@ public class endMenuManager : MonoBehaviour {
         playerThree.SetActive(false);
         playerFour.SetActive(false);
 
-        for(int count = 0; count < gameData.numberOfPlayers; count++)
+        highScore = scoreOne;
+        int highScoreNum = gameData.playerScores[0];
+        GameObject winner = playerOne;
+
+        for (int count = 0; count < gameData.numberOfPlayers; count++)
         {
             playerList[count].SetActive(true);
             scoreTextList[count].text = gameData.playerScores[count].ToString();
+            //find winner
+            if(gameData.playerScores[count] > highScoreNum)
+            {
+                highScore = scoreTextList[count];
+                highScoreNum = gameData.playerScores[count];
+                winner = playerList[count];
+            }
         }
-	}
+        highScore.fontSize = 28;
+        highScore.GetComponent<Text>().color = Color.green;
+        winner.transform.Translate(0, 0, 2.5f);
+        highScore.gameObject.transform.Translate(0, 0, -30);
+
+    }
 
     public void exitPressed()
     {

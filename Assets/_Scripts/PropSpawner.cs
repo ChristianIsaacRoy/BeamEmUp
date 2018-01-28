@@ -13,7 +13,7 @@ public class PropSpawner : MonoBehaviour {
 
     private float objectSpawnTimer;
 
-    public GameObject objectToSpawn;
+    public GameObject newGameObject;
 
     public LayerMask collisionsMask;
     public RaycastHit hit;
@@ -24,26 +24,25 @@ public class PropSpawner : MonoBehaviour {
     // Use this for initialization
     void Start () {
         objectSpawnTimer = Random.Range(minObjectSpawnTime, maxObjectSpawnTime);
-
         objectsToSpawn = Random.Range(minObjectsToSpawn, maxObjectsToSpawn);
-
     }
 	
 	// Update is called once per frame
 	void Update () {
+        RaycastHit hit = new RaycastHit();
         Physics.Raycast(transform.position, Vector3.down * 5f, out hit, collisionsMask);
         Debug.DrawRay(transform.position, Vector2.down * 5f, Color.red);
 
         if(objectSpawnTimer < 0 &&  objectsToSpawn > 0)
         {
-            point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius - 1), hit.point.y + .5f, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius - 1));
+            point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius - 1), hit.point.y + 1f, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius - 1));
 
             while (Physics.CheckSphere(point, .5f, collisionsMask) == true)
             {
-                point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius - 1), hit.point.y + .5f, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius - 1));
+                point = new Vector3(Random.Range(hit.point.x - spawnRadius, hit.point.x + spawnRadius - 1), hit.point.y + 1f, Random.Range(hit.point.z - spawnRadius, hit.point.z + spawnRadius - 1));
             }
   
-            Instantiate(objectToSpawn, point, Quaternion.identity);
+            Instantiate(newGameObject, point, Quaternion.identity);
 
             objectsToSpawn -= 1;
             objectSpawnTimer = minObjectSpawnTime;
