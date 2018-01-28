@@ -11,8 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e541a6d175ccf34eaf24b0750ee6ffe, type: 3}
   m_Name: Soylent
   m_EditorClassIdentifier: 
-  newGameObject: {fileID: 1394255450782056, guid: f0fbbcfb630a89640bb8a608924b6562,
+  newGameObject: {fileID: 1771568725943882, guid: 4196b21265047a2428c57f123cf43360,
     type: 2}
-  collider: {fileID: 0}
   name: 
   pointValue: 500

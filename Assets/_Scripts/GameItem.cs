@@ -8,28 +8,28 @@ public class GameItem : MonoBehaviour
     public float itemHoverHeight;
     public bool isBeingZapped;
 
-    private MeshFilter itemFilter;
-
     public void Start()
     {
-        itemFilter = GetComponent<MeshFilter>();
-
+        if (itemData != null)
+        {
+            Instantiate<GameObject>(itemData.newGameObject, transform);
+        }
     }
 
     public void Update()
     {
-        if (transform.tag == "Item")
-        {
-
-            //item rotation
-            transform.Rotate(0, 10 * Time.deltaTime, 0);
-            //item float
-            transform.Translate(0, Mathf.Sin(Time.fixedTime) / (100 / itemHoverHeight), 0);
-        }
+        //item rotation
+        transform.Rotate(0, 10 * Time.deltaTime, 0);
+        //item float
+        transform.Translate(0, Mathf.Sin(Time.fixedTime) / (100 / itemHoverHeight), 0);
 
         if (!IsGrounded())
         {
             transform.position += Vector3.down * Time.deltaTime * 3;
+            if (transform.position.y < -20)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
