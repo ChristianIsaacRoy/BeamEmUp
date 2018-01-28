@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c15fc4fb24318f47a104aadbc16322d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 0
   waitTime: 2
   waitTimeCounter: 0
   wayPointIndex: 0

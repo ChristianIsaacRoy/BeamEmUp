@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 23123925836279494}
   - component: {fileID: 114479158871249514}
   - component: {fileID: 143602246852055058}
+  - component: {fileID: 114515001624414838}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -2413,14 +2414,27 @@ MonoBehaviour:
   playerID: 0
   moveSpeed: 8
   gameData: {fileID: 11400000, guid: 77b2c9dc5956839428ff1875dbe3cc88, type: 2}
-  particleSystem: {fileID: 198036289387860170}
-  gun: {fileID: 1300953503474440}
   jumpVelocity: 9.5
   jumpDecelerationSlow: 1
   jumpDecelertationFast: 2
   fallAcceleration: 2.5
   deadZone: 0.1
   cam: {fileID: 0}
+  AnimController: {fileID: 95545845077953100}
+--- !u!114 &114515001624414838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105991609980634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347a4fdec8d9ece41af885cffdb67828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: 77b2c9dc5956839428ff1875dbe3cc88, type: 2}
+  shootingParticleSystem: {fileID: 198036289387860170}
+  gun: {fileID: 1300953503474440}
   AnimController: {fileID: 95545845077953100}
 --- !u!136 &136485701537129004
 CapsuleCollider:
