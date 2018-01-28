@@ -17,8 +17,8 @@ public class CameraManager : MonoBehaviour {
 	void Awake () {
         numberOfPlayers = GameData.numberOfPlayers;
         HorizontalMode = GameData.HorizontalMode;
-
-        if(numberOfPlayers == 1)
+        
+        if (numberOfPlayers == 1)
         {
             cameraArray[0].rect = new Rect(0, 0, 1, 1);
             cameraArray[2].enabled = false;

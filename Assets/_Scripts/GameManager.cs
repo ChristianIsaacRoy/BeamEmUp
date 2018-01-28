@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -57,7 +58,9 @@ public class GameManager : MonoBehaviour
             {
                 pc.InstantiatePlayer(playerSpawns[pc.playerID].position, camManager.cameraArray[pc.playerID]);
                 pc.GetComponent<MeshRenderer>().material = gameData.playerColors[pc.playerID];
-                camManager.cameraArray[pc.playerID].GetComponent<ShooterGameCamera>().SetTarget(pc.transform);
+                ShooterGameCamera sgc = camManager.cameraArray[pc.playerID].GetComponent<ShooterGameCamera>();
+                sgc.SetTarget(pc.transform);
+                pc.GetComponent<Zapper>().SetShooterGameCamera(sgc);
             }
             else
             {
@@ -99,6 +102,15 @@ public class GameManager : MonoBehaviour
         gameRunning = false;
         gameData.playerScores = playerScores;
         Time.timeScale *= .3f;
+
+        // Timer for a couple seconds
+        StartCoroutine(EndGameTimer());
+     }
+
+    IEnumerator EndGameTimer()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        SceneManager.LoadScene("Endgame Menu");
     }
 
     public void AddItemToPlayer(int playerID, ItemData data)
