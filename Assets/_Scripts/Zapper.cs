@@ -8,32 +8,25 @@ public class Zapper : MonoBehaviour
     public GameData gameData;
     public ParticleSystem shootingParticleSystem;
     public GameObject gun;
+    public Animator AnimController;
+    private ShooterGameCamera shooterGameCamera;
+
+    private GameManager gm;
+    private Player player;
+    private int playerId;
 
     private GameObject zapTarget;
     private float elapsedZapTime = 0.0f;
     private bool playerIsShooting = false;
-    private Vector3 shootingOrigin;
-
-    /* Injected by PlayerController */
-    [HideInInspector]
-    public Player player;
-
-    [HideInInspector]
-    public int playerId;
-
-    [HideInInspector]
-    public Animator AnimController;
-
-    [HideInInspector]
-    public ShooterGameCamera shooterGameCamera;
-
-    [HideInInspector]
-    public GameManager gm;
-    /* End Inject */
 
     private void Start()
     {
-        shootingOrigin = gun.transform.position;   
+        PlayerController playerController = GetComponent<PlayerController>();
+
+        playerId = playerController.playerID;
+        player = ReInput.players.GetPlayer(playerId);
+        gm = GameManager.instance;
+        shooterGameCamera = playerController.cam.GetComponent<ShooterGameCamera>();
     }
 
     private void Update()

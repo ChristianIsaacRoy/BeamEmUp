@@ -59,18 +59,6 @@ public class PlayerController : MonoBehaviour
             else
                 Debug.LogError("Player " + (playerID + 1) + " is missing camera", this);
         }
-
-        SetupZapper();
-    }
-    
-    private void SetupZapper()
-    {
-        Zapper zapper = GetComponent<Zapper>();
-        zapper.player = player;
-        zapper.shooterGameCamera = shooterGameCamera;
-        zapper.AnimController = AnimController;
-        zapper.gm = gm;
-        zapper.playerId = playerID;
     }
 
     public void Update()
