@@ -753,7 +753,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4287972968367978, guid: e8d37b2730081ea40a018afb0f5b8791, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 7.16
       objectReference: {fileID: 0}
     - target: {fileID: 4287972968367978, guid: e8d37b2730081ea40a018afb0f5b8791, type: 2}
       propertyPath: m_LocalPosition.z
@@ -783,7 +783,8 @@ Prefab:
         type: 2}
       propertyPath: newGameObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1501063776885082, guid: 7d20e6a7e148695408a5101b362340c5,
+        type: 2}
     - target: {fileID: 114072621995831874, guid: e8d37b2730081ea40a018afb0f5b8791,
         type: 2}
       propertyPath: minObjectSpawnTime
@@ -792,6 +793,11 @@ Prefab:
     - target: {fileID: 114072621995831874, guid: e8d37b2730081ea40a018afb0f5b8791,
         type: 2}
       propertyPath: maxObjectSpawnTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114072621995831874, guid: e8d37b2730081ea40a018afb0f5b8791,
+        type: 2}
+      propertyPath: spawnRadius
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
