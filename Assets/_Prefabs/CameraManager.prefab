@@ -325,7 +325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   playerID: 2
-  crosshair: {fileID: 2800000, guid: a4f078b6898078640bc03df22b009769, type: 3}
+  crosshair: {fileID: 0}
   aimTarget: {fileID: 0}
   smoothingTime: 10
   pivotOffset: {x: 0.2, y: 0.7, z: 0}
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   playerID: 1
-  crosshair: {fileID: 2800000, guid: a4f078b6898078640bc03df22b009769, type: 3}
+  crosshair: {fileID: 0}
   aimTarget: {fileID: 0}
   smoothingTime: 10
   pivotOffset: {x: 0.2, y: 0.7, z: 0}
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   playerID: 0
-  crosshair: {fileID: 2800000, guid: a4f078b6898078640bc03df22b009769, type: 3}
+  crosshair: {fileID: 0}
   aimTarget: {fileID: 0}
   smoothingTime: 10
   pivotOffset: {x: 0.2, y: 0.7, z: 0}
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   playerID: 3
-  crosshair: {fileID: 2800000, guid: a4f078b6898078640bc03df22b009769, type: 3}
+  crosshair: {fileID: 0}
   aimTarget: {fileID: 0}
   smoothingTime: 10
   pivotOffset: {x: 0.2, y: 0.7, z: 0}
