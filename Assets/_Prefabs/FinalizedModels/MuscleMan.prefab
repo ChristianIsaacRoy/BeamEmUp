@@ -1142,6 +1142,7 @@ GameObject:
   - component: {fileID: 114009960712448430}
   - component: {fileID: 195649255619387606}
   - component: {fileID: 114475503890231798}
+  - component: {fileID: 65315714237619872}
   m_Layer: 0
   m_Name: MuscleMan
   m_TagString: People
@@ -2198,6 +2199,18 @@ Transform:
   m_Father: {fileID: 4791009683572556}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65315714237619872
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1995585901678184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.8337283, z: 1}
+  m_Center: {x: 0, y: 1.3585145, z: 0}
 --- !u!95 &95490114092999896
 Animator:
   serializedVersion: 3
@@ -2230,7 +2243,7 @@ MonoBehaviour:
   rotateSpeed: 150
   waitTime: 3
   AnimController: {fileID: 95490114092999896}
-  itemData: {fileID: 0}
+  itemData: {fileID: 11400000, guid: 0ce4c148f8ea4a24f8bf44553f997310, type: 2}
   waitTimeCounter: 2
   wayPointIndex: 0
   wayPoints:
