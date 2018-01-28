@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject zapTarget;
     private float elapsedZapTime = 0.0f;
+    private bool playerIsShooting = false;
 
     [Range(1, 20)]
     public float jumpVelocity = 2f;
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour
     private float distToGround;
     private Collider col;
     private bool canJump;
+
+    public Animator AnimController; 
 
     public Vector3 MoveVector { get; set; }
     public Vector3 VertVector { get; set; }
@@ -71,6 +74,8 @@ public class PlayerController : MonoBehaviour
         SnapAlignCharacterWithCamera();
         ProcessMotion();
 
+        CheckGunUse();
+
         if (zapTarget != null)
             CheckZappingProgress();
         else
@@ -80,6 +85,23 @@ public class PlayerController : MonoBehaviour
         CheckZapTime();
     }
     #endregion
+
+    private void CheckGunUse()
+    {
+        if (player.GetButtonDown("Shoot"))
+        {
+            AnimController.SetBool("Shooting", true);
+            playerIsShooting = true;
+            //if (!particleSystem.isPlaying)
+                particleSystem.Play();
+        }
+        else if (player.GetButtonUp("Shoot"))
+        {
+            playerIsShooting = false;
+            particleSystem.Stop();
+            AnimController.SetBool("Shooting", false);
+        }
+    }
 
     public void InstantiatePlayer(Vector3 pos, Camera camera)
     {
@@ -127,7 +149,7 @@ public class PlayerController : MonoBehaviour
     private void CheckZappingProgress()
     {
         // Make sure trigger is still held down
-        if (!player.GetButton("Shoot"))
+        if (!playerIsShooting)
         {
             CancelShooting();
             return;
@@ -154,19 +176,16 @@ public class PlayerController : MonoBehaviour
             if (hit.transform.gameObject != zapTarget)
             {
                 CancelShooting();
-                return;
             }
         }
         else
         {
             CancelShooting();
-            return;
         }
     }
 
     private void CancelShooting()
     {
-        particleSystem.Stop();
         zapTarget.GetComponent<GameItem>().isBeingZapped = false;
         zapTarget = null;
     }
@@ -182,7 +201,7 @@ public class PlayerController : MonoBehaviour
 
         float distance = gameData.distanceToZap;
 
-        if (player.GetButton("Shoot"))
+        if (playerIsShooting)
         {
             RaycastHit hit;
             Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
@@ -194,7 +213,6 @@ public class PlayerController : MonoBehaviour
                 {
                     zapTarget = hit.transform.gameObject;
                     zapTarget.GetComponent<GameItem>().isBeingZapped = true;
-                    particleSystem.Play();
                 }
             }
         }
@@ -234,7 +252,7 @@ public class PlayerController : MonoBehaviour
         {
             MoveVector += new Vector3(player.GetAxis("MoveHorizontal"), 0, 0);
         }
-
+        AnimController.SetFloat("MoveSpeed", MoveVector.magnitude);
         if (player.GetButtonDown("Jump") && canJump)
         {
             VertVector = Vector3.up * jumpVelocity;
