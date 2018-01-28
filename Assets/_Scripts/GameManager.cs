@@ -111,17 +111,20 @@ public class GameManager : MonoBehaviour
     {
         // TODO: Add a fade out and a fade in
         yield return new WaitForSecondsRealtime(5);
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Endgame Menu");
     }
 
-    public void AddItemToPlayer(int playerID, ItemData data)
+    public bool AddItemToPlayer(int playerID, ItemData data)
     {
         if (gameRunning)
         {
             playerItems[playerID].Add(data);
             playerScores[playerID] += data.pointValue;
             onPlayerScored.Raise();
+            return true;
         }
+        return false;
     }
 
     public int GetPlayerScore(int playerID)

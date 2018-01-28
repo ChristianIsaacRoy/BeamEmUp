@@ -27,6 +27,16 @@ public class GameItem : MonoBehaviour
             //item float
             transform.Translate(0, Mathf.Sin(Time.fixedTime) / (100 / itemHoverHeight), 0);
         }
+
+        if (!IsGrounded())
+        {
+            transform.position += Vector3.down * Time.deltaTime * 3;
+        }
+    }
+
+    public bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 3 + 0.1f);
     }
 
     public void ZapItem()

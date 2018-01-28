@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class endMenuManager : MonoBehaviour {
@@ -57,13 +58,11 @@ public class endMenuManager : MonoBehaviour {
         highScore.fontSize = 28;
         highScore.GetComponent<Text>().color = Color.green;
         winner.transform.Translate(0, 0, 2.5f);
-        highScore.gameObject.transform.Translate(0, 0, -30);
-
     }
 
     public void exitPressed()
     {
-        Application.Quit();
+        SceneManager.LoadSceneAsync("Start Menu");
     }
 	
 }
