@@ -88,7 +88,6 @@ public class Spawner : MonoBehaviour
         GameObject go = Instantiate(itemPrefab, transform);
         go.transform.position = point;
         go.GetComponent<GameItem>().itemData = itemData;
-        go.GetComponent<GameItem>().Start();
 
         spawnTimer = Random.Range(minSpawnTime, maxSpawnTime);
     }
