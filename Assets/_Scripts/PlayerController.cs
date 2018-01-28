@@ -10,12 +10,13 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
 
     public GameData gameData;
-    private GameManager gameManager;
+    private GameManager gm;
 
     public ParticleSystem particleSystem;
 
     private GameObject zapTarget;
     private float elapsedZapTime = 0.0f;
+    private bool playerIsShooting = false;
 
     [Range(1, 20)]
     public float jumpVelocity = 2f;
@@ -49,15 +50,17 @@ public class PlayerController : MonoBehaviour
 
     public void Start()
     {
-        gameManager = GameManager.instance;
-
-        if (cam == null && playerID < gameData.numberOfPlayers)
-            Debug.LogError("Player " + (playerID+1) + " is missing camera", this);
-        else if (cam != null)
-            shooterGameCamera = cam.GetComponent<ShooterGameCamera>();
+        gm = GameManager.instance;
+        
+        if (gm == null)
+        {
+            if (cam != null)
+                InstantiatePlayer(transform.position, cam);
+            else
+                Debug.LogError("Player " + (playerID + 1) + " is missing camera", this);
+        }
     }
-
-
+    
 
     public void Update()
     {
@@ -69,6 +72,8 @@ public class PlayerController : MonoBehaviour
         SnapAlignCharacterWithCamera();
         ProcessMotion();
 
+        CheckGunUse();
+
         if (zapTarget != null)
             CheckZappingProgress();
         else
@@ -78,6 +83,29 @@ public class PlayerController : MonoBehaviour
         CheckZapTime();
     }
     #endregion
+
+    private void CheckGunUse()
+    {
+        if (player.GetButtonDown("Shoot"))
+        {
+            playerIsShooting = true;
+            //if (!particleSystem.isPlaying)
+                particleSystem.Play();
+        }
+        else if (player.GetButtonUp("Shoot"))
+        {
+            playerIsShooting = false;
+            particleSystem.Stop();
+        }
+    }
+
+    public void InstantiatePlayer(Vector3 pos, Camera camera)
+    {
+        gameObject.SetActive(true);
+        transform.position = pos;
+        cam = camera;
+        shooterGameCamera = cam.GetComponent<ShooterGameCamera>();
+    }
 
     public bool IsGrounded()
     {
@@ -96,9 +124,9 @@ public class PlayerController : MonoBehaviour
                 GameItem item = zapTarget.GetComponent<GameItem>();
                 CancelShooting();
                 elapsedZapTime = 0.0f;
-                if (gameManager != null)
+                if (gm != null)
                 {
-                    gameManager.AddItemToPlayer(playerID, item.itemData);
+                    gm.AddItemToPlayer(playerID, item.itemData);
                 }
                 item.ZapItem();
             }
@@ -117,7 +145,7 @@ public class PlayerController : MonoBehaviour
     private void CheckZappingProgress()
     {
         // Make sure trigger is still held down
-        if (!player.GetButton("Shoot"))
+        if (!playerIsShooting)
         {
             CancelShooting();
             return;
@@ -144,19 +172,16 @@ public class PlayerController : MonoBehaviour
             if (hit.transform.gameObject != zapTarget)
             {
                 CancelShooting();
-                return;
             }
         }
         else
         {
             CancelShooting();
-            return;
         }
     }
 
     private void CancelShooting()
     {
-        particleSystem.Stop();
         zapTarget.GetComponent<GameItem>().isBeingZapped = false;
         zapTarget = null;
     }
@@ -172,7 +197,7 @@ public class PlayerController : MonoBehaviour
 
         float distance = gameData.distanceToZap;
 
-        if (player.GetButton("Shoot"))
+        if (playerIsShooting)
         {
             RaycastHit hit;
             Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
@@ -184,7 +209,6 @@ public class PlayerController : MonoBehaviour
                 {
                     zapTarget = hit.transform.gameObject;
                     zapTarget.GetComponent<GameItem>().isBeingZapped = true;
-                    particleSystem.Play();
                 }
             }
         }

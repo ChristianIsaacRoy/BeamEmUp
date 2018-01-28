@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public GameData gameData;
 
     public GameEvent onPlayerScored;
-
+    
     public GameObject[] players;
     public CameraManager camManager;
     public Transform[] playerSpawns;
@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         InstantiateManager();
-        
+
+        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     public void Start()
@@ -52,16 +53,17 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < gameData.numberOfPlayers; i++)
         {
-            players[i].transform.position = playerSpawns[i].position;
-            players[i].GetComponent<PlayerController>().cam = camManager.cameraArray[i];
-            players[i].GetComponent<PlayerController>().Awake();
-            players[i].GetComponent<PlayerController>().Start();
-        }
-
-        for (int i = gameData.numberOfPlayers; i < players.Length; i++)
-        {
-            players[i].SetActive(false);
-            
+            PlayerController pc = players[i].GetComponent<PlayerController>();
+            if (pc.playerID < gameData.numberOfPlayers)
+            {
+                pc.InstantiatePlayer(playerSpawns[pc.playerID].position, camManager.cameraArray[pc.playerID]);
+                pc.GetComponent<MeshRenderer>().material = gameData.playerColors[pc.playerID];
+                camManager.cameraArray[pc.playerID].GetComponent<ShooterGameCamera>().SetTarget(pc.transform);
+            }
+            else
+            {
+                pc.gameObject.SetActive(false);
+            }
         }
     }
 
