@@ -12,13 +12,9 @@ public class PlayerController : MonoBehaviour
     public GameData gameData;
     private GameManager gm;
 
-    public ParticleSystem particleSystem;
-
     private GameObject zapTarget;
     private float elapsedZapTime = 0.0f;
     private bool playerIsShooting = false;
-
-    public GameObject gun;
 
     [Range(1, 20)]
     public float jumpVelocity = 2f;
@@ -55,7 +51,7 @@ public class PlayerController : MonoBehaviour
     public void Start()
     {
         gm = GameManager.instance;
-        
+
         if (gm == null)
         {
             if (cam != null)
@@ -63,8 +59,19 @@ public class PlayerController : MonoBehaviour
             else
                 Debug.LogError("Player " + (playerID + 1) + " is missing camera", this);
         }
+
+        SetupZapper();
     }
     
+    private void SetupZapper()
+    {
+        Zapper zapper = GetComponent<Zapper>();
+        zapper.player = player;
+        zapper.shooterGameCamera = shooterGameCamera;
+        zapper.AnimController = AnimController;
+        zapper.gm = gm;
+        zapper.playerId = playerID;
+    }
 
     public void Update()
     {
@@ -75,35 +82,8 @@ public class PlayerController : MonoBehaviour
         GetLocomotionInput();
         SnapAlignCharacterWithCamera();
         ProcessMotion();
-
-        CheckGunUse();
-
-        if (zapTarget != null)
-            CheckZappingProgress();
-        else
-            CheckShoot();
-
-        // Increase or decrease elapsedZapTime based on zapTarget
-        CheckZapTime();
     }
     #endregion
-
-    private void CheckGunUse()
-    {
-        if (player.GetButtonDown("Shoot"))
-        {
-            AnimController.SetBool("Shooting", true);
-            playerIsShooting = true;
-            //if (!particleSystem.isPlaying)
-                particleSystem.Play();
-        }
-        else if (player.GetButtonUp("Shoot"))
-        {
-            playerIsShooting = false;
-            particleSystem.Stop();
-            AnimController.SetBool("Shooting", false);
-        }
-    }
 
     public void InstantiatePlayer(Vector3 pos, Camera camera)
     {
@@ -116,108 +96,6 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
-    }
-
-    private void CheckZapTime()
-    {
-        // Still zapping
-        if (zapTarget != null)
-        {
-            elapsedZapTime += Time.deltaTime;
-            if (elapsedZapTime >= gameData.timeToZap)
-            {
-                // Successful zap
-                GameItem item = zapTarget.GetComponent<GameItem>();
-                CancelShooting();
-                elapsedZapTime = 0.0f;
-                if (gm != null)
-                {
-                    gm.AddItemToPlayer(playerID, item.itemData);
-                }
-                item.ZapItem();
-            }
-        }
-        // Stopped zapping, slowly decrease zap time
-        else
-        {
-            elapsedZapTime -= Time.deltaTime;
-            if (elapsedZapTime < 0)
-            {
-                elapsedZapTime = 0;
-            }
-        }
-    }
-
-    private void CheckZappingProgress()
-    {
-        // Make sure trigger is still held down
-        if (!playerIsShooting)
-        {
-            CancelShooting();
-            return;
-        }
-
-        // Make sure distance to zapTarget is still within zappingDistance
-        Vector3 origin = gun.transform.position;
-        //origin.z = transform.position.z;
-        float distanceToZapTarget = (zapTarget.transform.position - origin).magnitude;
-        if (distanceToZapTarget > gameData.distanceToZap)
-        {
-            CancelShooting();
-            return;
-        }
-
-        // Make sure player is still looking at object and still within zapping distance
-        LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
-        RaycastHit hit;
-        Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
-
-        // Change to SphereCast to allow for a margin of error from the player
-        if (Physics.SphereCast(origin, 1.5f, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distanceToZapTarget, ignoreMask))
-        { 
-            if (hit.transform.gameObject != zapTarget)
-            {
-                CancelShooting();
-            }
-        }
-        else
-        {
-            CancelShooting();
-        }
-    }
-
-    private void CancelShooting()
-    {
-        zapTarget.GetComponent<GameItem>().isBeingZapped = false;
-        zapTarget = null;
-    }
-
-    private void CheckShoot()
-    {
-        // Can't shoot yourself
-        LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
-        
-        Vector3 origin = gun.transform.position;
-        // Shift origin up to player position
-        //origin.z = transform.position.z;
-
-        float distance = gameData.distanceToZap;
-
-        if (playerIsShooting)
-        {
-            RaycastHit hit;
-            Debug.DrawRay(origin, shooterGameCamera.aimTarget.position - origin, Color.green);
-            if (Physics.SphereCast(origin, 1.5f, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
-            //if (Physics.Raycast(origin, (shooterGameCamera.aimTarget.position - origin).normalized, out hit, distance, ignoreMask))
-            {
-                GameItem item = hit.transform.gameObject.GetComponent<GameItem>();
-                if (item != null)
-                {
-                    zapTarget = hit.transform.gameObject;
-                    zapTarget.GetComponent<GameItem>().isBeingZapped = true;
-                }
-            }
-        }
     }
 
     private void CalculateVerticalMovement()
@@ -286,7 +164,6 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(transform.eulerAngles.x,
                                               cam.transform.eulerAngles.y,
                                               transform.eulerAngles.z);
-        //particleSystem.shape.rotation = transform.rotation;
     }
 
 }
