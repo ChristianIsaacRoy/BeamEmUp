@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class endMenuManager : MonoBehaviour {
@@ -61,7 +62,7 @@ public class endMenuManager : MonoBehaviour {
 
     public void exitPressed()
     {
-        Application.Quit();
+        SceneManager.LoadSceneAsync("Start Menu");
     }
 	
 }
