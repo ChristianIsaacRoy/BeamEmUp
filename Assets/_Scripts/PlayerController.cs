@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     private float distToGround;
     private Collider col;
     private bool canJump;
+    [HideInInspector]
+    public bool isTouchingJumpPad;
 
     public Animator AnimController; 
 
@@ -131,9 +133,18 @@ public class PlayerController : MonoBehaviour
 
         if (player.GetButtonDown("Jump") && canJump)
         {
-            VertVector = Vector3.up * jumpVelocity;
-            canJump = false;
-            AnimController.SetBool("isGrounded", false);
+            if (isTouchingJumpPad)
+            {
+                VertVector = Vector3.up * jumpVelocity * 3;
+                canJump = false;
+                AnimController.SetBool("isGrounded", false);
+                isTouchingJumpPad = false;
+            } else
+            {
+                VertVector = Vector3.up * jumpVelocity;
+                canJump = false;
+                AnimController.SetBool("isGrounded", false);
+            }            
         }
     }
 
