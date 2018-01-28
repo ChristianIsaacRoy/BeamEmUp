@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameData gameData;
 
     public GameEvent onPlayerScored;
+    public GameEvent onGameOver;
     
     private GameObject[] players;
     public CameraManager camManager;
@@ -102,6 +103,7 @@ public class GameManager : MonoBehaviour
         gameRunning = false;
         gameData.playerScores = playerScores;
         Time.timeScale *= .3f;
+        onGameOver.Raise();
 
         // Timer for a couple seconds
         StartCoroutine(EndGameTimer());
