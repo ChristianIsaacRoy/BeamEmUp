@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Alien_Body_MAT
+  m_Name: Window_Frame_1
   m_Shader: {fileID: 4800000, guid: 76374158b4c4e5744b394e9290aae693, type: 3}
   m_ShaderKeywords: _COLOR_ON _OUTL_ON
   m_LightmapFlags: 5
@@ -41,5 +41,5 @@ Material:
     - _VertexColor: 0
     m_Colors:
     - _Asymmetry: {r: 0, g: 0.25, b: 0.5, a: 0}
-    - _Color: {r: 0.17647058, g: 1, b: 0.14705884, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
