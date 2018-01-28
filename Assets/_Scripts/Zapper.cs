@@ -96,9 +96,13 @@ public class Zapper : MonoBehaviour
                 elapsedZapTime = 0.0f;
                 if (gm != null)
                 {
-                    gm.AddItemToPlayer(playerId, item.itemData);
+                    if (gm.AddItemToPlayer(playerId, item.itemData))
+                        item.ZapItem();
                 }
-                item.ZapItem();
+                else
+                {
+                    item.ZapItem();
+                }
             }
         }
         // Stopped zapping, slowly decrease zap time
