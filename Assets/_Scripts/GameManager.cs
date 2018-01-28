@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -101,6 +102,15 @@ public class GameManager : MonoBehaviour
         gameRunning = false;
         gameData.playerScores = playerScores;
         Time.timeScale *= .3f;
+
+        // Timer for a couple seconds
+        StartCoroutine(EndGameTimer());
+     }
+
+    IEnumerator EndGameTimer()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        SceneManager.LoadScene("Endgame Menu");
     }
 
     public void AddItemToPlayer(int playerID, ItemData data)
