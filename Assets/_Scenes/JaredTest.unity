@@ -199,6 +199,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1038592060
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4928529413070340, guid: e03cc3540e8b4ec4181157968929f37f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.0017514677
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928529413070340, guid: e03cc3540e8b4ec4181157968929f37f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928529413070340, guid: e03cc3540e8b4ec4181157968929f37f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928529413070340, guid: e03cc3540e8b4ec4181157968929f37f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928529413070340, guid: e03cc3540e8b4ec4181157968929f37f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928529413070340, guid: e03cc3540e8b4ec4181157968929f37f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928529413070340, guid: e03cc3540e8b4ec4181157968929f37f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4928529413070340, guid: e03cc3540e8b4ec4181157968929f37f, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e03cc3540e8b4ec4181157968929f37f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1050618074
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +449,7 @@ Prefab:
         type: 2}
       propertyPath: itemList.Array.data[0]
       value: 
-      objectReference: {fileID: 1570241668938636, guid: d1a8bb2b901229644880464f4e51f329,
+      objectReference: {fileID: 1917444181011664, guid: e03cc3540e8b4ec4181157968929f37f,
         type: 2}
     - target: {fileID: 114072621995831874, guid: e8d37b2730081ea40a018afb0f5b8791,
         type: 2}
