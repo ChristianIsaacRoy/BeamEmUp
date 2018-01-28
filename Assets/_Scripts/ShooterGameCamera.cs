@@ -152,7 +152,6 @@ public class ShooterGameCamera : MonoBehaviour
         aimTarget.position = camTransfrom.position + camTransfrom.forward * aimTargetDist;
         gunTarget.position = camTransfrom.position + camTransfrom.forward * gunTargetDist;
 
-
         AimModel();
     }
 
