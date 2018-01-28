@@ -1385,9 +1385,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1105991609980634}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.364341, y: 6.91, z: 0.012437201}
+  m_LocalScale: {x: 0.1, y: 1, z: 0.1}
   m_Children:
   - {fileID: 4612772728124512}
   m_Father: {fileID: 0}
@@ -2414,6 +2414,7 @@ MonoBehaviour:
   moveSpeed: 8
   gameData: {fileID: 11400000, guid: 77b2c9dc5956839428ff1875dbe3cc88, type: 2}
   particleSystem: {fileID: 198036289387860170}
+  gun: {fileID: 1300953503474440}
   jumpVelocity: 9.5
   jumpDecelerationSlow: 1
   jumpDecelertationFast: 2
