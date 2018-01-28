@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private float elapsedZapTime = 0.0f;
     private bool playerIsShooting = false;
 
+    public GameObject gun;
+
     [Range(1, 20)]
     public float jumpVelocity = 2f;
 
@@ -156,8 +158,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // Make sure distance to zapTarget is still within zappingDistance
-        Vector3 origin = cam.transform.position;
-        origin.z = transform.position.z;
+        Vector3 origin = gun.transform.position;
+        //origin.z = transform.position.z;
         float distanceToZapTarget = (zapTarget.transform.position - origin).magnitude;
         if (distanceToZapTarget > gameData.distanceToZap)
         {
@@ -195,9 +197,9 @@ public class PlayerController : MonoBehaviour
         // Can't shoot yourself
         LayerMask ignoreMask = (LayerMask.NameToLayer("Player"));
         
-        Vector3 origin = cam.transform.position;
+        Vector3 origin = gun.transform.position;
         // Shift origin up to player position
-        origin.z = transform.position.z;
+        //origin.z = transform.position.z;
 
         float distance = gameData.distanceToZap;
 

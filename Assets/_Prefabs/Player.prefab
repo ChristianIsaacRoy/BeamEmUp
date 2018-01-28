@@ -1385,8 +1385,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1105991609980634}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.819271, y: -4.128173, z: -21.00865}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4612772728124512}
@@ -2414,6 +2414,7 @@ MonoBehaviour:
   moveSpeed: 8
   gameData: {fileID: 11400000, guid: 77b2c9dc5956839428ff1875dbe3cc88, type: 2}
   particleSystem: {fileID: 198036289387860170}
+  gun: {fileID: 1300953503474440}
   jumpVelocity: 9.5
   jumpDecelerationSlow: 1
   jumpDecelertationFast: 2
@@ -2449,7 +2450,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100002, guid: e43229cd9a0736f46b5ee78fe3fbd26f, type: 3}
-  - {fileID: 2100004, guid: e43229cd9a0736f46b5ee78fe3fbd26f, type: 3}
+  - {fileID: 2100000, guid: 92708b6a9094b4b5ea1c08529f33934a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
