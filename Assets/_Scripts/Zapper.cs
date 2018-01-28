@@ -79,6 +79,7 @@ public class Zapper : MonoBehaviour
             playerIsShooting = false;
             shootingParticleSystem.Stop();
             AnimController.SetBool("Shooting", false);
+            player.StopVibration();
         }
     }
 
@@ -148,6 +149,7 @@ public class Zapper : MonoBehaviour
 
     private void CancelShooting()
     {
+        player.StopVibration();
         zapTarget.GetComponent<GameItem>().isBeingZapped = false;
         zapTarget = null;
     }
@@ -166,6 +168,11 @@ public class Zapper : MonoBehaviour
                 {
                     zapTarget = hit.transform.gameObject;
                     zapTarget.GetComponent<GameItem>().isBeingZapped = true;
+                    if (zapTarget.GetComponent<GameItem>().playerZapping == null)
+                    {
+                        zapTarget.GetComponent<GameItem>().playerZapping = gameObject;
+                    }
+                    player.SetVibration(0, 0.3f);
                 }
             }
         }

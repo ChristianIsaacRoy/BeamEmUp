@@ -8,12 +8,18 @@ public class GameItem : MonoBehaviour
     public float itemHoverHeight;
     public bool isBeingZapped;
 
+    private Vector3 originalPosition;
+
+    [HideInInspector]
+    public GameObject playerZapping;
+
     public void Start()
     {
         if (itemData != null)
         {
             Instantiate<GameObject>(itemData.newGameObject, transform);
         }
+        originalPosition = itemData.newGameObject.transform.position;
     }
 
     public void Update()
@@ -29,6 +35,23 @@ public class GameItem : MonoBehaviour
             if (transform.position.y < -20)
             {
                 Destroy(gameObject);
+            }
+        }
+
+        if (isBeingZapped)
+        {
+            if (playerZapping != null)
+            {
+                // Check distance
+                Vector3 gunPos = playerZapping.GetComponent<Zapper>().gun.transform.position;
+                float distanceToGun = (transform.position - gunPos).magnitude;
+                // Don't move if too close
+                if (distanceToGun < 4.0f)
+                {
+                    return;
+                }
+
+                transform.position = Vector3.Slerp(transform.position, gunPos, Time.time * 0.001f);
             }
         }
     }
