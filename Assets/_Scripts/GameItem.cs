@@ -139,17 +139,23 @@ public class GameItem : MonoBehaviour
         if (audioSource != null)
             audioSource.Play();
 
-        Transform propObj = transform.GetChild(0);
-        childMeshRenderer = propObj.GetComponent<MeshRenderer>();
-        Material[] materials = new Material[childMeshRenderer.materials.Length];
-        for (int i = 0; i < childMeshRenderer.materials.Length; i++)
+        if (this.CompareTag("Item"))
         {
-            materials[i] = dissolveMat;
-        }
-        childMeshRenderer.materials = materials;
+            Transform propObj = transform.GetChild(0);
+            childMeshRenderer = propObj.GetComponent<MeshRenderer>();
+            Material[] materials = new Material[childMeshRenderer.materials.Length];
+            for (int i = 0; i < childMeshRenderer.materials.Length; i++)
+            {
+                materials[i] = dissolveMat;
+            }
+            childMeshRenderer.materials = materials;
 
-        player.StopVibration();
-        StartCoroutine(Dissolve());
+            player.StopVibration();
+            StartCoroutine(Dissolve());
+        } else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 }
