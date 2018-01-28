@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using Rewired;
 
-public class MainMenuManager : MonoBehaviour
+public class StartMenuManager : MonoBehaviour
 {
     public GameData gameData;
 
@@ -84,7 +84,7 @@ public class MainMenuManager : MonoBehaviour
         gameData.numberOfPlayers = mode;
         SceneManager.LoadSceneAsync("WhiteboxEditing");
     }
-    
+
     public void SetYAxisInverted(int player)
     {
         gameData.playerYAxisInverted[player] = settingsMenuManager.toggles[player].isOn;

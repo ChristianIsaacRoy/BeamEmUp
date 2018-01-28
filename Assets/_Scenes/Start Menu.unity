@@ -387,7 +387,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1096007230}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenCharCountMenu
         m_Mode: 1
         m_Arguments:
@@ -1818,7 +1818,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1096007230}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenCharCountMenu
         m_Mode: 1
         m_Arguments:
@@ -3719,8 +3719,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1096007231}
-  - component: {fileID: 1096007230}
   - component: {fileID: 1096007232}
+  - component: {fileID: 1096007230}
   m_Layer: 0
   m_Name: Main Menu Manager
   m_TagString: Untagged
@@ -3736,7 +3736,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1096007229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac9334c7f1015b0479ebb1754cda62b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 335217369a9e0714b8f8eb8e8cac23c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: c54322bf34744d8468995444eda785e7, type: 2}
@@ -5953,7 +5953,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1096007230}
+      - m_Target: {fileID: 0}
         m_MethodName: OpenCharCountMenu
         m_Mode: 1
         m_Arguments:
