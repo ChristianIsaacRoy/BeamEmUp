@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f93fcab1c54474fa057b1def5baa1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: 77b2c9dc5956839428ff1875dbe3cc88, type: 2}
+  gameData: {fileID: 0}
   onPlayerScored: {fileID: 11400000, guid: b5fe55eba47b27843941ec5fa7692dba, type: 2}
   onGameOver: {fileID: 11400000, guid: bfdc4ca82521da34394a5c8bf4be423f, type: 2}
   camManager: {fileID: 0}

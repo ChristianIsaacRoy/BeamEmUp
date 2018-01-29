@@ -327,6 +327,7 @@ MonoBehaviour:
   playerID: 2
   crosshair: {fileID: 0}
   aimTarget: {fileID: 0}
+  gunTarget: {fileID: 0}
   smoothingTime: 10
   pivotOffset: {x: 0.2, y: 0.7, z: 0}
   camOffset: {x: 1.6, y: 1.1, z: -7.5}
@@ -337,7 +338,7 @@ MonoBehaviour:
   minVerticalAngle: -40
   mouseSensitivity: 0.3
   angleH: 0
-  gameData: {fileID: 11400000, guid: 67787fe55bdd05645a9fb1171a635283, type: 2}
+  gameData: {fileID: 0}
 --- !u!114 &114145604985283288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -353,6 +354,7 @@ MonoBehaviour:
   playerID: 1
   crosshair: {fileID: 0}
   aimTarget: {fileID: 0}
+  gunTarget: {fileID: 0}
   smoothingTime: 10
   pivotOffset: {x: 0.2, y: 0.7, z: 0}
   camOffset: {x: 1.6, y: 1.1, z: -7.5}
@@ -363,7 +365,7 @@ MonoBehaviour:
   minVerticalAngle: -40
   mouseSensitivity: 0.3
   angleH: 0
-  gameData: {fileID: 11400000, guid: 67787fe55bdd05645a9fb1171a635283, type: 2}
+  gameData: {fileID: 0}
 --- !u!114 &114580468410229778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,6 +381,7 @@ MonoBehaviour:
   playerID: 0
   crosshair: {fileID: 0}
   aimTarget: {fileID: 0}
+  gunTarget: {fileID: 0}
   smoothingTime: 10
   pivotOffset: {x: 0.2, y: 0.7, z: 0}
   camOffset: {x: 1.6, y: 1.1, z: -6.8}
@@ -389,7 +392,7 @@ MonoBehaviour:
   minVerticalAngle: -40
   mouseSensitivity: 0.3
   angleH: 0
-  gameData: {fileID: 11400000, guid: 67787fe55bdd05645a9fb1171a635283, type: 2}
+  gameData: {fileID: 0}
 --- !u!114 &114728138838424416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -401,7 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662941f30228a9149945bd51e4ab2c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameData: {fileID: 11400000, guid: 67787fe55bdd05645a9fb1171a635283, type: 2}
+  GameData: {fileID: 0}
   gm: {fileID: 0}
   cameraArray:
   - {fileID: 20316256967379606}
@@ -424,6 +427,7 @@ MonoBehaviour:
   playerID: 3
   crosshair: {fileID: 0}
   aimTarget: {fileID: 0}
+  gunTarget: {fileID: 0}
   smoothingTime: 10
   pivotOffset: {x: 0.2, y: 0.7, z: 0}
   camOffset: {x: 1.6, y: 1.1, z: -7.5}
@@ -434,7 +438,7 @@ MonoBehaviour:
   minVerticalAngle: -40
   mouseSensitivity: 0.3
   angleH: 0
-  gameData: {fileID: 11400000, guid: 67787fe55bdd05645a9fb1171a635283, type: 2}
+  gameData: {fileID: 0}
 --- !u!124 &124159422230040566
 Behaviour:
   m_ObjectHideFlags: 1
