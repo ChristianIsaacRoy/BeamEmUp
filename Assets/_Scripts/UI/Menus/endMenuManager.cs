@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class endMenuManager : MonoBehaviour {
+public class EndMenuManager : MonoBehaviour {
 
     public GameObject defaultSelectedObject;
 
